@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TECHNOVA — الابتكار في كل نقرة</title>
+    <meta
+      name="description"
+      content="TECHNOVA — حلول تقنية متكاملة: مواقع، تطبيقات، أنظمة كاميرات، مشاريع طلابية، تسويق، كهرباء وإلكترونيات وبنية تحتية."
+    />
+
+    <!-- Tailwind (CDN for quick demo) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Colors / CSS variables (themeable) -->
+    <link rel="stylesheet" href="assets/css/colors.css" />
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <!-- Inline small favicons or manifest could be added here -->
+
+    <!-- Load optional heavy libs lazily (commented) -->
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+    ></script>
+  </head>
+  <body class="bg-bg text-black antialiased">
+    <!-- top-level: theme + lang initialized by JS -->
+    <div id="app" class="min-h-screen flex flex-col">
+      <!-- NAV -->
+      <header
+        class="fixed w-full z-40 bg-white/70 backdrop-blur-sm border-b border-gray-100"
+      >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-16">
+            <a href="index.html" class="flex items-center gap-3">
+              <!-- Inline simple SVG logo (replace with your SVG file or inline full logo) -->
+              <img
+                src="assets/images/logo.jpg"
+                alt="TECHNOVA"
+                class="h-10 w-10"
+              />
+              <span class="font-bold text-xl text-primary">TECHNOVA</span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-6">
+              <a
+                class="text-gray-700 hover:text-primary transition"
+                href="index.html#home"
+                >الرئيسية</a
+              >
+              <a
+                class="text-gray-700 hover:text-primary transition"
+                href="services.html"
+                >الخدمات</a
+              >
+              <a
+                class="text-gray-700 hover:text-primary transition"
+                href="projects.html"
+                >المشاريع</a
+              >
+              <a
+                class="text-gray-700 hover:text-primary transition"
+                href="contact.html"
+                >تواصل</a
+              >
+              <button
+                id="themeToggleBtn"
+                class="ml-4 px-3 py-2 rounded-md border border-gray-200 text-sm"
+              >
+                ثيم
+              </button>
+              <button
+                id="langToggleBtn"
+                class="ml-2 px-3 py-2 rounded-md border border-gray-200 text-sm"
+              >
+                EN
+              </button>
+            </nav>
+
+            <div class="md:hidden">
+              <button
+                id="mobileBtn"
+                class="p-2 rounded-md border border-gray-200"
+              >
+                ☰
+              </button>
+            </div>
+          </div>
+
+          <!-- Mobile menu -->
+          <div id="mobileMenu" class="mobile-menu md:hidden px-2 pb-4 hidden">
+            <a href="#home" class="block px-4 py-2 rounded hover:bg-gray-50"
+              >الرئيسية</a
+            >
+            <a
+              href="services.html"
+              class="block px-4 py-2 rounded hover:bg-gray-50"
+              >الخدمات</a
+            >
+            <a
+              href="projects.html"
+              class="block px-4 py-2 rounded hover:bg-gray-50"
+              >المشاريع</a
+            >
+            <a
+              href="contact.html"
+              class="block px-4 py-2 rounded hover:bg-gray-50"
+              >تواصل</a
+            >
+          </div>
+        </div>
+      </header>
+
+      <!-- HERO -->
+      <main class="flex-grow">
+        <!-- ! hero section -->
+        <section
+          id="home"
+          class="pt-24 pb-16 bg-gradient-to-br from-blue-50 to-white overflow-hidden"
+        >
+          <!-- Background Elements -->
+          <div class="absolute inset-0 overflow-hidden">
+            <div
+              class="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl"
+            ></div>
+            <div
+              class="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary/10 rounded-full blur-3xl"
+            ></div>
+          </div>
+
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Logo for mobile only -->
+            <div class="text-center mb-8 lg:hidden">
+              <div
+                class="font-['Pacifico'] text-3xl sm:text-4xl md:text-6xl text-primary animate-float"
+              >
+                <span class="gradient-text">TECHNOVA</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <!-- Left Column: Image for Desktop Only -->
+              <div class="relative order-2 lg:order-1 hidden lg:block">
+                <div
+                  class="rounded-2xl bg-white/60 backdrop-blur-md p-3 shadow-2xl"
+                >
+                  <img
+                    src="./assets/images/hero-image.jpg"
+                    alt="فريق TECHNOVA"
+                    class="rounded-xl w-full h-auto object-cover"
+                  />
+                </div>
+
+                <!-- Floating badges for Desktop -->
+                <div
+                  class="absolute -bottom-3 right-4 bg-primary text-white px-3 py-2 rounded-xl shadow-lg animate-pulse-slow"
+                >
+                  <div class="text-lg font-bold">250+</div>
+                  <div class="text-xs">مشروع مكتمل</div>
+                </div>
+                <div
+                  class="absolute -top-3 left-4 bg-secondary text-white px-3 py-2 rounded-xl shadow-lg animate-pulse-slow"
+                >
+                  <div class="text-lg font-bold">15+</div>
+                  <div class="text-xs">سنة خبرة</div>
+                </div>
+              </div>
+
+              <!-- Right Column: Text Content for All Screens + Image for Mobile -->
+              <div class="text-right order-1 lg:order-2">
+                <!-- Logo for desktop only -->
+                <div class="hidden lg:block mb-8">
+                  <div
+                    class="font-['Pacifico'] text-3xl sm:text-4xl md:text-6xl text-primary animate-float"
+                  >
+                    <span class="gradient-text">TECHNOVA</span>
+                  </div>
+                </div>
+
+                <h1
+                  class="text-center text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 mb-6"
+                >
+                  مرحباً بكم في عالم
+                  <span class="gradient-text">التقنية المتطورة</span>
+                </h1>
+
+                <!-- Image for Mobile Only (appears after the H1) -->
+                <div class="relative block lg:hidden mb-8">
+                  <div
+                    class="rounded-2xl bg-white/60 backdrop-blur-md p-3 shadow-2xl"
+                  >
+                    <img
+                      src="./assets/images/hero-image.jpg"
+                      alt="فريق TECHNOVA"
+                      class="rounded-xl w-full h-auto object-cover"
+                    />
+                  </div>
+
+                  <!-- Floating badges for Mobile -->
+                  <div
+                    class="absolute -bottom-3 right-4 bg-primary text-white px-3 py-2 rounded-xl shadow-lg animate-pulse-slow"
+                  >
+                    <div class="text-lg font-bold">250+</div>
+                    <div class="text-xs">مشروع مكتمل</div>
+                  </div>
+                  <div
+                    class="absolute -top-3 left-4 bg-secondary text-white px-3 py-2 rounded-xl shadow-lg animate-pulse-slow"
+                  >
+                    <div class="text-lg font-bold">4+</div>
+                    <div class="text-xs">سنة خبرة</div>
+                  </div>
+                </div>
+
+                <!-- Subtitle -->
+                <p
+                  class="text-lg sm:text-xl md:text-2xl text-gray-600 mb-6 sm:mb-8"
+                >
+                  نحول أفكارك التقنية إلى واقع مبتكر
+                </p>
+
+                <!-- Description -->
+                <p
+                  class="text-base font-bold sm:text-lg text-gray-500 mb-8 sm:mb-10 max-w-3xl mx-auto lg:mx-0"
+                >
+                  شركة تقنية رائدة تقدم حلولاً مبتكرة للأفراد والطلاب وأصحاب
+                  المشاريع والشركات، نجمع بين الخبرة والابتكار لتحقيق أهدافك
+                  التقنية بأعلى معايير الجودة والاحتراف
+                </p>
+
+                <!-- Buttons Container -->
+                <div
+                  class="flex flex-row gap-3 justify-center sm:justify-start"
+                >
+                  <a
+                    href="#contact"
+                    class="btn-cta inline-flex items-center justify-center px-4 py-2 sm:px-6 sm:py-3 rounded-lg shadow bg-primary text-white hover:bg-blue-700 transition-colors text-sm sm:text-base"
+                  >
+                    اكتشف خدماتنا
+                  </a>
+                  <a
+                    href="#projects"
+                    class="border-2 border-primary text-primary px-4 py-2 sm:px-6 sm:py-3 rounded-lg inline-flex items-center justify-center hover:bg-primary hover:text-white transition text-sm sm:text-base"
+                  >
+                    اطلع على المشاريع
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scroll Indicator -->
+          <div
+            class="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
+          >
+            <i class="ri-arrow-down-line text-2xl sm:text-3xl text-primary"></i>
+          </div>
+        </section>
+
+        <!--! SERVICES PREVIEW -->
+        <section id="services-preview" class="py-20">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+              <h2 class="text-2xl md:text-3xl font-bold gradient-text">
+                خدماتنا
+              </h2>
+              <p class="text-muted max-w-2xl mx-auto">
+                مجموعة من الخدمات المتكاملة التي نوفّرها لعملائنا
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <article
+                class="p-6 bg-white rounded-2xl shadow hover:shadow-xl transition card-hover"
+              >
+                <div
+                  class="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-4"
+                >
+                  <img src="#3" alt="ويب" class="w-8 h-8" />
+                </div>
+                <h3 class="font-semibold text-lg mb-2">تطوير مواقع وتطبيقات</h3>
+                <p class="text-muted">
+                  تصميم وبرمجة واجهات وتجربة مستخدم احترافية ومتوافقة مع الأداء.
+                </p>
+              </article>
+
+              <article
+                class="p-6 bg-white rounded-2xl shadow hover:shadow-xl transition card-hover"
+              >
+                <div
+                  class="w-16 h-16 rounded-xl bg-accent/10 flex items-center justify-center mb-4"
+                >
+                  <img src="#" alt="أمن" class="w-8 h-8" />
+                </div>
+                <h3 class="font-semibold text-lg mb-2">أنظمة وكاميرات</h3>
+                <p class="text-muted">
+                  حلول مراقبة ومراقبة ذكية متكاملة مع تحليلات ودمج سحابي.
+                </p>
+              </article>
+
+              <article
+                class="p-6 bg-white rounded-2xl shadow hover:shadow-xl transition card-hover"
+              >
+                <div
+                  class="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-4"
+                >
+                  <img src="#" alt="أنظمة ذكية" class="w-8 h-8" />
+                </div>
+                <h3 class="font-semibold text-lg mb-2">كهرباء وإلكترونيات</h3>
+                <p class="text-muted">
+                  تصميم دوائر، بنية تحتية، وتركيب حلول ذكية للمشاريع الصناعية
+                  والسكنية.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+          <!--! Target Audience Section -->
+        <section
+          id="audience"
+          class="py-20 bg-gray-50"
+          role="region"
+          aria-labelledby="audience-title"
+        >
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+              <h2
+                id="audience-title"
+                class="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+                data-i18n="audience.title"
+              >
+                نخدم جميع الفئات
+              </h2>
+              <p
+                class="text-lg text-gray-600 max-w-2xl mx-auto"
+                data-i18n="audience.sub"
+              >
+                حلول متخصصة ومخصصة لتلبية احتياجات كل فئة من عملائنا
+              </p>
+            </div>
+
+            <div
+              class="grid grid-cols-1 md:grid-cols-3 gap-8"
+              aria-hidden="false"
+            >
+              <!-- Individuals & Students -->
+              <article
+                class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all card-hover p-8"
+                aria-labelledby="audience-students-title"
+              >
+                <div
+                  class="w-full h-48 mb-6 overflow-hidden rounded-xl bg-gray-100"
+                >
+                  <img
+                    src="assets/images/graduated-graduate-svgrepo-com.svg"
+                    alt="طلاب يعملون على مشاريع تقنية"
+                    loading="lazy"
+                    class="w-full h-full object-cover object-top"
+                  />
+                </div>
+
+                <h3
+                  id="audience-students-title"
+                  class="text-2xl font-bold text-gray-900 mb-4"
+                  data-i18n="audience.students.title"
+                >
+                  الأفراد والطلاب
+                </h3>
+
+                <ul class="text-gray-600 space-y-3 mb-6">
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-primary flex-shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414L8.414 15 5.293 11.879a1 1 0 111.414-1.414L8.414 12.172l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span data-i18n="audience.students.grad"
+                      >دعم مشاريع التخرج والبحث العلمي</span
+                    >
+                  </li>
+
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-primary flex-shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414L8.414 15 5.293 11.879a1 1 0 111.414-1.414L8.414 12.172l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span data-i18n="audience.students.skills"
+                      >تطوير المهارات التقنية والبرمجية</span
+                    >
+                  </li>
+
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-primary flex-shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414L8.414 15 5.293 11.879a1 1 0 111.414-1.414L8.414 12.172l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span data-i18n="audience.students.consult"
+                      >استشارات تقنية مجانية للطلاب</span
+                    >
+                  </li>
+
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-primary flex-shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414L8.414 15 5.293 11.879a1 1 0 111.414-1.414L8.414 12.172l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span data-i18n="audience.students.pricing"
+                      >حلول تقنية بأسعار مناسبة</span
+                    >
+                  </li>
+                </ul>
+
+                <button
+                  class="w-full bg-primary text-white py-3 rounded-button hover:bg-primary-600 transition-all transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-primary/20"
+                  data-action="open-contact"
+                  data-service="students"
+                  aria-label="ابدأ مشروعك الآن - للأفراد والطلاب"
+                >
+                  ابدأ مشروعك الآن
+                </button>
+              </article>
+
+              <!-- Project Owners -->
+              <article
+                class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all card-hover p-8"
+                aria-labelledby="audience-owners-title"
+              >
+                <div
+                  class="w-full h-48 mb-6 overflow-hidden rounded-xl bg-gray-100"
+                >
+                  <img
+                    src="assets/images/audience-entrepreneurs.jpg"
+                    alt="رواد أعمال يعملون في مكتب حديث"
+                    loading="lazy"
+                    class="w-full h-full object-cover object-top"
+                  />
+                </div>
+
+                <h3
+                  id="audience-owners-title"
+                  class="text-2xl font-bold text-gray-900 mb-4"
+                  data-i18n="audience.owners.title"
+                >
+                  أصحاب المشاريع
+                </h3>
+
+                <ul class="text-gray-600 space-y-3 mb-6">
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-primary flex-shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414L8.414 15 5.293 11.879a1 1 0 111.414-1.414L8.414 12.172l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span data-i18n="audience.owners.platforms"
+                      >تطوير منصات إلكترونية متكاملة</span
+                    >
+                  </li>
+
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-primary flex-shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414L8.414 15 5.293 11.879a1 1 0 111.414-1.414L8.414 12.172l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span data-i18n="audience.owners.ecom"
+                      >حلول التجارة الإلكترونية المتطورة</span
+                    >
+                  </li>
+
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-primary flex-shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414L8.414 15 5.293 11.879a1 1 0 111.414-1.414L8.414 12.172l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span data-i18n="audience.owners.strategy"
+                      >استراتيجيات التحول الرقمي</span
+                    >
+                  </li>
+
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-primary flex-shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414L8.414 15 5.293 11.879a1 1 0 111.414-1.414L8.414 12.172l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span data-i18n="audience.owners.support"
+                      >دعم فني مستمر ومتابعة دورية</span
+                    >
+                  </li>
+                </ul>
+
+                <button
+                  class="w-full bg-primary text-white py-3 rounded-button hover:bg-primary-600 transition-all transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-primary/20"
+                  data-action="open-contact"
+                  data-service="owners"
+                  aria-label="طور مشروعك معنا - لأصحاب المشاريع"
+                >
+                  طور مشروعك معنا
+                </button>
+              </article>
+
+              <!-- Companies -->
+              <article
+                class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all card-hover p-8"
+                aria-labelledby="audience-companies-title"
+              >
+                <div
+                  class="w-full h-48 mb-6 overflow-hidden rounded-xl bg-gray-100"
+                >
+                  <img
+                    src="assets/images/audience-corporate.jpg"
+                    alt="بيئة عمل شركة حديثة"
+                    loading="lazy"
+                    class="w-full h-full object-cover object-top"
+                  />
+                </div>
+
+                <h3
+                  id="audience-companies-title"
+                  class="text-2xl font-bold text-gray-900 mb-4"
+                  data-i18n="audience.companies.title"
+                >
+                  الشركات والمؤسسات
+                </h3>
+
+                <ul class="text-gray-600 space-y-3 mb-6">
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-primary flex-shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414L8.414 15 5.293 11.879a1 1 0 111.414-1.414L8.414 12.172l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span data-i18n="audience.companies.erp"
+                      >أنظمة إدارة الموارد المؤسسية</span
+                    >
+                  </li>
+
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-primary flex-shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414L8.414 15 5.293 11.879a1 1 0 111.414-1.414L8.414 12.172l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span data-i18n="audience.companies.security"
+                      >حلول الأمان والحماية المتقدمة</span
+                    >
+                  </li>
+
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-primary flex-shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414L8.414 15 5.293 11.879a1 1 0 111.414-1.414L8.414 12.172l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span data-i18n="audience.companies.infrastructure"
+                      >تطوير البنية التحتية التقنية</span
+                    >
+                  </li>
+
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-primary flex-shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414L8.414 15 5.293 11.879a1 1 0 111.414-1.414L8.414 12.172l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span data-i18n="audience.companies.consulting"
+                      >استشارات تقنية متخصصة</span
+                    >
+                  </li>
+                </ul>
+
+                <button
+                  class="w-full bg-primary text-white py-3 rounded-button hover:bg-primary-600 transition-all transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-primary/20"
+                  data-action="open-contact"
+                  data-service="companies"
+                  aria-label="احجز استشارتك - للشركات والمؤسسات"
+                >
+                  احجز استشارتك
+                </button>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- ! CTA -->
+        <section class="py-16 bg-bg">
+          <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-2xl font-bold mb-4">هل أنت مستعد لبدء مشروعك؟</h3>
+            <p class="text-muted mb-6">
+              سنتولى تحويل فكرتك إلى واقع تقني مبتكر. تواصل معنا اليوم للحصول
+              على استشارة مجانية.
+            </p>
+            <a href="contact.html" class="btn-cta px-8 py-3 rounded-lg"
+              >اطلب استشارة مجانية</a
+            >
+          </div>
+        </section>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <div class="flex items-center gap-3 mb-4">
+                <img
+                  src="assets/images/logo.jpg"
+                  alt="TECHNOVA"
+                  class="h-10 w-10"
+                />
+                <span class="font-bold text-lg text-white">TECHNOVA</span>
+              </div>
+              <p class="text-gray-300">
+                حلول تقنية متكاملة تجمع بين الابتكار والموثوقية.
+              </p>
+            </div>
+
+            <div>
+              <h4 class="font-semibold mb-4">روابط سريعة</h4>
+              <ul class="space-y-2 text-gray-300">
+                <li><a href="#home" class="hover:text-white">الرئيسية</a></li>
+                <li>
+                  <a href="services.html" class="hover:text-white">الخدمات</a>
+                </li>
+                <li>
+                  <a href="projects.html" class="hover:text-white">المشاريع</a>
+                </li>
+                <li>
+                  <a href="contact.html" class="hover:text-white">تواصل معنا</a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 class="font-semibold mb-4">تواصل</h4>
+              <p class="text-gray-300">info@technova.sa</p>
+              <p class="text-gray-300 mt-2">+966 11 123 4567</p>
+            </div>
+          </div>
+
+          <div
+            class="mt-8 border-t border-gray-800 pt-6 text-center text-gray-400 text-sm"
+          >
+            © <span id="year"></span> TECHNOVA. جميع الحقوق محفوظة.
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/theme-toggle.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+    <script>
+      // Small boot helpers
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script>
+      // Small behaviour for the Target Audience section
+// - handles CTA buttons: smooth scroll to contact page (or to #contact on same page)
+// - optionally prefill the service field on the contact form (if present)
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-action="open-contact"]').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      const serviceKey = btn.dataset.service || '';
+      // If contact page is same site, scroll to it or navigate then scroll
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        // Scroll to in-page contact
+        const offsetTop = contactSection.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+
+        // Prefill service if contact form select exists
+        setTimeout(() => {
+          const form = document.querySelector('#contactForm');
+          if (form) {
+            const select = form.querySelector('select[name="service"], select#service');
+            if (select && serviceKey) {
+              // Map serviceKey to option text values (adjust as needed)
+              const mapping = {
+                students: 'مشاريع التخرج',
+                owners: 'تطوير منصات إلكترونية متكاملة',
+                companies: 'حلول الأعمال للشركات'
+              };
+              const val = mapping[serviceKey] || mapping[serviceKey] === '' ? mapping[serviceKey] : '';
+              // Try to pick matching option by text
+              for (const opt of select.options) {
+                if (opt.textContent.trim() === val || opt.value === serviceKey) {
+                  select.value = opt.value;
+                  break;
+                }
+              }
+            }
+            // Focus first input
+            const firstInput = form.querySelector('input, textarea, select');
+            if (firstInput) firstInput.focus();
+          }
+        }, 700);
+      } else {
+        // navigate to contact.html and pass a query param to indicate service
+        let url = 'contact.html';
+        if (serviceKey) url += `?service=${encodeURIComponent(serviceKey)}`;
+        window.location.href = url;
+      }
+    });
+  });
+
+  // If arrived on contact.html with ?service=... prefill the form (works after navigation)
+  if (window.location.search) {
+    const params = new URLSearchParams(window.location.search);
+    const svc = params.get('service');
+    if (svc) {
+      // store in session for on-page form population
+      sessionStorage.setItem('prefill_service', svc);
+    }
+  }
+});
+    </script>
+  </body>
+</html>
