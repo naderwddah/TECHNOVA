@@ -1,6 +1,7 @@
 :root{
   /* Default theme (template blue) */
   --color-primary: #2563EB;
+  --color-secondary: #10b981;
   --color-primary-600: #1D4ED8;
   --color-primary-400: #0EA5E9;
   --color-accent: #F97316;
@@ -37,6 +38,7 @@
 
 /* Utility classes used across templates */
 .bg-primary{ background-color: var(--color-primary) !important; }
+.bg-secondary{ background-color: var(--color-secondary) !important; }
 .text-primary{ color: var(--color-primary) !important; }
 .border-primary{ border-color: var(--color-primary) !important; }
 .bg-accent{ background-color: var(--color-accent) !important; }

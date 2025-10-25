@@ -72,3 +72,12 @@ body{ font-family: var(--font-ar), var(--font-sans); background:var(--color-bg);
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
+            .scroll-indicator {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
+        z-index: 100;
+        transition: width 0.2s ease;
+      }

@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>خدمات TECHNOVA</title>
+
+    <!-- Tailwind (CDN for quick demo) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Colors / CSS variables (themeable) -->
+    <link rel="stylesheet" href="./assets/css/colors.css" />
+    <!-- Custom styles -->
+        <link rel="stylesheet" href="./assets/css/styles.css" />
+
+    <!-- Remixicon for icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <!-- Swiper for carousels -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <!-- AOS for animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Custom styles to match Portfolio.html structure but use TECHNOVA colors -->
+    <style>
+      /* Use TECHNOVA's primary and accent colors for the gradient */
+      .gradient-bg {
+        background: linear-gradient(
+          135deg,
+          var(--color-primary) 0%,
+          var(--color-accent) 100%
+        );
+      }
+
+      .gradient-text {
+        background: linear-gradient(90deg, #3b82f6, #06b6d4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Service card styles - matching the requested design */
+      .service-card {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+      }
+
+      .service-card:hover::before {
+        left: 100%;
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-icon {
+        transition: all 0.3s ease;
+      }
+
+      .service-card:hover .feature-icon {
+        transform: scale(1.1) rotate(5deg);
+      }
+
+      .tech-badge {
+        transition: all 0.2s ease;
+      }
+
+      .tech-badge:hover {
+        transform: scale(1.05);
+        background-color: #1e3a8a;
+        color: white;
+      }
+
+      /* Animation for service icons */
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+
+      .float-animation {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      /* Service category colors */
+      .category-web { background-color: #10b981; }
+      .category-mobile { background-color: #f59e0b; }
+      .category-iot { background-color: #3b82f6; }
+      .category-ai { background-color: #8b5cf6; }
+      .category-electronics { background-color: #ef4444; }
+      .category-student { background-color: #ec4899; }
+      .category-marketing { background-color: #06b6d4; }
+      .category-network { background-color: #3b82f6; }
+      .category-other { background-color: #6b7280; }
+
+      /* Modal Styles */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+
+      .modal-backdrop.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .modal-card {
+        width: 100%;
+        max-width: 800px;
+        max-height: 80vh;
+        border-radius: 1rem;
+        background-color: var(--color-surface);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        transform: scale(0.95);
+        transition: transform 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .modal-backdrop.open .modal-card {
+        transform: scale(1);
+      }
+
+      .modal-swiper-container {
+        aspect-ratio: 16 / 9;
+        --swiper-navigation-color: var(--color-primary);
+        --swiper-navigation-size: 30px;
+        flex-shrink: 0;
+      }
+
+      .modal-swiper-container .swiper-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f3f4f6;
+        padding: 1rem;
+      }
+      
+      .modal-swiper-container .swiper-slide img {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        object-fit: contain;
+      }
+
+      @media (max-width: 768px) {
+        .modal-card {
+          max-width: 100%;
+          max-height: 100vh;
+          height: 100%;
+          margin: 0;
+          border-radius: 0;
+        }
+        .modal-backdrop {
+          padding: 0;
+        }
+        .modal-swiper-container {
+          aspect-ratio: 4 / 3;
+        }
+        .modal-swiper-container .swiper-slide img {
+            border-radius: 0;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800 antialiased">
+    <div id="app" class="min-h-screen flex flex-col">
+      <!-- NAV (Copied from index.html) -->
+      <header
+        class="fixed w-full z-40 bg-white/70 backdrop-blur-sm border-b border-gray-100"
+      >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-16">
+            <a href="index.html" class="flex items-center gap-3">
+              <img
+                src="assets/images/logo.jpg"
+                alt="TECHNOVA"
+                class="h-10 w-10"
+              />
+              <span class="font-bold text-xl text-primary">TECHNOVA</span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-6">
+              <a
+                class="text-gray-700 hover:text-primary transition"
+                href="index.html#home"
+                >الرئيسية</a
+              >
+              <a class="text-primary font-bold transition" href="services.html"
+                >الخدمات</a
+              >
+              <a
+                class="text-gray-700 hover:text-primary transition"
+                href="projects.html"
+                >المشاريع</a
+              >
+              <a
+                class="text-gray-700 hover:text-primary transition"
+                href="contact.html"
+                >تواصل</a
+              >
+              <button
+                id="themeToggleBtn"
+                class="ml-4 px-3 py-2 rounded-md border border-gray-200 text-sm"
+              >
+                ثيم
+              </button>
+              <button
+                id="langToggleBtn"
+                class="ml-2 px-3 py-2 rounded-md border border-gray-200 text-sm"
+              >
+                EN
+              </button>
+            </nav>
+
+            <div class="md:hidden">
+              <button
+                id="mobileBtn"
+                class="p-2 rounded-md border border-gray-200"
+              >
+                ☰
+              </button>
+            </div>
+          </div>
+
+          <!-- Mobile menu -->
+          <div id="mobileMenu" class="mobile-menu md:hidden px-2 pb-4 hidden">
+            <a href="#home" class="block px-4 py-2 rounded hover:bg-gray-50"
+              >الرئيسية</a
+            >
+            <a
+              href="services.html"
+              class="block px-4 py-2 rounded hover:bg-gray-50 bg-primary/10 text-primary font-bold"
+              >الخدمات</a
+            >
+            <a
+              href="projects.html"
+              class="block px-4 py-2 rounded hover:bg-gray-50"
+              >المشاريع</a
+            >
+            <a
+              href="contact.html"
+              class="block px-4 py-2 rounded hover:bg-gray-50"
+              >تواصل</a
+            >
+          </div>
+        </div>
+      </header>
+
+      <!-- Hero Section -->
+      <section class="pt-24 pb-16 md:pt-32 md:pb-24 gradient-bg text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">خدماتنا</h1>
+            <p class="text-xl text-white/90 max-w-3xl mx-auto">
+              نقدم مجموعة متكاملة من الحلول التقنية المبتكرة التي تلبي احتياجات الشركات
+              والأفراد على حد سواء، مع التركيز على الجودة والأمان والابتكار
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Filter Section -->
+      <section
+        class="py-8 bg-surface shadow-sm border-b border-gray-100"
+      >
+        <!-- Header -->
+        <div
+          class="text-center mb-12"
+          data-aos="fade-up"
+          data-aos-duration="800"
+        >
+          <h2
+            class="text-3xl md:text-4xl font-extrabold text-[color:var(--color-dark)] mb-3 tracking-tight"
+          >
+            اكتشف خدمات <span class="gradient-text">TECHNOVA</span>
+          </h2>
+          <p class="text-lg text-[color:var(--color-muted)] max-w-2xl mx-auto">
+            نماذج مختارة تُظهر قدرتنا على تلبية جميع احتياجاتك التقنية
+          </p>
+        </div>
+
+        <!-- Filters -->
+        <div
+          class="flex flex-wrap items-center justify-center gap-3 mb-8"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <button
+            class="filter-btn active px-4 py-2 rounded-full text-sm"
+            data-filter="all"
+          >
+            الكل
+          </button>
+          <button
+            class="filter-btn px-4 py-2 rounded-full text-sm"
+            data-filter="web"
+          >
+            تطوير الويب
+          </button>
+          <button
+            class="filter-btn px-4 py-2 rounded-full text-sm"
+            data-filter="mobile"
+          >
+            تطبيقات الموبايل
+          </button>
+          <button
+            class="filter-btn px-4 py-2 rounded-full text-sm"
+            data-filter="iot"
+          >
+            إنترنت الأشياء
+          </button>
+          <button
+            class="filter-btn px-4 py-2 rounded-full text-sm"
+            data-filter="ai"
+          >
+            الذكاء الاصطناعي
+          </button>
+          <button
+            class="filter-btn px-4 py-2 rounded-full text-sm"
+            data-filter="electronics"
+          >
+            إلكترونيات
+          </button>
+          <button
+            class="filter-btn px-4 py-2 rounded-full text-sm"
+            data-filter="student"
+          >
+            خدمات الطلاب
+          </button>
+          <button
+            class="filter-btn px-4 py-2 rounded-full text-sm"
+            data-filter="marketing"
+          >
+            التسويق الرقمي
+          </button>
+          <button
+            class="filter-btn px-4 py-2 rounded-full text-sm"
+            data-filter="network"
+          >
+            الشبكات
+          </button>
+          <button
+            class="filter-btn px-4 py-2 rounded-full text-sm"
+            data-filter="other"
+          >
+            أخرى
+          </button>
+        </div>
+      </section>
+
+      <!-- Services Grid -->
+      <main class="flex-grow py-16 bg-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            id="services-grid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            <!-- Service cards will be injected here by the script -->
+            <div
+              class="text-center p-10 col-span-full text-muted"
+              id="loadingMessage"
+            >
+              <i
+                class="ri-loader-4-line animate-spin text-3xl text-primary"
+              ></i>
+              <p class="mt-2">جاري تحميل الخدمات...</p>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Service Detail Modal -->
+      <div id="serviceModal" class="modal-backdrop" onclick="closeModal(event)">
+        <div class="modal-card" onclick="event.stopPropagation()">
+          <!-- Header -->
+          <div
+            class="flex justify-between items-start p-4 border-b border-gray-200 bg-gray-50/60"
+          >
+            <h2 id="modalTitle" class="text-2xl font-bold text-gray-800"></h2>
+            <button
+              onclick="closeModal()"
+              class="text-gray-600 hover:text-red-500 transition"
+              title="إغلاق"
+            >
+              <i class="ri-close-line text-3xl"></i>
+            </button>
+          </div>
+
+          <!-- Content -->
+          <div
+            class="overflow-y-auto flex-grow p-4"
+            style="max-height: calc(80vh - 70px)"
+          >
+            <!-- Swiper Container -->
+            <div
+              id="modalSwiperContainer"
+              class="swiper modal-swiper-container w-full rounded-xl overflow-hidden mb-6 shadow-md"
+            >
+              <div id="modalSwiperWrapper" class="swiper-wrapper">
+                <!-- Slides injected dynamically -->
+              </div>
+
+              <!-- Swiper Controls -->
+              <div
+                class="swiper-button-prev !text-gray-800 hover:!text-primary transition"
+              ></div>
+              <div
+                class="swiper-button-next !text-gray-800 hover:!text-primary transition"
+              ></div>
+              <div class="swiper-pagination"></div>
+            </div>
+
+            <!-- Description -->
+            <div class="px-1">
+              <div class="flex items-center mb-4">
+                <span id="modalPrice" class="text-xl font-bold text-primary ml-4"></span>
+                <span id="modalCategory" class="px-3 py-1 rounded-full text-xs text-white"></span>
+              </div>
+              
+              <p
+                id="modalDescription"
+                class="text-gray-600 text-lg mb-4 leading-relaxed"
+              ></p>
+
+              <h3 class="text-lg font-bold text-gray-800 mb-3">تفاصيل الخدمة:</h3>
+              <ul id="modalDetails" class="list-disc list-inside text-gray-600 mb-6 space-y-2">
+                <!-- Details injected dynamically -->
+              </ul>
+
+              <div class="flex justify-start items-center">
+                <a
+                  id="modalLink"
+                  href="contact.html"
+                  class="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition inline-flex items-center gap-2"
+                >
+                  <i class="ri-customer-service-2-line text-lg"></i>
+                  اطلب الخدمة
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- End Service Detail Modal -->
+
+      <!-- Back to Top Button -->
+      <button
+        id="backToTopBtn"
+        class="fixed bottom-6 right-6 bg-primary text-white p-3 rounded-full shadow-lg hover:bg-primary-600 transition-all duration-300 z-50 opacity-0 translate-y-8 md:right-10 md:bottom-10"
+        aria-label="العودة إلى الأعلى"
+      >
+        <i class="ri-arrow-up-line text-2xl"></i>
+      </button>
+      <!-- End Back to Top Button -->
+
+      <script>
+        /* ========== تهيئة مكتبات الرسوم المتحركة ========== */
+        AOS?.init?.();
+
+        /* ========== وظائف التبديل (ثيم، لغة، قائمة الجوال) ========== */
+        // Simplified Theme/Lang Toggles (as in previous projects.html)
+        document
+          .getElementById("themeToggleBtn")
+          ?.addEventListener("click", () => {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute("data-theme") || "default";
+            const newTheme =
+              currentTheme === "default"
+                ? "navy"
+                : currentTheme === "navy"
+                ? "accent"
+                : "default";
+            html.setAttribute("data-theme", newTheme);
+            // Note: Actual theme colors would need to be managed by CSS based on data-theme attribute.
+          });
+
+        document
+          .getElementById("langToggleBtn")
+          ?.addEventListener("click", () => {
+            const html = document.documentElement;
+            const currentDir = html.getAttribute("dir");
+            const newDir = currentDir === "rtl" ? "ltr" : "rtl";
+            html.setAttribute("dir", newDir);
+            html.setAttribute("lang", newDir === "rtl" ? "ar" : "en");
+            document.getElementById("langToggleBtn").textContent =
+              newDir === "rtl" ? "EN" : "AR";
+            // If you have different language content, this would need more logic.
+          });
+
+        document.getElementById("mobileBtn")?.addEventListener("click", () => {
+          document.getElementById("mobileMenu").classList.toggle("hidden");
+        });
+
+        /* ========== وظائف التمرير السلس وزر "العودة للأعلى" ========== */
+        // Smooth Scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault(); // Prevent default anchor click behavior
+
+            const targetId = this.getAttribute("href");
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+              const headerOffset = 70; // Approximate height of the fixed header to account for scroll
+              const elementPosition = targetElement.getBoundingClientRect().top;
+              const offsetPosition =
+                elementPosition + window.pageYOffset - headerOffset;
+
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+
+        // Back to Top Button Logic
+        const backToTopBtn = document.getElementById("backToTopBtn");
+        const scrollThreshold = 300; // Show button after scrolling 300px
+
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > scrollThreshold) {
+            backToTopBtn.classList.add("opacity-100", "translate-y-0");
+            backToTopBtn.classList.remove("opacity-0", "translate-y-8");
+          } else {
+            backToTopBtn.classList.add("opacity-0", "translate-y-8");
+            backToTopBtn.classList.remove("opacity-100", "translate-y-0");
+          }
+        });
+
+        backToTopBtn.addEventListener("click", () => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+
+        /* ========== منطق جلب الخدمات ========== */
+        const servicesJsonUrl = "./assets/json/services.json";
+        let services = []; // المصفوفة النهائية للخدمات (كائنات)
+        let currentFilter = "all";
+        let modalSwiperInstance = null;
+        const serviceModal = document.getElementById("serviceModal"); // Get modal element
+
+        /* مساعدة لحماية النص من XSS */
+        function escapeHtml(s) {
+          if (!s && s !== 0) return "";
+          return String(s).replace(
+            /[&<>"']/g,
+            (m) =>
+              ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;",
+              }[m])
+          );
+        }
+
+        /* جلب بيانات الخدمات من ملف JSON */
+        async function fetchServices() {
+          try {
+            const response = await fetch(servicesJsonUrl);
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            return data || [];
+          } catch (error) {
+            console.error("Error fetching services:", error);
+            // Return empty array if fetch fails
+            return [];
+          }
+        }
+
+        /* دالة لفتح النافذة المنبثقة (Modal) */
+        function openModal(serviceId) {
+          const service = services.find((s) => s.id === serviceId);
+          if (!service) {
+            console.error(`Service with ID ${serviceId} not found.`);
+            return;
+          }
+
+          // 1. Update Modal Content
+          const modalTitleElement = document.getElementById("modalTitle");
+          modalTitleElement.textContent = service.title;
+          // For accessibility, link the modal title to the modal dialog
+          serviceModal.setAttribute("aria-labelledby", modalTitleElement.id);
+
+          document.getElementById("modalDescription").textContent =
+            service.description;
+          document.getElementById("modalPrice").textContent = service.price;
+          
+          // Set category badge
+          const categoryElement = document.getElementById("modalCategory");
+          categoryElement.textContent = getCategoryName(service.category);
+          categoryElement.className = `px-3 py-1 rounded-full text-xs text-white category-${service.category}`;
+
+          // Update details list
+          const detailsElement = document.getElementById("modalDetails");
+          detailsElement.innerHTML = (service.details || [])
+            .map(
+              (detail) =>
+                `<li>${escapeHtml(detail)}</li>`
+            )
+            .join("");
+
+          // 2. Update Swiper Slides
+          const swiperWrapper = document.getElementById("modalSwiperWrapper");
+          // Use a default image if no images are provided
+          const defaultImage = "./assets/images/default-service-image.jpg"; // Create this placeholder or use a CDN link
+          swiperWrapper.innerHTML = (
+            service.images && service.images.length > 0
+              ? service.images
+              : [defaultImage]
+          )
+            .map(
+              (src) =>
+                `<div class="swiper-slide"><img src="${escapeHtml(
+                  src
+                )}" alt="${escapeHtml(service.title)}"/></div>`
+            )
+            .join("");
+
+          // 3. Initialize/Update Swiper
+          if (modalSwiperInstance) {
+            // Destroy previous instance if it exists
+            modalSwiperInstance.destroy(true, true);
+          }
+          modalSwiperInstance = new Swiper("#modalSwiperContainer", {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            loop: true,
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+            },
+          });
+
+          // 4. Show Modal
+          serviceModal.classList.add("open");
+          document.body.style.overflow = "hidden"; // Prevent scrolling background
+        }
+
+        /* دالة لإغلاق النافذة المنبثقة (Modal) */
+        function closeModal(event) {
+          // Check if the click was on the backdrop itself or if called without event
+          if (
+            !event ||
+            event.target.id === "serviceModal" ||
+            event.target.closest('button[onclick="closeModal()"]')
+          ) {
+            serviceModal.classList.remove("open");
+            document.body.style.overflow = "";
+            // Optionally, destroy Swiper instance when modal closes to free resources
+            if (modalSwiperInstance) {
+              modalSwiperInstance.destroy(true, true);
+              modalSwiperInstance = null;
+            }
+          }
+        }
+
+        /* دالة للحصول على اسم الفئة */
+        function getCategoryName(category) {
+          const categories = {
+            web: "تطوير الويب",
+            mobile: "تطبيقات الموبايل",
+            iot: "إنترنت الأشياء",
+            ai: "الذكاء الاصطناعي",
+            electronics: "إلكترونيات",
+            student: "خدمات الطلاب",
+            marketing: "التسويق الرقمي",
+            network: "الشبكات",
+            other: "أخرى"
+          };
+          return categories[category] || "أخرى";
+        }
+
+        /* دالة للحصول على أيقونة الفئة */
+        function getCategoryIcon(category) {
+          const icons = {
+            web: "ri-global-line",
+            mobile: "ri-smartphone-line",
+            iot: "ri-router-line",
+            ai: "ri-brain-line",
+            electronics: "ri-cpu-line",
+            student: "ri-graduation-cap-line",
+            marketing: "ri-megaphone-line",
+            network: "ri-wifi-line",
+            other: "ri-apps-line"
+          };
+          return icons[category] || "ri-apps-line";
+        }
+
+        /* دمج وعرض الخدمات في الشبكة */
+        function renderServices(list, filter) {
+          const grid = document.getElementById("services-grid");
+          grid.innerHTML = ""; // Clear existing content
+
+          const filteredServices = list.filter(
+            (s) => filter === "all" || s.category === filter
+          );
+
+          if (filteredServices.length === 0) {
+            grid.innerHTML =
+              '<div class="text-center p-10 col-span-full text-muted"><i class="ri-error-warning-line text-3xl text-accent"></i><p class="mt-2">لا توجد خدمات في هذا التصنيف حاليًا.</p></div>';
+            return;
+          }
+
+          filteredServices.forEach((s, index) => {
+            // Get first 3 details for the card
+            const shortDetails = (s.details || []).slice(0, 3);
+            
+            // Get first 3 tech tags for the card
+            const techTags = s.techTags ? s.techTags.slice(0, 3) : [];
+            
+            const serviceHtml = `
+              <div class="service-card bg-gray-50 rounded-lg p-8 shadow-lg" 
+                   data-aos="fade-up" 
+                   data-category="${s.category}"
+                   onclick="openModal('${s.id}')">
+                <div class="feature-icon w-20 h-20 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6 float-animation" style="animation-delay: ${index * 0.2}s;">
+                  <i class="${getCategoryIcon(s.category)} text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">${s.title}</h3>
+                <p class="text-gray-600 mb-6 text-center">
+                  ${s.description}
+                </p>
+                <ul class="space-y-2 mb-6 text-gray-600">
+                  ${shortDetails.map(detail => `
+                    <li class="flex items-start">
+                      <i class="ri-check-line text-primary ml-2 mt-1"></i>
+                      <span>${detail}</span>
+                    </li>
+                  `).join('')}
+                </ul>
+                <div class="flex flex-wrap gap-2 mb-6 justify-center">
+                  ${techTags.map(tag => `
+                    <span class="tech-badge px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm">${tag}</span>
+                  `).join('')}
+                </div>
+                <div class="text-center">
+                  <span class="text-primary font-bold text-lg block mb-3">${s.price}</span>
+                  <a href="#" class="bg-primary text-white px-6 py-3 rounded-lg font-bold hover:bg-secondary transition-all">
+                    تفاصيل الخدمة
+                  </a>
+                </div>
+              </div>
+            `;
+            grid.insertAdjacentHTML("beforeend", serviceHtml);
+          });
+        }
+
+        /* وظيفة جلب وعرض الخدمات الرئيسية */
+        async function loadServices() {
+          const loadingMessage = document.getElementById("loadingMessage");
+          loadingMessage.style.display = "block"; // Show loading indicator
+
+          // Fetch services from JSON
+          services = await fetchServices();
+          
+          // Add unique IDs to services if they don't have them
+          services = services.map((service, index) => ({
+            ...service,
+            id: service.id || `service-${index}`,
+            category: service.category || 'other',
+            techTags: service.techTags || []
+          }));
+          
+          // If no services were loaded, show an error message
+          if (services.length === 0) {
+            document.getElementById("services-grid").innerHTML =
+              '<div class="text-center p-10 col-span-full text-muted"><i class="ri-error-warning-line text-3xl text-accent"></i><p class="mt-2">لم يتم العثور على خدمات. يرجى المحاولة مرة أخرى لاحقًا.</p></div>';
+            loadingMessage.style.display = "none";
+            return;
+          }
+
+          renderServices(services, currentFilter); // Render services based on current filter
+          loadingMessage.style.display = "none"; // Hide loading indicator
+        }
+
+        /* ========== تهيئة كل شيء عند تحميل الصفحة ========== */
+        document.addEventListener("DOMContentLoaded", () => {
+          // Initial load of services
+          loadServices();
+
+          // Setup filter button listeners
+          document.querySelectorAll(".filter-btn").forEach((button) => {
+            button.addEventListener("click", function () {
+              // Remove 'active' class from all filter buttons
+              document
+                .querySelectorAll(".filter-btn")
+                .forEach((btn) => btn.classList.remove("active"));
+              // Add 'active' class to the clicked button
+              this.classList.add("active");
+
+              currentFilter = this.getAttribute("data-filter"); // Update current filter
+              renderServices(services, currentFilter); // Re-render services
+            });
+          });
+
+          /* ========== إعدادات سهولة الوصول للـ Modal ========== */
+          // Add ARIA roles to modal for accessibility
+          serviceModal.setAttribute("role", "dialog");
+          serviceModal.setAttribute("aria-modal", "true");
+
+          // Add Escape key listener to close modal
+          document.addEventListener("keydown", (event) => {
+            if (
+              event.key === "Escape" &&
+              serviceModal.classList.contains("open")
+            ) {
+              closeModal();
+            }
+          });
+        });
+      </script>
+    </div>
+  </body>
+</html>

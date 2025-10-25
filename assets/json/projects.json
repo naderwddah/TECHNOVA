@@ -1,0 +1,172 @@
+{
+  "projects": [
+    {
+      "id": "proj-1",
+      "title": "متجر إلكتروني متكامل",
+      "shortDesc": "منصة تجارة إلكترونية متكاملة مع نظام دفع آمن وإدارة المخزون",
+      "description": "قمنا بتطوير متجر إلكتروني متكامل لواحدة من أكبر شركات التجزئة في المنطقة. يتضمن النظام واجهة مستخدم سهلة الاستخدام، نظام دفع آمن متعدد الخيارات، إدارة متقدمة للمخزون، نظام تتبع الطلبات، وتقارير تحليلية مفصلة للمساعدة في اتخاذ قرارات تجارية مستنيرة. تم بناء النظام باستخدام أحدث التقنيات لضمان الأداء العالي والأمان.",
+      "tags": ["React", "Node.js", "MongoDB", "Stripe API", "Redux"],
+      "category": "web",
+      "images": [
+        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+      ],
+      "link": "https://example-ecommerce.com"
+    },
+    {
+      "id": "proj-2",
+      "title": "تطبيق توصيل طعام",
+      "shortDesc": "تطبيق جوال للمطاعم يتيح للعملاء طلب الطعام وتتبع الطلبات",
+      "description": "طوّرنا تطبيق توصيل طعام شامل للمطاعم والعملاء. يتيح التطبيق للمطاعم إدارة قوائم الطعام والطلبات، وللعملاء تصفح المطاعم وطلب الطعام وتتبع حالة الطلب في الوقت الفعلي. يتضمن التطبيق نظام تقييم، عروض خاصة، وبوابات دفع متعددة. تم تطوير التطبيق لنظامي iOS و Android باستخدام Flutter لضمان تجربة مستخدم متسقة.",
+      "tags": ["Flutter", "Firebase", "Google Maps API", "Payment Gateway"],
+      "category": "mobile",
+      "images": [
+        "https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1556659794-9b215d13bb62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+      ],
+      "link": "https://example-foodapp.com"
+    },
+    {
+      "id": "proj-3",
+      "title": "نظام إدارة موارد المؤسسات (ERP)",
+      "shortDesc": "نظام متكامل لإدارة جميع جوانب العمليات المؤسسية",
+      "description": "صممنا ونفذنا نظام إدارة موارد مؤسساتية (ERP) متكامل لشركة صناعية كبرى. يدير النظام الموارد المالية، الموارد البشرية، سلسلة التوريد، إدارة المخزون، وعلاقات العملاء. يتميز النظام بواجهة قابلة للتخصيص، تقارير تحليلية متقدمة، وقدرة على التكامل مع الأنظمة الأخرى. تم بناء النظام باستخدام بنية خدمات مصغرة لضمان قابلية التوسع والأداء العالي.",
+      "tags": ["Java", "Spring Boot", "React", "PostgreSQL", "Docker", "Kubernetes"],
+      "category": "enterprise",
+      "images": [
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+      ],
+      "link": "https://example-erp.com"
+    },
+    {
+      "id": "proj-4",
+      "title": "منصة تعليمية تفاعلية",
+      "shortDesc": "منصة تعليمية عبر الإنترنت مع أدوات تفاعلية ومحتوى متعدد الوسائط",
+      "description": "أنشأنا منصة تعليمية تفاعلية للمدارس والجامعات. تتضمن المنصة نظام إدارة دورات، محتوى تعليمي متعدد الوسائط، اختبارات تفاعلية، منتديات نقاش، وتتبع تقدم الطلاب. تم تصميم المنصة لتكون سهلة الاستخدام للمعلمين والطلاب على حد سواء، مع إمكانية الوصول من مختلف الأجهزة. تدعم المنصة التعلم المدمج والتعلم عن بعد بالكامل.",
+      "tags": ["Vue.js", "Laravel", "MySQL", "WebRTC", "AWS"],
+      "category": "web",
+      "images": [
+        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+      ],
+      "link": "https://example-education.com"
+    },
+    {
+      "id": "proj-5",
+      "title": "تطبيق لياقة بدنية وتتبع صحة",
+      "shortDesc": "تطبيق جوال لممارسة التمارين الرياضية وتتبع الصحة والتغذية",
+      "description": "طوّرنا تطبيق لياقة بدنية شامل يساعد المستخدمين على ممارسة التمارين الرياضية وتتبع صحتهم. يتضمن التطبيق مكتبة من التمارين الرياضية مع فيديوهات توضيحية، خطط تدريب مخصصة، نظام تتبع للتغذية، وقدرة على تسجيل التقدم المحرز. يتكامل التطبيق مع أجهزة اللياقة البدنية القابلة للارتداء ويتضمن ميزات اجتماعية لمشاركة الإنجازات مع الأصدقاء.",
+      "tags": ["React Native", "Node.js", "MongoDB", "HealthKit", "Google Fit"],
+      "category": "mobile",
+      "images": [
+        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+      ],
+      "link": "https://example-fitness.com"
+    },
+    {
+      "id": "proj-6",
+      "title": "مشروع تخرج: نظام ذكي لإدارة الطاقة",
+      "shortDesc": "نظام ذكي لمراقبة وتحسين استهلاك الطاقة في المباني",
+      "description": "مشروع تخرج لطلاب الهندسة يتضمن نظامًا ذكيًا لمراقبة وتحسين استهلاك الطاقة في المباني. يستخدم النظام أجهزة استشعار لجمع بيانات استهلاك الطاقة، ويقوم بتحليل هذه البيانات باستخدام خوارزميات التعلم الآلي لتقديم توصيات لتحسين كفاءة الطاقة. يتضمن النظام لوحة تحكم تفاعلية تعرض بيانات الاستهلاك في الوقت الفعلي وتحليلات تاريخية.",
+      "tags": ["Python", "TensorFlow", "Arduino", "React", "MQTT"],
+      "category": "student",
+      "images": [
+        "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1532187863486-abf5dbf53447?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+      ],
+      "link": "https://example-energy.com"
+    },
+    {
+      "id": "proj-7",
+      "title": "منصة حجز مواعيد طبية",
+      "shortDesc": "نظام متكامل لحجز المواعيد الطبية وإدارة السجلات الصحية",
+      "description": "طوّرنا منصة حجز مواعيد طبية شاملة للعيادات والمستشفيات. تتيح المنصة للمرضى حجز المواعيد، إدارة السجلات الصحية، والتواصل مع الأطباء. للأطباء والموظفين، توفر المنصة أدوات لإدارة المواعيد، الوصول إلى السجلات الطبية، وإدارة الفواتير. تم تصميم النظام مع التركيز على الخصوصية والأمان، مع الامتثال لمعايير HIPAA.",
+      "tags": ["Angular", "Node.js", "Express", "MongoDB", "Twilio API"],
+      "category": "web",
+      "images": [
+        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1584467736000-46c5fbad66a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+      ],
+      "link": "https://example-medical.com"
+    },
+    {
+      "id": "proj-8",
+      "title": "تطبيق إدارة مالية شخصية",
+      "shortDesc": "تطبيق جوال لإدارة الميزانيات الشخصية وتتبع النفقات",
+      "description": "صممنا تطبيق إدارة مالية شخصية يساعد المستخدمين على تتبع نفقاتهم، إدارة الميزانيات، وتحقيق الأهداف المالية. يتضمن التطبيق ميزات مثل تصنيف النفقات تلقائيًا، تتبع الفواتير، تحليلات مالية متقدمة، وتنبيهات للمساعدة في البقاء ضمن الميزانية. يتكامل التطبيق مع الحسابات البنكية لتحديث البيانات تلقائيًا.",
+      "tags": ["Swift", "Kotlin", "Firebase", "Plaid API", "Chart.js"],
+      "category": "mobile",
+      "images": [
+        "https://images.unsplash.com/photo-1563986768494-4dee27e32933?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1554224154-260325c05993?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+      ],
+      "link": "https://example-finance.com"
+    },
+    {
+      "id": "proj-9",
+      "title": "نظام إدارة علاقات العملاء (CRM)",
+      "shortDesc": "نظام متقدم لإدارة علاقات العملاء وتحسين تجربة العملاء",
+      "description": "نفذنا نظام إدارة علاقات عملاء متقدم لشركة خدمات مالية. يساعد النظام فرق المبيعات على تتبع العملاء المحتملين، إدارة المبيعات، وتحليل بيانات العملاء لتحسين الاستراتيجيات. يتضمن النظام أتمتة للمهام المتكررة، نظام تذاكر للخدمة، وتقارير تحليلية مفصلة. تم تصميم النظام ليكون قابلًا للتخصيص حسب احتياجات الشركة.",
+      "tags": ["React", "Node.js", "PostgreSQL", "Redis", "Docker"],
+      "category": "enterprise",
+      "images": [
+        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+      ],
+      "link": "https://example-crm.com"
+    },
+    {
+      "id": "proj-10",
+      "title": "مشروع تخرج: تطبيق ذكي للتعرف على النباتات",
+      "shortDesc": "تطبيق يستخدم الذكاء الاصطناعي للتعرف على النباتات من الصور",
+      "description": "مشروع تخرج لطلاب علوم الحاسوب يتضمن تطبيقًا ذكيًا للتعرف على النباتات باستخدام الصور. يستخدم التطبيق تقنيات التعلم العميق لتحليل صور النباتات وتحديد نوعها مع دقة عالية. يوفر التطبيق معلومات مفصلة عن كل نبات، بما في ذلك متطلبات الرعاية، والمناطق الأصلية، والاستخدامات الطبية المحتملة. يتضمن التطبيق أيضًا ميزة اجتماعية لمشاركة الصور والمعرفة مع مجتمع المستخدمين.",
+      "tags": ["Python", "TensorFlow", "Keras", "React Native", "Flask"],
+      "category": "student",
+      "images": [
+        "https://images.unsplash.com/photo-1515191262631-fc0c77f53772?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1525398100696-81c3b0c3a7a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+      ],
+      "link": "https://example-plants.com"
+    },
+    {
+      "id": "proj-11",
+      "title": "منصة عقارية متكاملة",
+      "shortDesc": "منصة عقارية لعرض وبيع وشراء العقارات مع جولات افتراضية",
+      "description": "طوّرنا منصة عقارية متكاملة تتيح للوكلاء العقاريين عرض العقارات وللمشترين البحث عنها. تتضمن المنصة جولات افتراضية 360 درجة للعقارات، نظام حجز مواعيد للمعاينات، أداة حاسبة للقروض العقارية، ونظام تقييم للعقارات. تم تصميم المنصة لتكون سهلة الاستخدام مع واجهة مستخدم جذابة وتجربة مستخدم سلسة.",
+      "tags": ["Vue.js", "Laravel", "MySQL", "Three.js", "Mapbox API"],
+      "category": "web",
+      "images": [
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+      ],
+      "link": "https://example-realestate.com"
+    },
+    {
+      "id": "proj-12",
+      "title": "تطبيق تواصل اجتماعي للمهتمين بالرياضة",
+      "shortDesc": "تطبيق للمهتمين بالرياضة لمتابعة الأخبار والنتائج والتواصل مع الآخرين",
+      "description": "صممنا تطبيق تواصل اجتماعي مخصص للمهتمين بالرياضة. يتيح التطبيق للمستخدمين متابعة الأخبار الرياضية، نتائج المباريات، والإحصائيات. يتضمن التطبيق ميزات اجتماعية مثل القدرة على متابعة الفرق واللاعبين المفضلين، المشاركة في النقاشات، وتنظيم فعاليات رياضية. يتميز التطبيق بواجهة مستخدم جذابة وتجربة مستخدم سلسة.",
+      "tags": ["React Native", "Firebase", "Redux", "Sports API", "Push Notifications"],
+      "category": "mobile",
+      "images": [
+        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1461896836838-43f0b5f4c581?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+      ],
+      "link": "https://example-sports.com"
+    }
+  ]
+}

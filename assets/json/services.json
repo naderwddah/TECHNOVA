@@ -1,0 +1,420 @@
+[
+  {
+    "id": "service-1",
+    "title": "تطوير أنظمة الويب",
+    "price": "حسب نطاق المشروع",
+    "icon": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "web",
+    "techTags": ["React", "Node.js", "MongoDB", "Express"],
+    "images": [
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "تصميم أنظمة إدارة وتحكم متكاملة تناسب الشركات والمؤسسات.",
+      "بناء واجهات تفاعلية عصرية لعرض وتحليل البيانات.",
+      "تأمين البيانات وربطها بخدمات سحابية أو محلية.",
+      "إمكانية تخصيص النظام بما يتناسب مع طبيعة العمل."
+    ],
+    "description": "نصمم أنظمة ويب متكاملة لإدارة ومراقبة العمليات باحترافية عالية وتجربة استخدام مريحة."
+  },
+  {
+    "id": "service-2",
+    "title": "تطوير تطبيقات الموبايل",
+    "price": "ابتداءً من 4,000 ر.س",
+    "icon": "https://images.unsplash.com/photo-1512941937131-2ea2ca4d3c71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "mobile",
+    "techTags": ["React Native", "Flutter", "Firebase", "Swift"],
+    "images": [
+      "https://images.unsplash.com/photo-1512941937131-2ea2ca4d3c71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1551650975-87adadd4e7c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "تطوير تطبيقات Android وiOS متصلة بالأنظمة السحابية.",
+      "تصميم واجهات سهلة وجذابة لتجربة استخدام مميزة.",
+      "دمج التطبيقات مع الأجهزة الذكية أو أنظمة الإدارة.",
+      "إتاحة إشعارات وتنبيهات فورية للمستخدمين."
+    ],
+    "description": "نقوم بتطوير تطبيقات موبايل احترافية تساعد المؤسسات والأفراد على التحكم ببياناتهم وخدماتهم بسهولة."
+  },
+  {
+    "id": "service-3",
+    "title": "لوحات التحكم ولوحات البيانات (Dashboards)",
+    "price": "حسب تعقيد النظام",
+    "icon": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "web",
+    "techTags": ["D3.js", "Chart.js", "Tableau", "Power BI"],
+    "images": [
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1504868768621-0b0583dcbe7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "إنشاء لوحات عرض لحظية للبيانات التشغيلية أو الإحصائية.",
+      "تصميم مخططات ورسوم بيانية تفاعلية.",
+      "ربط اللوحات بمصادر البيانات أو أجهزة IoT مباشرة.",
+      "واجهة استخدام مرنة تدعم جميع الأجهزة."
+    ],
+    "description": "نصمم لوحات تحكم ذكية تسهّل مراقبة الأنظمة واتخاذ القرارات بناءً على بيانات دقيقة وحديثة."
+  },
+  {
+    "id": "service-4",
+    "title": "تصميم المواقع والمتاجر الإلكترونية",
+    "price": "ابتداءً من 3,500 ر.س",
+    "icon": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "web",
+    "techTags": ["WordPress", "Shopify", "WooCommerce", "Magento"],
+    "images": [
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "تصميم مواقع تعريفية ومتاجر إلكترونية متجاوبة مع جميع الشاشات.",
+      "تحسين الأداء وتجربة المستخدم (UX/UI).",
+      "تهيئة المواقع لمحركات البحث (SEO).",
+      "توفير دعم فني وتحديثات مستمرة."
+    ],
+    "description": "نقدّم حلول تصميم مواقع احترافية تساعد العلامات التجارية والمؤسسات على التواجد الرقمي المميز."
+  },
+  {
+    "id": "service-5",
+    "title": "تصميم وتنفيذ الشبكات المحلية",
+    "price": "حسب حجم المشروع",
+    "icon": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "network",
+    "techTags": ["Cisco", "Juniper", "MikroTik", "Ubiquiti"],
+    "images": [
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "تصميم وتركيب شبكات LAN وWAN للمؤسسات والمنازل الذكية.",
+      "اختيار الأجهزة والمعدات المناسبة لضمان أفضل أداء ممكن.",
+      "إدارة توصيلات الكابلات وتنظيم البنية التحتية للشبكة.",
+      "توسيع أو تحديث الشبكات القائمة لتلائم متطلبات النمو."
+    ],
+    "description": "نقوم بتصميم وتنفيذ شبكات محلية موثوقة تضمن اتصالًا مستقرًا وسريعًا لجميع الأنظمة والأجهزة."
+  },
+  {
+    "id": "service-6",
+    "title": "أمان وحماية الشبكات",
+    "price": "حسب التقييم الأمني",
+    "icon": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "network",
+    "techTags": ["Firewall", "VPN", "IDS/IPS", "SIEM"],
+    "images": [
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1550745168-9bc0e2587dfa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "تحليل الثغرات الأمنية في البنية التحتية للشبكة.",
+      "تطبيق أنظمة الجدران النارية (Firewalls) وأنظمة كشف التسلل.",
+      "تشفير الاتصالات وتأمين البيانات ضد الهجمات.",
+      "تدريب المستخدمين على سياسات الأمان الرقمي."
+    ],
+    "description": "نحمي شبكاتك من المخاطر الرقمية عبر حلول أمنية متقدمة تضمن سرية البيانات واستمرارية الخدمة."
+  },
+  {
+    "id": "service-7",
+    "title": "تصميم أنظمة إنترنت الأشياء",
+    "price": "حسب نطاق المشروع",
+    "icon": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "iot",
+    "techTags": ["Arduino", "Raspberry Pi", "MQTT", "Node-RED"],
+    "images": [
+      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "تحليل احتياجات المشروع وتصميم بنية نظام IoT متكاملة.",
+      "تحديد أنواع المستشعرات والأجهزة المناسبة للتطبيق.",
+      "تصميم تدفق البيانات من الأجهزة إلى السحابة أو قاعدة البيانات.",
+      "إعداد واجهات استخدام تفاعلية لعرض البيانات والتحكم بالأجهزة."
+    ],
+    "description": "نصمم أنظمة إنترنت أشياء متكاملة تربط بين الأجهزة والمستخدمين عبر الإنترنت لتوفير تحكم ذكي ومراقبة فعّالة."
+  },
+  {
+    "id": "service-8",
+    "title": "تطوير نماذج الذكاء الاصطناعي",
+    "price": "حسب تعقيد المشروع",
+    "icon": "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "ai",
+    "techTags": ["TensorFlow", "PyTorch", "Scikit-learn", "Keras"],
+    "images": [
+      "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "تصميم وتدريب نماذج ذكاء اصطناعي لمختلف المجالات.",
+      "تطوير أنظمة تصنيف، تنبؤ، تحليل صور، أو معالجة نصوص.",
+      "استخدام أحدث تقنيات تعلم الآلة والتعلم العميق.",
+      "تحسين أداء النماذج لتحقيق أعلى دقة وكفاءة."
+    ],
+    "description": "نطور حلول ذكاء اصطناعي متقدمة تشمل الرؤية الحاسوبية، التنبؤ، التحليل النصي، وغيرها من التطبيقات الذكية."
+  },
+  {
+    "id": "service-9",
+    "title": "تصميم الدوائر الإلكترونية",
+    "price": "حسب تعقيد المشروع",
+    "icon": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "electronics",
+    "techTags": ["Altium Designer", "KiCad", "Proteus", "Arduino"],
+    "images": [
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1597392646282-2c2b8b4f5e3c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "تصميم دوائر كهربائية وتمثيلها على برامج CAD متخصصة.",
+      "اختيار المكونات الكهربائية والالكترونية الأنسب لكل تطبيق.",
+      "إجراء محاكاة للدوائر قبل التنفيذ لضمان الأداء المطلوب.",
+      "تطوير حلول متقدمة للدوائر التناظرية والرقمية."
+    ],
+    "description": "نصمم دوائر إلكترونية متكاملة وموثوقة، مع محاكاة دقيقة واختيار أمثل للمكونات لتلبية احتياجات المشاريع المختلفة."
+  },
+  {
+    "id": "service-10",
+    "title": "إرشاد وتوجيه مشاريع التخرج",
+    "price": "حسب حجم المشروع",
+    "icon": "https://images.unsplash.com/photo-1524178232363-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "student",
+    "techTags": ["Matlab", "Simulink", "LabVIEW", "Proteus"],
+    "images": [
+      "https://images.unsplash.com/photo-1524178232363-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1580837119756-563d608dd119?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "تقديم استشارات فنية للطلاب حول اختيار موضوع المشروع.",
+      "تصميم خطة عمل منظمة لمراحل المشروع خطوة بخطوة.",
+      "مساعدة في اختيار الأدوات والبرمجيات والمكونات المناسبة.",
+      "توجيه الطلاب في حل المشكلات التقنية أثناء تطوير المشروع."
+    ],
+    "description": "نوفر إرشاداً متخصصاً لطلاب الجامعات لمساعدتهم على إنجاز مشاريع التخرج بنجاح وكفاءة."
+  },
+  {
+    "id": "service-11",
+    "title": "التسويق الرقمي وإدارة الحملات",
+    "price": "ابتداءً من 2,000 ر.س",
+    "icon": "https://images.unsplash.com/photo-1611926657392-6fe0e2b1f194?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "marketing",
+    "techTags": ["Google Ads", "Facebook Ads", "SEO", "Analytics"],
+    "images": [
+      "https://images.unsplash.com/photo-1611926657392-6fe0e2b1f194?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "إعداد استراتيجيات تسويق رقمي متكاملة للشركات والمشاريع.",
+      "إدارة الحملات على منصات التواصل الاجتماعي ومحركات البحث.",
+      "تحليل أداء الحملات ورفع معدلات الوصول والتحويل.",
+      "تقديم تقارير شاملة لتقييم النتائج وتحسين الأداء المستقبلي."
+    ],
+    "description": "نقدّم خدمات التسويق الرقمي لإيصال علامتك التجارية للجمهور المستهدف وزيادة التفاعل والمبيعات."
+  },
+  {
+    "id": "service-12",
+    "title": "تكامل الأنظمة البرمجية والمادية",
+    "price": "يُحدد بعد دراسة المشروع",
+    "icon": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "iot",
+    "techTags": ["API", "SDK", "Embedded Systems", "Sensors"],
+    "images": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "دمج الأنظمة البرمجية مع المتحكمات والمستشعرات.",
+      "ربط تطبيقات الويب والموبايل مع الأجهزة الذكية.",
+      "تطوير حلول تتيح التفاعل بين البرمجيات والمكونات المادية.",
+      "إجراء اختبارات شاملة لضمان الأداء والاستقرار."
+    ],
+    "description": "نوفّر حلول تكامل متقدمة بين البرمجيات والأجهزة لخلق أنظمة ذكية تعمل بتناغم وكفاءة."
+  },
+  {
+    "id": "service-13",
+    "title": "إعداد وتكوين أجهزة الشبكات",
+    "price": "ابتداءً من 1,500 ر.س",
+    "icon": "https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "network",
+    "techTags": ["Router", "Switch", "Access Point", "VLAN"],
+    "images": [
+      "https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "إعداد الراوترات والسويتشات ونقاط الوصول (Access Points).",
+      "تهيئة عناوين IP وتوزيع الشبكات الفرعية (Subnets).",
+      "ضبط إعدادات الأمان وحماية الشبكات اللاسلكية.",
+      "تحسين أداء الشبكة عبر إدارة المرور وتوزيع الحمل."
+    ],
+    "description": "نقدّم خدمات احترافية في تكوين وإدارة أجهزة الشبكات لضمان أداء ثابت واتصال آمن."
+  },
+  {
+    "id": "service-14",
+    "title": "تطوير أنظمة المراقبة والتحكم عن بُعد",
+    "price": "يُحدد بعد دراسة المتطلبات",
+    "icon": "https://images.unsplash.com/photo-1566438480746-1c5a4586c1eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "iot",
+    "techTags": ["CCTV", "IoT Platform", "Remote Monitoring", "Alerts"],
+    "images": [
+      "https://images.unsplash.com/photo-1566438480746-1c5a4586c1eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "برمجة وحدات اتصال لجمع البيانات من المستشعرات والمعدات.",
+      "إنشاء أنظمة مراقبة في الوقت الفعلي للمنشآت والمواقع.",
+      "توفير تحكم مباشر بالأجهزة من أي مكان عبر الويب أو التطبيق.",
+      "تطبيق نظام تنبيهات لحظية في حال حدوث أعطال أو تجاوزات."
+    ],
+    "description": "نطوّر حلول مراقبة وتحكم عن بُعد تسمح بإدارة الأجهزة والأنظمة في الوقت الفعلي عبر الإنترنت."
+  },
+  {
+    "id": "service-15",
+    "title": "تكامل الذكاء الاصطناعي مع الأنظمة",
+    "price": "يُحدد حسب البنية التقنية للنظام",
+    "icon": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "ai",
+    "techTags": ["Machine Learning", "Deep Learning", "Neural Networks", "AI Integration"],
+    "images": [
+      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "دمج خوارزميات الذكاء الاصطناعي ضمن أنظمة ويب أو IoT.",
+      "تحويل الأنظمة التقليدية إلى حلول ذكية تعتمد على التحليل الذاتي.",
+      "استخدام الذكاء الاصطناعي في تحسين العمليات التشغيلية.",
+      "توفير واجهات ذكية لتفاعل المستخدم مع النظام."
+    ],
+    "description": "نضيف الذكاء إلى الأنظمة عبر دمج خوارزميات التعلم والتحليل، مما يجعلها قادرة على اتخاذ قرارات ذاتية."
+  },
+  {
+    "id": "service-16",
+    "title": "تصميم لوحات PCB",
+    "price": "ابتداءً من 2,500 ر.س",
+    "icon": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "electronics",
+    "techTags": ["PCB Design", "Schematic", "Circuit Simulation", "Manufacturing"],
+    "images": [
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1597392646282-2c2b8b4f5e3c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "تحويل مخططات الدوائر إلى تصميمات PCB احترافية.",
+      "تخطيط المسارات والمكونات لتحقيق أفضل أداء كهربائي.",
+      "دعم التصميمات متعددة الطبقات والمعقدة.",
+      "إعداد الملفات للطباعة والتصنيع مباشرة."
+    ],
+    "description": "نطور لوحات PCB عالية الجودة تدعم جميع أنواع المشاريع الإلكترونية من البسيطة إلى المعقدة."
+  },
+  {
+    "id": "service-17",
+    "title": "ورش عمل ودورات تدريبية عملية",
+    "price": "حسب نوع الورشة",
+    "icon": "https://images.unsplash.com/photo-1515188998633-d2771d6ba2a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "student",
+    "techTags": ["Hands-on Training", "Workshops", "Technical Skills", "Certification"],
+    "images": [
+      "https://images.unsplash.com/photo-1515188998633-d2771d6ba2a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1580837119756-563d608dd119?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "تنظيم ورش عمل عملية في البرمجة، الذكاء الاصطناعي، والشبكات.",
+      "تدريب الطلاب على التعامل مع المكونات الإلكترونية والأنظمة الذكية.",
+      "تقديم أمثلة حية ومشاريع تطبيقية قصيرة خلال الورشة.",
+      "توفير شهادات حضور وتقييم لمهارات الطلاب."
+    ],
+    "description": "نقدّم ورش عمل ودورات عملية تتيح للطلاب اكتساب مهارات تقنية متقدمة وتجربة مباشرة للمفاهيم."
+  },
+  {
+    "id": "service-18",
+    "title": "تحسين محركات البحث (SEO)",
+    "price": "ابتداءً من 1,500 ر.س",
+    "icon": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "marketing",
+    "techTags": ["SEO", "Keywords", "Backlinks", "Content Optimization"],
+    "images": [
+      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1611926657392-6fe0e2b1f194?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "تحليل موقعك الحالي وتحديد نقاط التحسين لتحسين ظهوره في محركات البحث.",
+      "تحسين بنية الموقع، المحتوى، والكلمات المفتاحية.",
+      "رفع سرعة التحميل وتجربة المستخدم لتحسين ترتيب البحث.",
+      "تقديم تقارير دورية لمراقبة أداء SEO وإعداد استراتيجيات جديدة."
+    ],
+    "description": "نقدّم خدمات تحسين محركات البحث (SEO) لزيادة ظهور موقعك وجذب زيارات أكثر جودة."
+  },
+  {
+    "id": "service-19",
+    "title": "الدعم الفني والصيانة",
+    "price": "ابتداءً من 2,000 ر.س/شهر",
+    "icon": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "other",
+    "techTags": ["24/7 Support", "Maintenance", "Troubleshooting", "System Updates"],
+    "images": [
+      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "دعم فني على مدار الساعة لضمان استمرارية عمل أنظمتك.",
+      "صيانة دورية وتحديثات أمنية للحفاظ على أداء الأنظمة.",
+      "استجابة سريعة للمشكلات التقنية وحلها بفعالية.",
+      "تقديم تقارير دورية عن حالة الأنظمة والأداء."
+    ],
+    "description": "نوفر خدمات دعم فني وصيانة شاملة لضمان استمرارية عمل أنظمتك بأعلى كفاءة وأقل توقف."
+  },
+  {
+    "id": "service-20",
+    "title": "تصميم واجهات المستخدم (UI/UX)",
+    "price": "ابتداءً من 3,000 ر.س",
+    "icon": "https://images.unsplash.com/photo-1559028012-72e75c4c8df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "web",
+    "techTags": ["Figma", "Adobe XD", "Sketch", "Prototyping"],
+    "images": [
+      "https://images.unsplash.com/photo-1559028012-72e75c4c8df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1559028012-72e75c4c8df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "تصميم واجهات مستخدم جذابة وسهلة الاستخدام.",
+      "إجراء أبحاث المستخدمين لفهم احتياجاتهم وسلوكهم.",
+      "إنشاء نماذج أولية تفاعلية لاختبار الأفكار قبل التطوير.",
+      "تحسين تجربة المستخدم لزيادة الرضا والتفاعل."
+    ],
+    "description": "نصمم واجهات مستخدم احترافية تجمع بين الجمال والوظائف لتقديم أفضل تجربة للمستخدمين."
+  },
+  {
+    "id": "service-21",
+    "title": "حلول التجارة الإلكترونية",
+    "price": "ابتداءً من 5,000 ر.س",
+    "icon": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "web",
+    "techTags": ["Shopify", "WooCommerce", "Magento", "Payment Gateway"],
+    "images": [
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "تطوير متاجر إلكترونية متكاملة مع جميع الميزات.",
+      "تكوين بوابات الدفع الآمنة ومتعددة الخيارات.",
+      "أنظمة إدارة المخزون والطلبات والعملاء.",
+      "تحليل المبيعات والتقارير التفصيلية لمساعدة أصحاب المتاجر."
+    ],
+    "description": "نقدم حلول تجارة إلكترونية متكاملة تمكّنك من إطلاق متجرك الإلكتروني بسهولة وفعالية."
+  },
+  {
+    "id": "service-22",
+    "title": "استشارات تقنية متكاملة",
+    "price": "حسب حجم الاستشارة",
+    "icon": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "category": "other",
+    "techTags": ["Technical Consulting", "IT Strategy", "Project Planning", "System Analysis"],
+    "images": [
+      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "details": [
+      "تقديم استشارات تقنية متكاملة في جميع المجالات.",
+      "مساعدة في التخطيط والتنفيذ للمشاريع الكبرى والصغيرة.",
+      "توفير تقييم شامل للحلول الحالية واقتراح تحسينات.",
+      "دعم متواصل لضمان نجاح المشروع وتحقيق أهدافه."
+    ],
+    "description": "نوفر خدمات استشارية شاملة لدعم المشاريع التقنية من الفكرة إلى التنفيذ بنجاح وكفاءة."
+  }
+]
