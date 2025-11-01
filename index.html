@@ -10,7 +10,7 @@
     />
 
     <!-- Tailwind (CDN for quick demo) -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./assets/js/tailwind.js"></script>
 
     <!-- Colors / CSS variables (themeable) -->
     <link rel="stylesheet" href="assets/css/colors.css" />
@@ -21,100 +21,14 @@
     <!-- Inline small favicons or manifest could be added here -->
 
     <!-- Load optional heavy libs lazily (commented) -->
-    <script
-      defer
-      src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
-    ></script>
+
   </head>
   <body class="bg-bg text-black antialiased">
     <!-- top-level: theme + lang initialized by JS -->
     <div id="app" class="min-h-screen flex flex-col">
       <div class="scroll-indicator" id="scrollIndicator"></div>
       <!-- NAV -->
-      <header
-        class="fixed w-full z-40 bg-white/70 backdrop-blur-sm border-b border-gray-100"
-      >
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex items-center justify-between h-16">
-            <a href="index.html" class="flex items-center gap-3">
-              <!-- Inline simple SVG logo (replace with your SVG file or inline full logo) -->
-              <img
-                src="assets/images/logo.jpg"
-                alt="TECHNOVA"
-                class="h-10 w-10"
-              />
-              <span class="font-bold text-xl text-primary">TECHNOVA</span>
-            </a>
-
-            <nav class="hidden md:flex items-center gap-6">
-              <a
-                class="text-gray-700 hover:text-primary transition"
-                href="index.html#home"
-                >الرئيسية</a
-              >
-              <a
-                class="text-gray-700 hover:text-primary transition"
-                href="services.html"
-                >الخدمات</a
-              >
-              <a
-                class="text-gray-700 hover:text-primary transition"
-                href="projects.html"
-                >المشاريع</a
-              >
-              <a
-                class="text-gray-700 hover:text-primary transition"
-                href="contact.html"
-                >تواصل</a
-              >
-              <button
-                id="themeToggleBtn"
-                class="ml-4 px-3 py-2 rounded-md border border-gray-200 text-sm"
-              >
-                ثيم
-              </button>
-              <button
-                id="langToggleBtn"
-                class="ml-2 px-3 py-2 rounded-md border border-gray-200 text-sm"
-              >
-                EN
-              </button>
-            </nav>
-
-            <div class="md:hidden">
-              <button
-                id="mobileBtn"
-                class="p-2 rounded-md border border-gray-200"
-              >
-                ☰
-              </button>
-            </div>
-          </div>
-
-          <!-- Mobile menu -->
-          <div id="mobileMenu" class="mobile-menu md:hidden px-2 pb-4 hidden">
-            <a href="#home" class="block px-4 py-2 rounded hover:bg-gray-50"
-              >الرئيسية</a
-            >
-            <a
-              href="services.html"
-              class="block px-4 py-2 rounded hover:bg-gray-50"
-              >الخدمات</a
-            >
-            <a
-              href="projects.html"
-              class="block px-4 py-2 rounded hover:bg-gray-50"
-              >المشاريع</a
-            >
-            <a
-              href="contact.html"
-              class="block px-4 py-2 rounded hover:bg-gray-50"
-              >تواصل</a
-            >
-          </div>
-        </div>
-      </header>
-
+ <div id="header-container"></div>
       <!-- HERO -->
       <main class="flex-grow">
         <!-- ! hero section -->
@@ -256,220 +170,174 @@
         <!--! SERVICES PREVIEW -->
         <section
           id="services"
-          class="py-20 bg-gradient-to-br from-white to-blue-50 relative overflow-hidden"
+          class="relative py-24 overflow-hidden bg-gradient-to-br from-white via-blue-50 to-cyan-50"
         >
-          <!-- Decorative Background Elements -->
+          <!-- دوائر خلفية متحركة -->
           <div class="absolute inset-0 overflow-hidden">
             <div
-              class="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float"
+              class="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-primary/10 blur-3xl animate-float"
             ></div>
             <div
-              class="absolute bottom-0 left-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-float-delay"
+              class="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-accent/10 blur-3xl animate-float-delay"
             ></div>
           </div>
 
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <!-- Section Title -->
-            <div class="text-center mb-16" data-aos="fade-up">
+          <!-- المحتوى -->
+          <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- العنوان -->
+            <div class="text-center mb-20" data-aos="fade-up">
               <h2
-                class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4"
+                class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight"
               >
-                خدمات <span class="gradient-text">TECHNOVA</span>
+                اكتشف <span class="gradient-text">عالم TECHNOVA</span>
               </h2>
-              <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                مجموعة من الخدمات المتكاملة التي نوفّرها لعملائنا لتلبية جميع
-                احتياجاتهم التقنية
+              <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                حلول متكاملة تجمع بين
+                <span class="text-primary font-semibold">الإبداع</span>،
+                <span class="text-secondary font-semibold">الاحتراف</span>،
+                و<span class="text-accent font-semibold">النتائج الحقيقية</span
+                >. نحن لا نبرمج فقط، نحن نصنع تجارب رقمية تنبض بالحياة.
               </p>
             </div>
 
-            <!-- Services Showcase -->
+            <!-- بطاقات الخدمات -->
             <div
-              class="overflow-x-auto custom-scrollbar pb-4"
+              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"
               data-aos="fade-up"
-              data-aos-delay="100"
+              data-aos-delay="150"
             >
+              <!-- خدمة 1 -->
               <div
-                class="flex space-x-6 space-x-reverse"
-                style="width: max-content"
+                class="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden card-hover"
               >
-                <!-- Service Card 1 -->
+                <!-- تعديل: أزلنا overflow:hidden من الصورة وغيّرنا object-cover إلى object-contain -->
                 <div
-                  class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 card-hover overflow-hidden w-80"
+                  class="h-60 relative flex items-center justify-center bg-gray-50"
                 >
-                  <div class="h-48 overflow-hidden relative">
-                    <img
-                      src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
-                      alt="تطوير مواقع وتطبيقات"
-                      class="w-full h-full object-cover"
-                    />
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 flex items-end justify-center text-white p-4 transition-opacity"
-                    >
-                      <span class="text-sm font-medium"
-                        >تصميم وبرمجة احترافية</span
-                      >
-                    </div>
-                  </div>
-                  <div class="p-6">
-                    <div
-                      class="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-4"
-                    >
-                      <i class="ri-code-s-slash-line text-2xl text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">
-                      تطوير مواقع وتطبيقات
-                    </h3>
-                    <p class="text-gray-600 mb-4">
-                      تصميم وبرمجة واجهات وتجربة مستخدم احترافية ومتوافقة مع
-                      الأداء العالي.
-                    </p>
-                    <div
-                      class="flex items-center justify-between text-sm text-gray-500"
-                    >
-                      <span>ابتداءً من 5,000 ر.س</span>
-                      <i
-                        class="ri-arrow-left-line text-primary cursor-pointer hover:text-blue-700"
-                      ></i>
-                    </div>
+                  <img
+                    src="./assets/images/webServices.png"
+                    alt="تطوير مواقع وتطبيقات"
+                    class="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center p-4 text-white"
+                  >
+                    <span class="text-sm font-medium">حلول رقمية مذهلة</span>
                   </div>
                 </div>
 
-                <!-- Service Card 2 -->
-                <div
-                  class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 card-hover overflow-hidden w-80"
-                >
-                  <div class="h-48 overflow-hidden relative">
-                    <img
-                      src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
-                      alt="أنظمة وكاميرات"
-                      class="w-full h-full object-cover"
-                    />
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 flex items-end justify-center text-white p-4 transition-opacity"
-                    >
-                      <span class="text-sm font-medium"
-                        >مراقبة وأمان متقدم</span
-                      >
-                    </div>
+                <div class="p-8 text-center">
+                  <div
+                    class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center"
+                  >
+                    <i class="ri-code-s-slash-line text-3xl text-primary"></i>
                   </div>
-                  <div class="p-6">
-                    <div
-                      class="w-16 h-16 rounded-xl bg-accent/10 flex items-center justify-center mb-4"
-                    >
-                      <i class="ri-camera-lens-line text-2xl text-accent"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">
-                      أنظمة وكاميرات
-                    </h3>
-                    <p class="text-gray-600 mb-4">
-                      حلول مراقبة ومراقبة ذكية متكاملة مع تحليلات ودمج سحابي.
-                    </p>
-                    <div
-                      class="flex items-center justify-between text-sm text-gray-500"
-                    >
-                      <span>ابتداءً من 8,000 ر.س</span>
-                      <i
-                        class="ri-arrow-left-line text-primary cursor-pointer hover:text-blue-700"
-                      ></i>
-                    </div>
+                  <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                    تطوير مواقع وتطبيقات
+                  </h3>
+                  <p class="text-gray-600 mb-6 leading-relaxed">
+                    نصمم ونبرمج تجارب رقمية متجاوبة وسريعة الأداء، لتُبرز علامتك
+                    التجارية بأناقة واحتراف.
+                  </p>
+                  <a
+                    href="services.html#web"
+                    class="inline-flex items-center text-primary font-semibold hover:text-primary-400 transition-colors"
+                  >
+                    اكتشف المزيد <i class="ri-arrow-left-line mr-2"></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- خدمة 2 -->
+              <div
+                class="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden card-hover"
+              >
+                <div class="h-52 overflow-hidden relative">
+                  <img
+                    src="./assets/images/CamraServices.jpg"
+                    alt="أنظمة وكاميرات"
+                    class="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center p-4 text-white"
+                  >
+                    <span class="text-sm font-medium">مراقبة وذكاء أمني</span>
                   </div>
                 </div>
-
-                <!-- Service Card 3 -->
-                <div
-                  class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 card-hover overflow-hidden w-80"
-                >
-                  <div class="h-48 overflow-hidden relative">
-                    <img
-                      src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
-                      alt="كهرباء وإلكترونيات"
-                      class="w-full h-full object-cover"
-                    />
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 flex items-end justify-center text-white p-4 transition-opacity"
-                    >
-                      <span class="text-sm font-medium"
-                        >حلول كهربائية ذكية</span
-                      >
-                    </div>
+                <div class="p-8 text-center">
+                  <div
+                    class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-secondary/10 flex items-center justify-center"
+                  >
+                    <i class="ri-camera-lens-line text-3xl text-secondary"></i>
                   </div>
-                  <div class="p-6">
-                    <div
-                      class="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-4"
+                  <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                    أنظمة وكاميرات ذكية
+                  </h3>
+                  <p class="text-gray-600 mb-6 leading-relaxed">
+                    نوفر حلول مراقبة ذكية آمنة، متصلة بالسحابة، لتبقى على اطلاع
+                    في أي وقت ومن أي مكان.
+                  </p>
+                  <a
+                    href="services.html#security"
+                    class="inline-flex items-center text-primary font-semibold hover:text-primary-400 transition-colors"
+                  >
+                    استكشف الحلول <i class="ri-arrow-left-line mr-2"></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- خدمة 3 -->
+              <div
+                class="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden card-hover"
+              >
+                <div class="h-52 overflow-hidden relative">
+                  <img
+                    src="./assets/images/consultingServices.png"
+                    alt="استشارات تقنية"
+                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center p-4 text-white"
+                  >
+                    <span class="text-sm font-medium"
+                      >رؤية تقنية استراتيجية</span
                     >
-                      <i class="ri-flashlight-line text-2xl text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">
-                      كهرباء وإلكترونيات
-                    </h3>
-                    <p class="text-gray-600 mb-4">
-                      تصميم دوائر، بنية تحتية، وتركيب حلول ذكية للمشاريع
-                      الصناعية والسكنية.
-                    </p>
-                    <div
-                      class="flex items-center justify-between text-sm text-gray-500"
-                    >
-                      <span>ابتداءً من 10,000 ر.س</span>
-                      <i
-                        class="ri-arrow-left-line text-primary cursor-pointer hover:text-blue-700"
-                      ></i>
-                    </div>
                   </div>
                 </div>
-
-                <!-- Service Card 4 -->
-                <div
-                  class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 card-hover overflow-hidden w-80"
-                >
-                  <div class="h-48 overflow-hidden relative">
-                    <img
-                      src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
-                      alt="استشارات تقنية"
-                      class="w-full h-full object-cover"
-                    />
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 flex items-end justify-center text-white p-4 transition-opacity"
-                    >
-                      <span class="text-sm font-medium">خبرة تقنية متخصصة</span>
-                    </div>
+                <div class="p-8 text-center">
+                  <div
+                    class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-accent/10 flex items-center justify-center"
+                  >
+                    <i class="ri-lightbulb-line text-3xl text-accent"></i>
                   </div>
-                  <div class="p-6">
-                    <div
-                      class="w-16 h-16 rounded-xl bg-accent/10 flex items-center justify-center mb-4"
-                    >
-                      <i class="ri-lightbulb-line text-2xl text-accent"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">
-                      استشارات تقنية
-                    </h3>
-                    <p class="text-gray-600 mb-4">
-                      استشارات متخصصة في جميع الجوانب التقنية لمساعدتك في اتخاذ
-                      القرارات الصحيحة.
-                    </p>
-                    <div
-                      class="flex items-center justify-between text-sm text-gray-500"
-                    >
-                      <span>ابتداءً من 3,000 ر.س</span>
-                      <i
-                        class="ri-arrow-left-line text-primary cursor-pointer hover:text-blue-700"
-                      ></i>
-                    </div>
-                  </div>
+                  <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                    استشارات تقنية وابتكار
+                  </h3>
+                  <p class="text-gray-600 mb-6 leading-relaxed">
+                    نساعدك على اتخاذ القرارات التقنية الصحيحة وتحويل أفكارك إلى
+                    حلول قابلة للتنفيذ والنجاح.
+                  </p>
+                  <a
+                    href="services.html#consulting"
+                    class="inline-flex items-center text-primary font-semibold hover:text-primary-400 transition-colors"
+                  >
+                    احجز استشارة <i class="ri-arrow-left-line mr-2"></i>
+                  </a>
                 </div>
               </div>
             </div>
 
-            <!-- Button to View All Services -->
+            <!-- زر استعراض الخدمات -->
             <div
-              class="text-center mt-12"
-              data-aos="fade-up"
-              data-aos-delay="200"
+              class="text-center mt-16"
+              data-aos="zoom-in"
+              data-aos-delay="250"
             >
               <a
                 href="services.html"
-                class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-transform hover:-translate-y-1"
+                class="btn-cta px-10 py-4 rounded-full text-lg font-semibold hover:scale-105 transition-transform"
               >
-                استعرض جميع الخدمات
+                استعرض جميع خدماتنا
                 <i class="ri-arrow-left-line mr-2"></i>
               </a>
             </div>
@@ -670,243 +538,320 @@
           </div>
         </section>
         <!-- ! Featured Projects Section -->
-        <section
-          id="featured-projects"
-          class="py-24 bg-gradient-to-br from-white to-blue-50 relative overflow-hidden"
+<section
+  id="featured-projects"
+  class="py-24 bg-gradient-to-br from-white to-blue-50 relative overflow-hidden"
+>
+  <!-- Decorative Background Elements -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div
+      class="absolute -top-40 -left-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float"
+    ></div>
+    <div
+      class="absolute bottom-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-float-delay"
+    ></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Section Title -->
+    <div class="text-center mb-16" data-aos="fade-up">
+      <h2
+        class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4"
+      >
+        مشاريع <span class="gradient-text">TECHNOVA</span> المميزة
+      </h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        بعض من أبرز إنجازاتنا التقنية التي ساعدت الشركات والطلاب على
+        تحويل الأفكار إلى مشاريع ناجحة.
+      </p>
+    </div>
+
+    <!-- Projects Showcase -->
+    <div
+      class="overflow-x-auto"
+      data-aos="fade-up"
+      data-aos-delay="100"
+    >
+      <div
+        class="flex space-x-6 space-x-reverse pb-4"
+        style="width: max-content"
+      >
+        <!-- Project Card 1 - Enterprise -->
+        <div
+          class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 card-hover overflow-hidden w-80"
         >
-          <!-- Decorative Background Elements -->
-          <div class="absolute inset-0 overflow-hidden">
+          <div class="h-48 overflow-hidden relative">
+            <img
+              src="./assets/images/projects/smart-energy-management-system.png"
+              alt="نظام متكامل لإدارة محطات توليد الكهرباء"
+              class="w-full h-full object-contain"
+            />
             <div
-              class="absolute -top-40 -left-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float"
-            ></div>
-            <div
-              class="absolute bottom-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-float-delay"
-            ></div>
-          </div>
-
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <!-- Section Title -->
-            <div class="text-center mb-16" data-aos="fade-up">
-              <h2
-                class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4"
-              >
-                مشاريع <span class="gradient-text">TECHNOVA</span> المميزة
-              </h2>
-              <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                بعض من أبرز إنجازاتنا التقنية التي ساعدت الشركات والطلاب على
-                تحويل الأفكار إلى مشاريع ناجحة.
-              </p>
-            </div>
-
-            <!-- Projects Showcase -->
-            <div
-              class="overflow-x-auto"
-              data-aos="fade-up"
-              data-aos-delay="100"
+              class="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 flex items-center justify-center text-white text-sm transition-opacity"
             >
-              <div
-                class="flex space-x-6 space-x-reverse pb-4"
-                style="width: max-content"
-              >
-                <!-- Project Card 1 -->
-                <div
-                  class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 card-hover overflow-hidden w-80"
-                >
-                  <div class="h-48 overflow-hidden relative">
-                    <img
-                      src="./assets/images/hero-image.jpg"
-                      alt="مشروع إدارة الطاقة الذكية"
-                      class="w-full h-full object-cover"
-                    />
-                    <div
-                      class="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 flex items-center justify-center text-white text-sm transition-opacity"
-                    >
-                      نظام طاقة ذكي متكامل
-                    </div>
-                  </div>
-                  <div class="p-6">
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">
-                      نظام إدارة الطاقة الذكية
-                    </h3>
-                    <p class="text-gray-600 mb-4">
-                      حل مبتكر لمراقبة وتحليل استهلاك الكهرباء في الوقت الفعلي
-                      باستخدام إنترنت الأشياء.
-                    </p>
-                    <div
-                      class="flex items-center justify-between text-sm text-gray-500"
-                    >
-                      <span>مشروع شركة الكهرباء الوطنية</span>
-                      <i
-                        class="ri-external-link-line text-primary cursor-pointer hover:text-blue-700"
-                      ></i>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Project Card 2 -->
-                <div
-                  class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 card-hover overflow-hidden w-80"
-                >
-                  <div class="h-48 overflow-hidden relative">
-                    <img
-                      src="https://readdy.ai/api/search-image?query=AI%20mobile%20application%20interface%20design&width=400&height=300"
-                      alt="تطبيق الذكاء الاصطناعي"
-                      class="w-full h-full object-cover"
-                    />
-                    <div
-                      class="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 flex items-center justify-center text-white text-sm transition-opacity"
-                    >
-                      تطبيق ذكاء اصطناعي متطور
-                    </div>
-                  </div>
-                  <div class="p-6">
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">
-                      تطبيق الذكاء الاصطناعي للتعرف على الوجوه
-                    </h3>
-                    <p class="text-gray-600 mb-4">
-                      تطبيق يستخدم خوارزميات التعرف على الوجه للأمان والتحقق
-                      الذكي عبر الهاتف.
-                    </p>
-                    <div
-                      class="flex items-center justify-between text-sm text-gray-500"
-                    >
-                      <span>مشروع جامعي - جامعة صنعاء</span>
-                      <i
-                        class="ri-external-link-line text-primary cursor-pointer hover:text-blue-700"
-                      ></i>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Project Card 3 -->
-                <div
-                  class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 card-hover overflow-hidden w-80"
-                >
-                  <div class="h-48 overflow-hidden relative">
-                    <img
-                      src="https://readdy.ai/api/search-image?query=Business%20website%20interface%20design&width=400&height=300"
-                      alt="موقع أعمال احترافي"
-                      class="w-full h-full object-cover"
-                    />
-                    <div
-                      class="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 flex items-center justify-center text-white text-sm transition-opacity"
-                    >
-                      موقع شركة احترافي
-                    </div>
-                  </div>
-                  <div class="p-6">
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">
-                      موقع شركة تقنية متكامل
-                    </h3>
-                    <p class="text-gray-600 mb-4">
-                      تصميم موقع أعمال احترافي يجمع بين الجمال والوظائف المتقدمة
-                      لتعزيز حضور العلامة التجارية.
-                    </p>
-                    <div
-                      class="flex items-center justify-between text-sm text-gray-500"
-                    >
-                      <span>عميل من القطاع الخاص</span>
-                      <i
-                        class="ri-external-link-line text-primary cursor-pointer hover:text-blue-700"
-                      ></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Button to View All Projects -->
-            <div
-              class="text-center mt-12"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <a
-                href="projects.html"
-                class="inline-flex items-center px-8 py-3 bg-primary text-white rounded-full font-semibold shadow-lg hover:bg-blue-700 transition-transform hover:-translate-y-1"
-              >
-                استعرض جميع المشاريع
-                <i class="ri-arrow-left-line ml-2"></i>
-              </a>
+              نظام طاقة ذكي متكامل
             </div>
           </div>
-        </section>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              نظام متكامل لإدارة محطات توليد الكهرباء
+            </h3>
+            <p class="text-gray-600 mb-4">
+              نظام متكامل لإدارة محطات توليد الكهرباء، مع عدادات ذكية ترسل البيانات تلقائيًا دون الحاجة إلى الإنترنت.
+            </p>
+            <div
+              class="flex items-center justify-between text-sm text-gray-500"
+            >
+              <span>مشروع مؤسسي</span>
+              <i
+                class="ri-external-link-line text-primary cursor-pointer hover:text-blue-700"
+              ></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 2 - Web -->
+        <div
+          class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 card-hover overflow-hidden w-80"
+        >
+          <div class="h-48 overflow-hidden relative">
+            <img
+              src="./assets/images/projects/Original_Yemeni_products.png"
+              alt="متجر المنتجات اليمنية الأصيلة المتكامل"
+              class="w-full h-full object-contain"
+            />
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 flex items-center justify-center text-white text-sm transition-opacity"
+            >
+              منصة تجارة إلكترونية عالمية
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              متجر المنتجات اليمنية الأصيلة المتكامل
+            </h3>
+            <p class="text-gray-600 mb-4">
+              منصة تجارة إلكترونية عالمية متخصصة في المنتجات اليمنية الفاخرة، مع نظام دفع وشحن دولي متكامل.
+            </p>
+            <div
+              class="flex items-center justify-between text-sm text-gray-500"
+            >
+              <span>مشروع ويب</span>
+              <i
+                class="ri-external-link-line text-primary cursor-pointer hover:text-blue-700"
+              ></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 3 - Mobile -->
+        <div
+          class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 card-hover overflow-hidden w-80"
+        >
+          <div class="h-48 overflow-hidden relative">
+            <img
+              src="./assets/images/projects/healthify_1.webp"
+              alt="تطبيق Healthify"
+              class="w-full h-full object-contain"
+            />
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 flex items-center justify-center text-white text-sm transition-opacity"
+            >
+              تطبيق صحي ورياضي
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              تطبيق Healthify (تتبع الصحة واللياقة)
+            </h3>
+            <p class="text-gray-600 mb-4">
+              مساعد شخصي للصحة واللياقة البدنية مع خطط مخصصة وتتبع للوجبات والنوم.
+            </p>
+            <div
+              class="flex items-center justify-between text-sm text-gray-500"
+            >
+              <span>مشروع تطبيقات</span>
+              <i
+                class="ri-external-link-line text-primary cursor-pointer hover:text-blue-700"
+              ></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 4 - IoT -->
+        <div
+          class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 card-hover overflow-hidden w-80"
+        >
+          <div class="h-48 overflow-hidden relative">
+            <img
+              src="./assets/images/projects/IoT-Electricity-Energy-Meter-1080x607.jpg"
+              alt="نظام عدّاد طاقة كهربائية ذكي"
+              class="w-full h-full object-contain"
+            />
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 flex items-center justify-center text-white text-sm transition-opacity"
+            >
+              نظام طاقة ذكي
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              نظام عدّاد طاقة كهربائية ذكي باستخدام ESP32 وBlynk
+            </h3>
+            <p class="text-gray-600 mb-4">
+              نظام ذكي لمراقبة استهلاك الطاقة الكهربائية لحظياً وربطه بتطبيق Blynk لعرض البيانات عن بُعد.
+            </p>
+            <div
+              class="flex items-center justify-between text-sm text-gray-500"
+            >
+              <span>مشروع إنترنت الأشياء</span>
+              <i
+                class="ri-external-link-line text-primary cursor-pointer hover:text-blue-700"
+              ></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Button to View All Projects -->
+    <div
+      class="text-center mt-12"
+      data-aos="fade-up"
+      data-aos-delay="200"
+    >
+      <a
+        href="projects.html"
+        class="inline-flex items-center px-8 py-3 bg-primary text-white rounded-full font-semibold shadow-lg hover:bg-blue-700 transition-transform hover:-translate-y-1"
+      >
+        استعرض جميع المشاريع
+        <i class="ri-arrow-left-line ml-2"></i>
+      </a>
+    </div>
+  </div>
+</section>
 
         <!-- Why Choose Us Section -->
-        <section class="py-20 bg-gradient-to-br from-blue-50 to-white">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                لماذا TECHNOVA؟
+        <section
+          class="relative py-24 bg-gradient-to-br from-[var(--color-bg)] to-[var(--color-surface)] overflow-hidden"
+        >
+          <!-- خلفية زخرفية -->
+          <div
+            class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--color-primary)_0%,transparent_70%)] opacity-10"
+          ></div>
+
+          <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+            <!-- العنوان -->
+            <div
+              class="text-center mb-16"
+              data-aos="fade-up"
+              data-aos-duration="800"
+            >
+              <h2
+                class="text-4xl md:text-5xl font-extrabold gradient-text mb-4"
+              >
+                لماذا <span class="text-dark">TECHNOVA</span>؟
               </h2>
-              <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                نتميز بمجموعة من المزايا التي تجعلنا الخيار الأمثل لمشاريعك
-                التقنية
+              <p
+                class="text-lg text-[color:var(--color-muted)] max-w-3xl mx-auto leading-relaxed"
+              >
+                لأننا لا نطوّر مشاريع فحسب، بل
+                <span class="text-primary font-semibold"
+                  >نبني تجارب رقمية تُحدث فرقًا</span
+                >
+                وتمنح علامتك التجارية حضورًا يليق بعصر التكنولوجيا.
               </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <!-- Feature 1 -->
-              <div class="text-center card-hover">
+            <!-- المزايا -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+              <!-- ميزة 1 -->
+              <div
+                class="group bg-white/70 backdrop-blur-lg rounded-2xl p-8 text-center shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:bg-white"
+                data-aos="zoom-in"
+                data-aos-delay="100"
+              >
                 <div
-                  class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-primary/10 rounded-2xl"
+                  class="w-20 h-20 flex items-center justify-center mx-auto mb-6 rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500"
                 >
-                  <i class="ri-award-line text-3xl text-primary"></i>
+                  <i class="ri-award-line text-4xl"></i>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-4">
-                  الخبرة والاحتراف
+                <h3 class="text-xl font-bold text-dark mb-3">
+                  خبرة تصنع الثقة
                 </h3>
-                <p class="text-gray-600">
-                  فريق من الخبراء المتخصصين بخبرة تزيد عن 10 سنوات في مجال
-                  التقنية والبرمجة
+                <p class="text-gray-600 leading-relaxed">
+                  نضع بين يديك
+                  <span class="font-semibold text-primary"
+                    >خبرة تمتد لأكثر من 10 سنوات</span
+                  >
+                  في تطوير المواقع، التطبيقات، والأنظمة المتكاملة بدقة واحتراف.
                 </p>
               </div>
 
-              <!-- Feature 2 -->
-              <div class="text-center card-hover">
+              <!-- ميزة 2 -->
+              <div
+                class="group bg-white/70 backdrop-blur-lg rounded-2xl p-8 text-center shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:bg-white"
+                data-aos="zoom-in"
+                data-aos-delay="200"
+              >
                 <div
-                  class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-secondary/10 rounded-2xl"
+                  class="w-20 h-20 flex items-center justify-center mx-auto mb-6 rounded-2xl bg-accent/10 text-accent group-hover:bg-accent group-hover:text-white transition-all duration-500"
                 >
-                  <i class="ri-star-line text-3xl text-secondary"></i>
+                  <i class="ri-star-smile-line text-4xl"></i>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-4">
-                  الجودة العالية
+                <h3 class="text-xl font-bold text-dark mb-3">
+                  جودة تتحدث عن نفسها
                 </h3>
-                <p class="text-gray-600">
-                  نلتزم بأعلى معايير الجودة في جميع مشاريعنا مع ضمان الأداء
-                  والموثوقية
+                <p class="text-gray-600 leading-relaxed">
+                  نهتم بأدق التفاصيل ونُنفّذ بمعايير عالمية لنضمن لك مشروعًا
+                  <span class="font-semibold text-accent"
+                    >مستقرًا وسريع الأداء</span
+                  >
+                  يحقق أهدافك بثقة.
                 </p>
               </div>
 
-              <!-- Feature 3 -->
-              <div class="text-center card-hover">
+              <!-- ميزة 3 -->
+              <div
+                class="group bg-white/70 backdrop-blur-lg rounded-2xl p-8 text-center shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:bg-white"
+                data-aos="zoom-in"
+                data-aos-delay="300"
+              >
                 <div
-                  class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-primary/10 rounded-2xl"
+                  class="w-20 h-20 flex items-center justify-center mx-auto mb-6 rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500"
                 >
-                  <i class="ri-lightbulb-line text-3xl text-primary"></i>
+                  <i class="ri-lightbulb-flash-line text-4xl"></i>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-4">
-                  الابتكار والتطوير
+                <h3 class="text-xl font-bold text-dark mb-3">
+                  ابتكار يحرك المستقبل
                 </h3>
-                <p class="text-gray-600">
-                  نستخدم أحدث التقنيات والأدوات لتقديم حلول مبتكرة ومتطورة تواكب
-                  العصر
+                <p class="text-gray-600 leading-relaxed">
+                  ندمج الذكاء الاصطناعي وأحدث التقنيات لنقدّم حلولًا
+                  <span class="font-semibold text-primary"
+                    >تواكب التطور وتُبهر المستخدمين</span
+                  >.
                 </p>
               </div>
 
-              <!-- Feature 4 -->
-              <div class="text-center card-hover">
+              <!-- ميزة 4 -->
+              <div
+                class="group bg-white/70 backdrop-blur-lg rounded-2xl p-8 text-center shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:bg-white"
+                data-aos="zoom-in"
+                data-aos-delay="400"
+              >
                 <div
-                  class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-secondary/10 rounded-2xl"
+                  class="w-20 h-20 flex items-center justify-center mx-auto mb-6 rounded-2xl bg-accent/10 text-accent group-hover:bg-accent group-hover:text-white transition-all duration-500"
                 >
-                  <i class="ri-time-line text-3xl text-secondary"></i>
+                  <i class="ri-time-line text-4xl"></i>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-4">
-                  السرعة في التنفيذ
+                <h3 class="text-xl font-bold text-dark mb-3">
+                  سرعة بدون تنازلات
                 </h3>
-                <p class="text-gray-600">
-                  نلتزم بالمواعيد المحددة ونسلم المشاريع في الوقت المناسب دون
-                  التنازل عن الجودة
+                <p class="text-gray-600 leading-relaxed">
+                  نلتزم بالمواعيد ونقدّم مشاريعنا في وقتها مع
+                  <span class="font-semibold text-accent"
+                    >أداء فائق وتجربة مستخدم مثالية</span
+                  >.
                 </p>
               </div>
             </div>
@@ -1132,21 +1077,6 @@
                   </div>
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2"
-                      >نوع الخدمة المطلوبة</label
-                    >
-                    <div class="relative">
-                      <button
-                        type="button"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm text-right bg-white cursor-pointer flex items-center justify-between"
-                        id="serviceSelect"
-                      >
-                        <span class="text-gray-500">اختر نوع الخدمة</span>
-                        <i class="ri-arrow-down-s-line text-gray-400"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
                       >تفاصيل المشروع</label
                     >
                     <textarea
@@ -1177,10 +1107,23 @@
                         class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center ml-4"
                       >
                         <i class="ri-phone-line text-primary text-xl"></i>
+                        
                       </div>
                       <div>
                         <h4 class="font-semibold text-gray-900">الهاتف</h4>
-                        <p class="text-gray-600">+966 11 123 4567</p>
+                        <p class="text-gray-600">613 721 737 967+</p>
+                      </div>
+                    </div>
+                    <div class="flex items-center">
+                      <div
+                        class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center ml-4"
+                      >
+                        <i class="ri-phone-line text-primary text-xl"></i>
+                        
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900">الهاتف</h4>
+                        <p class="text-gray-600">715643894 967+</p>
                       </div>
                     </div>
                     <div class="flex items-center">
@@ -1242,50 +1185,10 @@
 
       <!-- FOOTER -->
       <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <div class="flex items-center gap-3 mb-4">
-                <img
-                  src="assets/images/logo.jpg"
-                  alt="TECHNOVA"
-                  class="h-10 w-10"
-                />
-                <span class="font-bold text-lg text-white">TECHNOVA</span>
-              </div>
-              <p class="text-gray-300">
-                حلول تقنية متكاملة تجمع بين الابتكار والموثوقية.
-              </p>
-            </div>
-
-            <div>
-              <h4 class="font-semibold mb-4">روابط سريعة</h4>
-              <ul class="space-y-2 text-gray-300">
-                <li><a href="#home" class="hover:text-white">الرئيسية</a></li>
-                <li>
-                  <a href="services.html" class="hover:text-white">الخدمات</a>
-                </li>
-                <li>
-                  <a href="projects.html" class="hover:text-white">المشاريع</a>
-                </li>
-                <li>
-                  <a href="contact.html" class="hover:text-white">تواصل معنا</a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 class="font-semibold mb-4">تواصل</h4>
-              <p class="text-gray-300">info@technova.sa</p>
-              <p class="text-gray-300 mt-2">+966 11 123 4567</p>
-            </div>
-          </div>
-
-          <div
-            class="mt-8 border-t border-gray-800 pt-6 text-center text-gray-400 text-sm"
-          >
-            © <span id="year"></span> TECHNOVA. جميع الحقوق محفوظة.
-          </div>
+        <div
+          class="mt-8 border-t border-gray-800 pt-6 text-center text-gray-400 text-sm"
+        >
+          © <span id="year"></span> TECHNOVA. جميع الحقوق محفوظة.
         </div>
       </footer>
     </div>

@@ -1,21 +1,57 @@
+// ملف header.js
+function loadHeader() {
+  fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-container').innerHTML = data;
+      // بعد تحميل الهيدر، قم بتهيئة الأحداث
+      initMobileMenu();
+    })
+    .catch(error => console.error('Error loading header:', error));
+}
+
+// تهيئة القائمة المتنقلة
+function initMobileMenu() {
+  function wireMobile(buttonId, menuSelector) {
+    const btn = document.getElementById(buttonId);
+    const menu = document.querySelector(menuSelector);
+    
+    if(btn && menu) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        menu.classList.toggle('active');
+        this.classList.toggle('active');
+      });
+    } else {
+      console.error('Button or menu not found:', { buttonId, menuSelector });
+    }
+  }
+  
+  wireMobile('mobileBtn', '#mobileMenu');
+  wireMobile('mobileBtn2', '#mobileMenu');
+  wireMobile('mobileBtn3', '#mobileMenu');
+}
+
+// تحميل الهيدر عند فتح الصفحة
+document.addEventListener('DOMContentLoaded', loadHeader);
 // Main interactions: mobile menu, scroll reveal, form handling, flip card
 document.addEventListener('DOMContentLoaded', function(){
 
-  // Mobile menu toggle (index)
-  function wireMobile(buttonId, menuSelector){
-    const btn = document.getElementById(buttonId);
-    const menu = document.querySelector(menuSelector);
-    if(btn && menu){
-      btn.addEventListener('click', function(){
-        menu.classList.toggle('active');
-        // change btn text/icon for simplicity
-        this.classList.toggle('active');
-      });
-    }
-  }
-  wireMobile('mobileBtn', '#mobileMenu');
-  wireMobile('mobileBtn2', '#mobileMenu'); // in case multiple header variants
-  wireMobile('mobileBtn3', '#mobileMenu');
+  // // Mobile menu toggle (index)
+  // function wireMobile(buttonId, menuSelector){
+  //   const btn = document.getElementById(buttonId);
+  //   const menu = document.querySelector(menuSelector);
+  //   if(btn && menu){
+  //     btn.addEventListener('click', function(){
+  //       menu.classList.toggle('active');
+  //       // change btn text/icon for simplicity
+  //       this.classList.toggle('active');
+  //     });
+  //   }
+  // }
+  // wireMobile('mobileBtn', '#mobileMenu');
+  // wireMobile('mobileBtn2', '#mobileMenu'); // in case multiple header variants
+  // wireMobile('mobileBtn3', '#mobileMenu');
 
   // Scroll reveal for elements
   const observer = new IntersectionObserver((entries)=>{

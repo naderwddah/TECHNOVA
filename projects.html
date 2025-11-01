@@ -212,86 +212,7 @@
   <body class="bg-bg text-dark antialiased">
     <div id="app" class="min-h-screen flex flex-col">
       <!-- NAV (Copied from index.html) -->
-      <header
-        class="fixed w-full z-40 bg-white/70 backdrop-blur-sm border-b border-gray-100"
-      >
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex items-center justify-between h-16">
-            <a href="index.html" class="flex items-center gap-3">
-              <img
-                src="assets/images/logo.jpg"
-                alt="TECHNOVA"
-                class="h-10 w-10"
-              />
-              <span class="font-bold text-xl text-primary">TECHNOVA</span>
-            </a>
-
-            <nav class="hidden md:flex items-center gap-6">
-              <a
-                class="text-gray-700 hover:text-primary transition"
-                href="index.html#home"
-                >الرئيسية</a
-              >
-              <a
-                class="text-gray-700 hover:text-primary transition"
-                href="services.html"
-                >الخدمات</a
-              >
-              <a class="text-primary font-bold transition" href="projects.html"
-                >المشاريع</a
-              >
-              <a
-                class="text-gray-700 hover:text-primary transition"
-                href="contact.html"
-                >تواصل</a
-              >
-              <button
-                id="themeToggleBtn"
-                class="ml-4 px-3 py-2 rounded-md border border-gray-200 text-sm"
-              >
-                ثيم
-              </button>
-              <button
-                id="langToggleBtn"
-                class="ml-2 px-3 py-2 rounded-md border border-gray-200 text-sm"
-              >
-                EN
-              </button>
-            </nav>
-
-            <div class="md:hidden">
-              <button
-                id="mobileBtn"
-                class="p-2 rounded-md border border-gray-200"
-              >
-                ☰
-              </button>
-            </div>
-          </div>
-
-          <!-- Mobile menu -->
-          <div id="mobileMenu" class="mobile-menu md:hidden px-2 pb-4 hidden">
-            <a href="#home" class="block px-4 py-2 rounded hover:bg-gray-50"
-              >الرئيسية</a
-            >
-            <a
-              href="services.html"
-              class="block px-4 py-2 rounded hover:bg-gray-50"
-              >الخدمات</a
-            >
-            <a
-              href="projects.html"
-              class="block px-4 py-2 rounded hover:bg-gray-50 bg-primary/10 text-primary font-bold"
-              >المشاريع</a
-            >
-            <a
-              href="contact.html"
-              class="block px-4 py-2 rounded hover:bg-gray-50"
-              >تواصل</a
-            >
-          </div>
-        </div>
-      </header>
+          <div id="header-container"></div>
 
       <!-- Hero Section (Based on Portfolio.html) -->
 <section class="py-16 bg-gradient-to-b from-gray-50 to-white shadow-sm border-b border-gray-100 relative overflow-hidden">
@@ -325,6 +246,9 @@
 
     <button class="filter-btn flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium text-gray-700 bg-white border border-gray-200 hover:text-purple-500 hover:border-purple-400 shadow-sm transition" data-filter="enterprise">
       <i class="ri-building-line text-lg"></i> مؤسسي
+    </button>
+    <button class="filter-btn flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium text-gray-700 bg-white border border-gray-200 hover:text-purple-500 hover:border-purple-400 shadow-sm transition" data-filter="iot">
+      <i class="ri-wifi-line text-lg"></i> انترنت الاشياء
     </button>
 
     <button class="filter-btn flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium text-gray-700 bg-white border border-gray-200 hover:text-orange-500 hover:border-orange-400 shadow-sm transition" data-filter="student">
@@ -395,15 +319,15 @@
                 <!-- Tags will be injected here -->
               </div>
 
-              <div class="flex justify-start items-center">
-                <a
+              <div id="modalLink" class="flex justify-start items-center">
+                <!-- <a
                   id="modalLink"
                   href="#"
                   target="_blank"
                   class="bg-primary text-white px-6 py-3 rounded-lg font-bold hover:bg-primary-600 transition"
                 >
                   عرض المشروع <i class="ri-external-link-line mr-1"></i>
-                </a>
+                </a> -->
               </div>
             </div>
           </div>
@@ -419,8 +343,8 @@
       >
         <i class="ri-arrow-up-line text-2xl"></i>
       </button>
-      <!-- End Back to Top Button -->
 
+      <!-- End Back to Top Button -->
       <script>
         /* ========== تهيئة مكتبات الرسوم المتحركة ========== */
         AOS?.init?.();
@@ -504,7 +428,7 @@
         });
 
         /* ========== منطق جلب المشاريع ========== */
-        const projectsJsonUrl = "./assets/json/projects.json";
+        const projectsJsonUrl = "./assets/json/info.json";
         let projects = []; // المصفوفة النهائية للمشاريع (كائنات)
         let currentFilter = "all";
         let modalSwiperInstance = null;
@@ -583,7 +507,7 @@
               (src) =>
                 `<div class="swiper-slide flex items-center justify-center bg-gray-100"><img src="${escapeHtml(
                   src
-                )}" alt="${escapeHtml(project.title)}"/></div>`
+                )}" onerror="this.onerror=null;this.src='./assets/images/default-project-image.jpg';"   alt="${escapeHtml(project.title)} "/></div>`
             )
             .join("");
 
@@ -629,67 +553,68 @@
           }
         }
 
-        /* دمج وعرض المشاريع في الشبكة */
-        function renderProjects(list, filter) {
-          const grid = document.getElementById("portfolio-grid");
-          grid.innerHTML = ""; // Clear existing content
+/* دمج وعرض المشاريع في الشبكة */
+function renderProjects(list, filter) {
+  const grid = document.getElementById("portfolio-grid");
+  grid.innerHTML = ""; // Clear existing content
 
-          const filteredProjects = list.filter(
-            (p) => filter === "all" || p.category === filter
-          );
+  const filteredProjects = list.filter(
+    (p) =>
+      filter === "all" ||
+      (Array.isArray(p.category)
+        ? p.category.includes(filter)
+        : p.category === filter)
+  );
 
-          if (filteredProjects.length === 0) {
-            grid.innerHTML =
-              '<div class="text-center p-10 col-span-full text-muted"><i class="ri-error-warning-line text-3xl text-accent"></i><p class="mt-2">لا توجد مشاريع في هذا التصنيف حاليًا.</p></div>';
-            return;
-          }
+  if (filteredProjects.length === 0) {
+    grid.innerHTML =
+      '<div class="text-center p-10 col-span-full text-muted"><i class="ri-error-warning-line text-3xl text-accent"></i><p class="mt-2">لا توجد مشاريع في هذا التصنيف حاليًا.</p></div>';
+    return;
+  }
 
-          filteredProjects.forEach((p) => {
-            const tagsHtml = (p.tags || [])
-              .map(
-                (t) =>
-                  `<span class="tech-badge inline-block px-3 py-1 text-xs rounded-full">${escapeHtml(
-                    t
-                  )}</span>`
-              )
-              .join(" ");
+  filteredProjects.forEach((p) => {
+    const tagsHtml = (p.tags || [])
+      .map(
+        (t) =>
+          `<span class="tech-badge inline-block px-3 py-1 text-xs rounded-full">${escapeHtml(
+            t
+          )}</span>`
+      )
+      .join(" ");
 
-            const projectHtml = `
-                    <div class="portfolio-item rounded-lg overflow-hidden shadow-lg cursor-pointer" 
-                         data-aos="fade-up" 
-                         data-category="${p.category}"
-                         onclick="openModal('${p.id}')"> 
-                        <div class="relative overflow-hidden aspect-video">
-                            <img
-                                src="${
-                                  p.images[0] ||
-                                  "./assets/images/default-project-image.jpg"
-                                }" 
-                                alt="${p.title}"
-                                class="w-full h-full object-cover"
-                            />
-                            <div class="portfolio-overlay opacity-0 hover:opacity-100">
-                                <button class="text-white text-lg font-bold border-2 border-white px-6 py-3 rounded-full hover:bg-white hover:text-primary transition-colors">
-                                    عرض التفاصيل <i class="ri-search-line mr-1"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">${p.title}</h3>
-                            <p class="text-muted text-sm mb-4">${
-                              p.shortDesc
-                            }</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                ${tagsHtml}
-                            </div>
-                            <!-- Removed redundant button from here -->
-                        </div>
-                    </div>
-                `;
-            grid.insertAdjacentHTML("beforeend", projectHtml);
-          });
-        }
+    // جعل data-category يحتوي على جميع الفئات (مفصولة بمسافات)
+    const dataCategory = Array.isArray(p.category)
+      ? p.category.join(" ")
+      : p.category;
 
+    const projectHtml = `
+<div class="portfolio-item rounded-lg overflow-hidden shadow-lg cursor-pointer" 
+     data-aos="fade-up" 
+     data-category="${dataCategory}"
+     onclick="openModal('${p.id}')"> 
+    <div class="relative overflow-hidden aspect-video bg-gray-50">
+        <img
+            src="${p.images[0] || "./assets/images/default-project-image.jpg"}" 
+            onerror="this.onerror=null;this.src='./assets/images/default-project-image.jpg';" 
+            alt="${p.title}"
+            
+        />
+        <div class="portfolio-overlay opacity-0 hover:opacity-100 absolute inset-0 flex items-center justify-center">
+            <button class="text-white text-lg font-bold border-2 border-white px-6 py-3 rounded-full hover:bg-white hover:text-primary transition-colors">
+                عرض التفاصيل <i class="ri-search-line mr-1"></i>
+            </button>
+        </div>
+    </div>
+    <div class="p-6">
+        <h3 class="text-xl font-bold mb-2">${p.title}</h3>
+        <p class="text-muted text-sm mb-4">${p.shortDesc}</p>
+    </div>
+</div>
+`;
+
+    grid.insertAdjacentHTML("beforeend", projectHtml);
+  });
+}
         /* وظيفة جلب وعرض المشاريع الرئيسية */
         async function loadProjects() {
           const loadingMessage = document.getElementById("loadingMessage");
@@ -746,6 +671,8 @@
           });
         });
       </script>
+      <script src="./assets/js/theme-toggle.js"></script>
+      <script src="./assets/js/main.js"></script>
     </div>
   </body>
 </html>
