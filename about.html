@@ -1104,12 +1104,12 @@
             // Update transform with hardware acceleration
             if (instant) {
               container.style.transition = 'none';
-              container.style.transform = `translateX(-${currentIndex * 100}%)`;
+              container.style.transform = `translateX(+${currentIndex * 100}%)`;
               // Force reflow
               container.offsetHeight;
               container.style.transition = '';
             } else {
-              container.style.transform = `translateX(-${currentIndex * 100}%)`;
+              container.style.transform = `translateX(+${currentIndex * 100}%)`;
             }
             
             // Update dots with smooth transitions
