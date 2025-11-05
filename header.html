@@ -1,0 +1,82 @@
+      <header
+        class="fixed w-full z-40 bg-white/70 backdrop-blur-sm border-b border-gray-100"
+      >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-16">
+            <a href="index.html" class="flex items-center gap-3">
+              <!-- Inline simple SVG logo (replace with your SVG file or inline full logo) -->
+              <img
+                src="assets/images/logo.jpg"
+                alt="TECHNOVA"
+                class="h-10 w-10"
+              />
+              <span class="font-bold text-xl text-primary">TECHNOVA</span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-6">
+              <a
+                class="text-gray-700 hover:text-primary transition"
+                href="index.html#home"
+                >الرئيسية</a
+              >
+              <a
+                class="text-gray-700 hover:text-primary transition"
+                href="services.html"
+                >الخدمات</a
+              >
+              <a
+                class="text-gray-700 hover:text-primary transition"
+                href="projects.html"
+                >المشاريع</a
+              >
+              <a
+                class="text-gray-700 hover:text-primary transition"
+                href="about.html"
+                >من نحن</a
+              >
+              <a
+                class="text-gray-700 hover:text-primary transition"
+                href="contact.html"
+                >تواصل</a
+              >
+              <button
+                id="themeToggleBtn"
+                class="ml-4 px-3 py-2 rounded-md border border-gray-200 text-sm"
+              >
+                ثيم
+              </button>
+            </nav>
+
+            <div class="md:hidden">
+              <button
+                id="mobileBtn"
+                class="p-2 rounded-md border border-gray-200"
+              >
+                ☰
+              </button>
+            </div>
+          </div>
+
+          <!-- Mobile menu -->
+          <div id="mobileMenu" class="mobile-menu md:hidden px-2 pb-4 hidden">
+            <a href="#home" class="block px-4 py-2 rounded hover:bg-gray-50"
+              >الرئيسية</a
+            >
+            <a
+              href="services.html"
+              class="block px-4 py-2 rounded hover:bg-gray-50"
+              >الخدمات</a
+            >
+            <a
+              href="projects.html"
+              class="block px-4 py-2 rounded hover:bg-gray-50"
+              >المشاريع</a
+            >
+            <a
+              href="about.html"
+              class="block px-4 py-2 rounded hover:bg-gray-50"
+              >  من نحن </a
+            >
+          </div>
+        </div>
+      </header>
