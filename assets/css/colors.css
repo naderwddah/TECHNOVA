@@ -4,6 +4,7 @@
   --color-secondary: #10b981;
   --color-primary-600: #1D4ED8;
   --color-primary-400: #0EA5E9;
+  --color-primary-500:  #06d4a7;
   --color-accent: #F97316;
   --color-accent-400: #FB923C;
   --color-bg: #F8FAFC;
@@ -45,8 +46,6 @@
 .text-accent{ color: var(--color-accent) !important; }
 .gradient-text{
   background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 /* Buttons */
