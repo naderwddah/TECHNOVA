@@ -6,29 +6,26 @@
     <title>TECHNOVA — معرض المشاريع</title>
 
     <!-- Tailwind (CDN for quick demo) -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./assets/js/tailwind.js"></script>
 
     <!-- Colors / CSS variables (themeable) -->
-    <link rel="stylesheet" href="assets/css/colors.css" />
+    <link rel="stylesheet" href="./assets/css/colors.css" />
     <!-- Custom styles -->
-    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+
+      <!-- Swiper for carousels -->
+  <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css" />
+  <script src="./assets/js/swiper-bundle.min.js"></script>
 
     <!-- Remixicon for icons -->
     <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      href="./assets/css/remixicon.css"
       rel="stylesheet"
     />
-
-    <!-- Swiper for carousels -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     <!-- AOS for animations -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="./assets/css/aos.css" rel="stylesheet" />
+    <script src="./assets/js/aos.js"></script>
 
     <!-- Custom styles to match Portfolio.html structure but use TECHNOVA colors -->
     <style>
@@ -75,9 +72,6 @@
         ); /* Slightly less aggressive than Portfolio.html */
       }
 
-      .filter-btn {
-        transition: transform 0.3s ease;
-      }
 
       .portfolio-overlay {
         position: absolute;

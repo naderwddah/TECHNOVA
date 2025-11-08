@@ -14,7 +14,7 @@
     },
     {
       "title": "تطوير تطبيقات الموبايل",
-      "price": "ابتداءً من 4,000 ر.س",
+      "price": "ابتداءً من 399 ر.س",
       "icon": "assets/images/mobile-app.svg",
       "color": "orange",
       "details": [
@@ -53,7 +53,7 @@
     },
     {
       "title": "تصميم المواقع والمتاجر الإلكترونية",
-      "price": "ابتداءً من 3,500 ر.س",
+      "price": "ابتداءً من 299 ر.س",
       "icon": "assets/images/website.svg",
       "color": "purple",
       "details": [
@@ -84,7 +84,7 @@
     },
     {
       "title": "إعداد وتكوين أجهزة الشبكات",
-      "price": "ابتداءً من 1,500 ر.س",
+      "price": "ابتداءً من 499 ر.س",
       "icon": "assets/images/router-config.svg",
       "color": "blue",
       "details": [
@@ -123,7 +123,7 @@
     },
     {
       "title": "تحليل وصيانة الشبكات",
-      "price": "ابتداءً من 800 ر.س",
+      "price": "ابتداءً من 599 ر.س",
       "icon": "assets/images/network-maintenance.svg",
       "color": "green",
       "details": [
@@ -167,7 +167,7 @@
         },
         {
           "title": "أنظمة القياس الذكية وجمع البيانات",
-          "price": "ابتداءً من 3,000 ر.س",
+          "price": "ابتداءً من 499 ر.س",
           "icon": "assets/images/data-collection.svg",
           "color": "sky",
           "details": [
@@ -237,7 +237,7 @@
             },
             {
               "title": "تحليل البيانات وبناء النماذج التنبؤية",
-              "price": "ابتداءً من 2,500 ر.س",
+              "price": "ابتداءً من 699 ر.س",
               "icon": "assets/images/data-analytics.svg",
               "color": "sky",
               "details": [
@@ -294,7 +294,7 @@
                 },
                 {
                   "title": "تصميم لوحات PCB",
-                  "price": "ابتداءً من 2,500 ر.س",
+                  "price": "ابتداءً من 599 ر.س",
                   "icon": "assets/images/pcb-design.svg",
                   "color": "green",
                   "details": [
@@ -333,7 +333,7 @@
                 },
                 {
                   "title": "صيانة وتحليل الأعطال الإلكترونية",
-                  "price": "ابتداءً من 1,500 ر.س",
+                  "price": "ابتداءً من 250 ر.س",
                   "icon": "assets/images/repair.svg",
                   "color": "red",
                   "details": [
@@ -362,7 +362,7 @@
                     },
                     {
                       "title": "تصميم وتنفيذ مشاريع تعليمية",
-                      "price": "ابتداءً من 1,500 ر.س",
+                      "price": "ابتداءً من 199 ر.س",
                       "icon": "assets/images/educational-project.svg",
                       "color": "pink",
                       "details": [
@@ -388,7 +388,7 @@
                     },
                     {
                       "title": "تطوير نماذج محاكاة للمشاريع",
-                      "price": "ابتداءً من 2,000 ر.س",
+                      "price": "ابتداءً من 499 ر.س",
                       "icon": "assets/images/simulation-student.svg",
                       "color": "teal",
                       "details": [
@@ -416,7 +416,7 @@
                     
                         {
                           "title": "التسويق الرقمي وإدارة الحملات",
-                          "price": "ابتداءً من 2,000 ر.س",
+                          "price": "ابتداءً من 299 ر.س",
                           "icon": "assets/images/digital-marketing.svg",
                           "color": "blue",
                           "details": [
@@ -455,7 +455,7 @@
                         },
                         {
                           "title": "تحسين محركات البحث (SEO)",
-                          "price": "ابتداءً من 1,500 ر.س",
+                          "price": "ابتداءً من 599 ر.س",
                           "icon": "assets/images/seo.svg",
                           "color": "yellow",
                           "details": [
@@ -509,7 +509,7 @@
                             },
                             {
                               "title": "قوالب وتصاميم جاهزة للمواقع والتطبيقات",
-                              "price": "ابتداءً من 1,000 ر.س",
+                              "price": "ابتداءً من 50 ر.س",
                               "icon": "assets/images/templates.svg",
                               "color": "cyan",
                               "details": [
@@ -547,4 +547,5 @@
                               "description": "نوفر خدمات استشارية شاملة لدعم المشاريع التقنية من الفكرة إلى التنفيذ بنجاح وكفاءة."
                             }
                           
+
       ]
