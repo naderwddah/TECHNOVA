@@ -540,7 +540,9 @@
             (src) =>
               `<div class="swiper-slide"><img src="${escapeHtml(
                 src
-              )}" alt="${escapeHtml(service.title)}"/></div>`
+              )}" alt="${escapeHtml(service.title)}" 
+                  loading="lazy"
+                  decoding="async" /></div>`
           )
           .join("");
 

@@ -68,11 +68,9 @@
     .value-card {
       transition: all 0.3s ease;
       border: 2px solid transparent;
-      background: linear-gradient(
-        to bottom right,
-        rgba(255, 255, 255, 0.05),
-        rgba(255, 255, 255, 0.02)
-      );
+      background: linear-gradient(to bottom right,
+          rgba(255, 255, 255, 0.05),
+          rgba(255, 255, 255, 0.02));
     }
 
     .value-card:hover {
@@ -123,10 +121,12 @@
 
     /* Animations */
     @keyframes float {
+
       0%,
       100% {
         transform: translateY(0px);
       }
+
       50% {
         transform: translateY(-10px);
       }
@@ -136,9 +136,11 @@
       0% {
         box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
       }
+
       70% {
         box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
       }
+
       100% {
         box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
       }
@@ -149,6 +151,7 @@
         transform: translateX(100px);
         opacity: 0;
       }
+
       to {
         transform: translateX(0);
         opacity: 1;
@@ -160,6 +163,7 @@
         transform: translateX(-100px);
         opacity: 0;
       }
+
       to {
         transform: translateX(0);
         opacity: 1;
@@ -170,6 +174,7 @@
       from {
         opacity: 0;
       }
+
       to {
         opacity: 1;
       }
@@ -199,19 +204,19 @@
         font-size: 2.5rem;
         line-height: 1.2;
       }
-      
+
       .section-title {
         font-size: 1.875rem;
       }
-      
+
       .card-padding {
         padding: 1.5rem;
       }
-      
+
       .timeline-mobile {
         padding-right: 2rem;
       }
-      
+
       .timeline-mobile::before {
         content: '';
         position: absolute;
@@ -221,7 +226,7 @@
         width: 2px;
         background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
       }
-      
+
       .timeline-dot-mobile {
         position: absolute;
         right: -6px;
@@ -249,12 +254,13 @@
 <body class="bg-gray-50 text-gray-800 rtl-support">
   <div id="header-container"></div>
 
-  
+
   <!-- Hero Section -->
-  <section class="py-16 bg-gradient-to-b from-gray-50 to-white shadow-sm border-b border-gray-100 relative overflow-hidden">
+  <section
+    class="py-16 bg-gradient-to-b from-gray-50 to-white shadow-sm border-b border-gray-100 relative overflow-hidden">
     <!-- Floating background glow -->
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.1),transparent)]"></div>
-  
+
     <div class="max-w-6xl mx-auto px-4 relative z-10 text-center">
       <h1 class="text-4xl md:text-6xl font-bold mb-6 hero-title" data-aos="fade-up">
         من نحن
@@ -331,7 +337,7 @@
 
         <!-- Image Side -->
         <div data-aos="fade-left">
-          <img src="./assets/images/logo.jpg" alt="فريق تكنوفا أثناء العمل"
+          <img src="./assets/images/logo.jpg" alt="فريق تكنوفا أثناء العمل" loading="lazy" decoding="async"
             class="rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl w-full object-cover lazy-load" />
         </div>
       </div>
@@ -545,7 +551,8 @@
           <div
             class="absolute -inset-1 rounded-full bg-gradient-to-tr from-primary to-secondary blur-lg opacity-30 group-hover:opacity-60 transition-all duration-500">
           </div>
-          <img src="./assets/images/nader.png" alt="نادر وضاح - المدير التنفيذي ومدير المشاريع في تكنوفا"
+          <img src="./assets/images/nader.png" alt="نادر وضاح - المدير التنفيذي ومدير المشاريع في تكنوفا" loading="lazy"
+            decoding="async"
             class="w-36 h-36 md:w-48 md:h-48 object-cover rounded-full mx-auto border-4 border-primary/20 hover:border-primary/60 transition-all duration-500 relative z-10 shadow-xl lazy-load" />
         </div>
         <h3 class="text-xl md:text-2xl font-bold text-gray-800 mt-4 md:mt-6 mb-2">نــادر وضــاح</h3>
@@ -576,7 +583,8 @@
           <div
             class="group bg-white rounded-xl md:rounded-2xl shadow-md hover:shadow-xl p-4 md:p-6 text-center transition-all duration-500 hover:-translate-y-2 flex-shrink-0 w-72 sm:w-80 lg:w-full"
             data-aos="fade-up" data-aos-delay="100">
-            <img src="./assets/images/Mohammed.jpg" alt="المهندس محمد - مهندس برمجيات في تكنوفا"
+            <img src="./assets/images/Mohammed.jpg" alt="المهندس محمد - مهندس برمجيات في تكنوفا" loading="lazy"
+              decoding="async"
               class="w-32 h-32 md:w-36 md:h-36 object-cover rounded-full mx-auto mb-3 md:mb-4 border-4 border-primary/10 group-hover:border-primary transition-all duration-500 lazy-load" />
             <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-1">المهندس محمد</h3>
             <p class="text-primary font-medium mb-2 md:mb-3 text-sm md:text-base">مهندس برمجيات</p>
@@ -589,6 +597,7 @@
             class="group bg-white rounded-xl md:rounded-2xl shadow-md hover:shadow-xl p-4 md:p-6 text-center transition-all duration-500 hover:-translate-y-2 flex-shrink-0 w-72 sm:w-80 lg:w-full"
             data-aos="fade-up" data-aos-delay="400">
             <img src="./assets/images/Abdulaziz.jpg" alt="المهندس عبد العزيز - مهندس ميكاترونكس في تكنوفا"
+              loading="lazy" decoding="async"
               class="w-32 h-32 md:w-36 md:h-36 object-cover rounded-full mx-auto mb-3 md:mb-4 border-4 border-primary/10 group-hover:border-primary transition-all duration-500 lazy-load" />
             <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-1">المهندس عبد العزيز</h3>
             <p class="text-primary font-medium mb-2 md:mb-3 text-sm md:text-base">مهندس ميكاترونكس</p>
@@ -600,7 +609,8 @@
           <div
             class="group bg-white rounded-xl md:rounded-2xl shadow-md hover:shadow-xl p-4 md:p-6 text-center transition-all duration-500 hover:-translate-y-2 flex-shrink-0 w-72 sm:w-80 lg:w-full"
             data-aos="fade-up" data-aos-delay="200">
-            <img src="./assets/images/Saeed.jpg" alt="المهندس سعيد - مهندس نظم في تكنوفا"
+            <img src="./assets/images/Saeed.jpg" alt="المهندس سعيد - مهندس نظم في تكنوفا" loading="lazy"
+              decoding="async"
               class="w-32 h-32 md:w-36 md:h-36 object-cover rounded-full mx-auto mb-3 md:mb-4 border-4 border-primary/10 group-hover:border-primary transition-all duration-500 lazy-load" />
             <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-1">المهندس سعيد</h3>
             <p class="text-primary font-medium mb-2 md:mb-3 text-sm md:text-base">مهندس نظم</p>
@@ -614,6 +624,7 @@
             class="group bg-white rounded-xl md:rounded-2xl shadow-md hover:shadow-xl p-4 md:p-6 text-center transition-all duration-500 hover:-translate-y-2 flex-shrink-0 w-72 sm:w-80 lg:w-full"
             data-aos="fade-up" data-aos-delay="300">
             <img src="./assets/images/Ashraf.jpg" alt="المهندس أشرف - مهندس واجهات وتجربة المستخدم في تكنوفا"
+              loading="lazy" decoding="async"
               class="w-32 h-32 md:w-36 md:h-36 object-cover rounded-full mx-auto mb-3 md:mb-4 border-4 border-primary/10 group-hover:border-primary transition-all duration-500 lazy-load" />
             <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-1">المهندس أشرف</h3>
             <p class="text-primary font-medium mb-2 md:mb-3 text-sm md:text-base">مهندس واجهات وتجربة المستخدم</p>
@@ -873,6 +884,7 @@
                 <div class="flex flex-col items-center space-y-2 mt-6 relative z-10">
                   <div class="relative">
                     <img src="./assets/images/user (1).jpg" alt="أحمد عبد الرحمن - مدير عام في شركة النخبة"
+                      loading="lazy" decoding="async"
                       class="w-16 h-16 rounded-full border-4 border-primary/20 object-cover transition-all duration-500 group-hover:scale-110 lazy-load">
                     <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white">
                     </div>
@@ -910,6 +922,7 @@
                 <div class="flex flex-col items-center space-y-2 mt-6 relative z-10">
                   <div class="relative">
                     <img src="./assets/images/user (2).jpg" alt="سارة يوسف - مديرة التسويق في Vision Group"
+                      loading="lazy" decoding="async"
                       class="w-16 h-16 rounded-full border-4 border-secondary/20 object-cover transition-all duration-500 group-hover:scale-110 lazy-load">
                     <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white">
                     </div>
@@ -943,7 +956,8 @@
 
                 <div class="flex flex-col items-center space-y-2 mt-6 relative z-10">
                   <div class="relative">
-                    <img src="./assets/images/user (3).jpg" alt="خالد العتيبي - رائد أعمال"
+                    <img src="./assets/images/user (3).jpg" alt="خالد العتيبي - رائد أعمال" loading="lazy"
+                      decoding="async"
                       class="w-16 h-16 rounded-full border-4 border-accent/20 object-cover transition-all duration-500 group-hover:scale-110 lazy-load">
                     <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white">
                     </div>
@@ -1197,7 +1211,7 @@
         // Initialize
         updateCarousel(true);
         startAutoplay();
-        
+
         //Initialize AOS
         Initialize_AOS();
 
@@ -1243,4 +1257,5 @@
 
   <script src="./assets/js/main.js"></script>
 </body>
+
 </html>
