@@ -1,780 +1,1006 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>خدمات TECHNOVA</title>
 
-    <!-- Tailwind (CDN for quick demo) -->
-    <script src="./assets/js/tailwind.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>خدمات TECHNOVA</title>
 
-    <!-- Colors / CSS variables (themeable) -->
-    <link rel="stylesheet" href="./assets/css/colors.css" />
-    <!-- Custom styles -->
-        <link rel="stylesheet" href="./assets/css/styles.css" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Remixicon for icons -->
-    <link
-      href="./assets/css/remixicon.css"
-      rel="stylesheet"
-    />
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-    <!-- Swiper for carousels -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-    <!-- AOS for animations -->
-    <link href="./assets/css/aos.css" rel="stylesheet" />
-    <script src="./assets/js/aos.js"></script>
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
-    <!-- Custom styles to match Portfolio.html structure but use TECHNOVA colors -->
-    <style>
-      /* Use TECHNOVA's primary and accent colors for the gradient */
-      .gradient-bg {
-        background: linear-gradient(
-          135deg,
-          var(--color-primary) 0%,
-          var(--color-accent) 100%
-        );
-      }
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
 
-      .gradient-text {
-        background: linear-gradient(90deg, #3b82f6, #06b6d4);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap"
+    rel="stylesheet" />
+<style>
+:root {
+  --color-primary: #0B3D91;
+  --color-secondary: #1E5ED6;
+  --color-accent: #4DA3FF;
+  --color-dark: #0A1F44;
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+}
 
-      /* Service card styles - matching the requested design */
-      .service-card {
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-      }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-      .service-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        transition: left 0.5s;
-      }
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: var(--color-bg);
+  color: var(--color-dark);
+  overflow-x: hidden;
+}
 
-      .service-card:hover::before {
-        left: 100%;
-      }
+/* خلفية Three.js */
+#canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
 
-      .service-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-      }
+/* تأثير الزجاج */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
 
-      .feature-icon {
-        transition: all 0.3s ease;
-      }
+/* النص المتدرج */
+.gradient-text {
+  background: linear-gradient(135deg, #0B3D91 0%, #1E5ED6 50%, #4DA3FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-      .service-card:hover .feature-icon {
-        transform: scale(1.1) rotate(5deg);
-      }
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #0A1F44 0%, #0B3D91 50%, #1E5ED6 100%);
+  position: relative;
+  overflow: hidden;
+}
 
-      .tech-badge {
-        transition: all 0.2s ease;
-      }
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%230B3D91' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/svg%3E");
+}
 
-      .tech-badge:hover {
-        transform: scale(1.05);
-        background-color: #1e3a8a;
-        color: white;
-      }
+/* أشكال عائمة */
+.floating-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: float 10s ease-in-out infinite;
+}
 
-      /* Animation for service icons */
-      @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
-      }
+@keyframes float {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(10deg); }
+}
 
-      .float-animation {
-        animation: float 3s ease-in-out infinite;
-      }
+/* بطاقات الخدمات */
+.service-card-3d {
+  background: rgba(255,255,255,0.95);
+  border-radius: 24px;
+  padding: 32px;
+  transform-style: preserve-3d;
+  transition: all .5s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 10px 40px rgba(0,0,0,.1);
+  cursor: pointer;
+  overflow: hidden;
+}
 
-      /* Service category colors */
-      .category-web { background-color: #10b981; }
-      .category-mobile { background-color: #f59e0b; }
-      .category-iot { background-color: #3b82f6; }
-      .category-ai { background-color: #8b5cf6; }
-      .category-electronics { background-color: #ef4444; }
-      .category-student { background-color: #ec4899; }
-      .category-marketing { background-color: #06b6d4; }
-      .category-network { background-color: #3b82f6; }
-      .category-other { background-color: #6b7280; }
+.service-card-3d::before {
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:4px;
+  background: linear-gradient(90deg,var(--color-primary),var(--color-secondary),var(--color-accent));
+  transform:scaleX(0);
+  transition:transform .4s ease;
+}
 
-      /* Modal Styles */
-      .modal-backdrop {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.7);
-        z-index: 50;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1rem;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-      }
+.service-card-3d:hover {
+  transform: translateY(-15px) rotateX(5deg) rotateY(5deg);
+  box-shadow: 0 30px 60px rgba(11,61,145,.2);
+}
 
-      .modal-backdrop.open {
-        opacity: 1;
-        pointer-events: auto;
-      }
+.service-card-3d:hover::before { transform:scaleX(1); }
 
-      .modal-card {
-        width: 100%;
-        max-width: 800px;
-        max-height: 80vh;
-        border-radius: 1rem;
-        background-color: var(--color-surface);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        overflow: hidden;
-        transform: scale(0.95);
-        transition: transform 0.3s ease;
-        display: flex;
-        flex-direction: column;
-      }
+/* أيقونة البطاقة */
+.service-icon {
+  width:80px;height:80px;
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:36px;
+  margin-bottom:24px;
+  transition:.4s;
+}
 
-      .modal-backdrop.open .modal-card {
-        transform: scale(1);
-      }
+.service-card-3d:hover .service-icon {
+  transform:scale(1.1) rotate(-5deg);
+  box-shadow:0 10px 30px rgba(11,61,145,.3);
+}
 
-      .modal-swiper-container {
-        aspect-ratio: 16 / 9;
-        --swiper-navigation-color: var(--color-primary);
-        --swiper-navigation-size: 30px;
-        flex-shrink: 0;
-      }
+/* shimmer */
+.shimmer {
+  position:absolute;
+  inset:0;
+  left:-100%;
+  background: linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);
+  transition:left .6s;
+}
 
-      .modal-swiper-container .swiper-slide {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #f3f4f6;
-        padding: 1rem;
-      }
-      
-      .modal-swiper-container .swiper-slide img {
-        max-width: 100%;
-        max-height: 100%;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        object-fit: contain;
-      }
+.service-card-3d:hover .shimmer { left:100%; }
 
-      @media (max-width: 768px) {
-        .modal-card {
-          max-width: 100%;
-          max-height: 100vh;
-          height: 100%;
-          margin: 0;
-          border-radius: 0;
-        }
-        .modal-backdrop {
-          padding: 0;
-        }
-        .modal-swiper-container {
-          aspect-ratio: 4 / 3;
-        }
-        .modal-swiper-container .swiper-slide img {
-            border-radius: 0;
-        }
-      }
-    </style>
-  </head>
-  <body class="bg-gray-50 text-gray-800 antialiased">
-    <div id="app" class="min-h-screen flex flex-col">
-      <!-- NAV (Copied from index.html) -->
-    <div id="header-container"></div>
+/* filter buttons */
+.filter-btn {
+  background: rgba(255,255,255,.9);
+  border:2px solid transparent;
+  padding:12px 24px;
+  border-radius:50px;
+  font-weight:600;
+  transition:.3s;
+  position:relative;
+  overflow:hidden;
+}
 
-      <!-- Hero Section -->
-      <section class="pt-24 pb-16 md:pt-32 md:pb-24 gradient-bg text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6">خدماتنا</h1>
-            <p class="text-xl text-white/90 max-w-3xl mx-auto">
-              نقدم مجموعة متكاملة من الحلول التقنية المبتكرة التي تلبي احتياجات الشركات
-              والأفراد على حد سواء، مع التركيز على الجودة والأمان والابتكار
-            </p>
+.filter-btn::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background: linear-gradient(135deg,var(--color-primary),var(--color-secondary));
+  opacity:0;
+  transition:.3s;
+  z-index:-1;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  color:white;
+  transform:translateY(-2px);
+  box-shadow:0 10px 30px rgba(11,61,145,.3);
+}
+
+.filter-btn:hover::before,
+.filter-btn.active::before { opacity:1; }
+
+/* modal */
+.modal-backdrop {
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.8);
+  backdrop-filter:blur(10px);
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:1rem;
+  opacity:0;
+  transition:.4s;
+  pointer-events:none;
+}
+
+.modal-backdrop.open { opacity:1; pointer-events:auto; }
+
+.modal-card {
+  width:100%;
+  max-width:900px;
+  max-height:90vh;
+  border-radius:32px;
+  background:white;
+  box-shadow:0 50px 100px rgba(0,0,0,.3);
+  overflow:hidden;
+  transform:scale(.9) translateY(20px);
+  transition:.4s cubic-bezier(.4,0,.2,1);
+}
+
+.modal-backdrop.open .modal-card { transform:scale(1) translateY(0); }
+
+/* زر العودة للأعلى */
+#backToTopBtn {
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  width:60px;height:60px;
+  border-radius:50%;
+  background: linear-gradient(135deg,var(--color-primary),var(--color-secondary));
+  color:white;
+  border:none;
+  cursor:pointer;
+  opacity:0;
+  visibility:hidden;
+  transition:.4s;
+  z-index:50;
+  box-shadow:0 10px 30px rgba(11,61,145,.4);
+}
+
+#backToTopBtn.visible { opacity:1; visibility:visible; }
+
+#backToTopBtn:hover {
+  transform:translateY(-5px) scale(1.1);
+  box-shadow:0 20px 40px rgba(11,61,145,.6);
+}
+
+/* scroll indicator */
+.scroll-indicator{
+position:fixed;
+top:0;left:0;height:4px;
+background: linear-gradient(90deg,var(--color-primary),var(--color-secondary),var(--color-accent));
+z-index:1000;
+transition:width .2s ease;
+}
+
+/* tech tags */
+.tech-tag{
+background: rgba(11,61,145,.1);
+color: var(--color-primary);
+padding:6px 14px;
+border-radius:20px;
+font-size:12px;
+font-weight:600;
+border:1px solid rgba(11,61,145,.2);
+transition:.3s;
+}
+
+.tech-tag:hover{
+background: var(--color-primary);
+color:white;
+transform:translateY(-2px);
+}
+
+/* scrollbar */
+::-webkit-scrollbar{ width:10px; }
+::-webkit-scrollbar-track{ background:#f1f5f9; }
+
+::-webkit-scrollbar-thumb{
+background: linear-gradient(180deg,var(--color-primary),var(--color-secondary));
+border-radius:5px;
+}
+
+/* particles */
+.particles{
+position:fixed;
+width:100%;
+height:100%;
+overflow:hidden;
+pointer-events:none;
+z-index:-1;
+}
+
+.particle{
+position:absolute;
+width:4px;
+height:4px;
+background: rgba(11,61,145,.3);
+border-radius:50%;
+animation:particle-float 25s infinite linear;
+}
+
+@keyframes particle-float{
+0%{transform:translateY(100vh) translateX(0);opacity:0;}
+10%{opacity:1;}
+90%{opacity:1;}
+100%{transform:translateY(-100vh) translateX(100px);opacity:0;}
+}
+
+</style>
+  <!-- <base target="_blank"> -->
+</head>
+
+<body>
+  <!-- مؤشر التمرير -->
+  <div class="scroll-indicator" id="scrollIndicator"></div>
+
+  <!-- خلفية Three.js -->
+  <div id="canvas-container"></div>
+
+  <!-- الجزيئات -->
+  <div class="particles" id="particles"></div>
+
+  <div id="app" class="min-h-screen flex flex-col">
+  <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="header">
+      <div class="glass-effect mx-4 mt-4 rounded-2xl px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-500 flex items-center justify-center text-white font-bold text-xl pulse-glow">
+              T
+            </div>
+            <span class="text-2xl font-bold gradient-text">TECHNOVA</span>
           </div>
-        </div>
-      </section>
 
-      <!-- Filter Section -->
-      <section
-        class="py-8 bg-surface shadow-sm border-b border-gray-100"
-      >
-        <!-- Header -->
+          <nav class="hidden md:flex items-center gap-8">
+            <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">الرئيسية</a>
+            <a href="services.html" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">الخدمات</a>
+            <a href="projects.html" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">المشاريع</a>
+            <a href="about.html" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">من نحن</a>
+            <a href="https://wa.me/967737127316"
+              class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all transform hover:scale-105">
+              تواصل معنا
+            </a>
+          </nav>
+
+          <button class="md:hidden text-gray-700 text-2xl" id="mobile-menu-btn">
+            <i class="ri-menu-line"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- القائمة المتنقلة -->
+    <div class="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl hidden" id="mobile-menu">
+      <div class="flex flex-col items-center justify-center h-full gap-8 text-2xl">
+        <a href="index.html" class="text-gray-800 hover:text-blue-600 transition-colors mobile-link">الرئيسية</a>
+        <a href="services.html" class="text-gray-800 hover:text-blue-600 transition-colors mobile-link ">الخدمات</a>
+        <a href="projects.html" class="text-gray-800 hover:text-blue-600 transition-colors mobile-link">المشاريع</a>
+        <a href="about.html" class="text-gray-800 hover:text-blue-600 transition-colors mobile-link">من نحن</a>
+        <a href="https://wa.me/967737127316" class="text-gray-800 hover:text-blue-600 transition-colors mobile-link">تواصل معنا</a>
+      </div>
+      <button class="absolute top-8 left-8 text-3xl text-gray-800" id="close-menu">
+        <i class="ri-close-line"></i>
+      </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section pt-32 pb-20 relative">
+      <div class="floating-shape w-96 h-96 bg-blue-500/30 -top-20 -right-20"></div>
+      <div class="floating-shape w-72 h-72 bg-blue-500/20 bottom-0 left-10" style="animation-delay: 5s;"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         <div
-          class="text-center mb-12"
-          data-aos="fade-up"
-          data-aos-duration="800"
-        >
-          <h2
-            class="text-3xl md:text-4xl font-extrabold text-[color:var(--color-dark)] mb-3 tracking-tight"
-          >
+          class="inline-block px-6 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white/90 text-sm font-semibold mb-6 border border-white/20">
+          ✨ حلول تقنية متكاملة
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
+          خدماتنا <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">المتكاملة</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed mb-8">
+          نقدم مجموعة متكاملة من الحلول التقنية المبتكرة التي تجمع بين الإبداع والكفاءة،
+          لتلبية احتياجات الأفراد والشركات في مختلف المجالات.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4 text-blue-200 text-sm">
+          <span class="flex items-center gap-2"><i class="ri-check-line text-cyan-400"></i> جودة عالية</span>
+          <span class="flex items-center gap-2"><i class="ri-check-line text-cyan-400"></i> دعم مستمر</span>
+          <span class="flex items-center gap-2"><i class="ri-check-line text-cyan-400"></i> أسعار تنافسية</span>
+          <span class="flex items-center gap-2"><i class="ri-check-line text-cyan-400"></i> تسليم سريع</span>
+        </div>
+      </div>
+
+      <!-- موجة التحويل -->
+      <div class="absolute bottom-0 left-0 right-0">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
+            fill="#f8fafc" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="py-12 bg-gray-50/50 backdrop-blur-sm  top-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10 reveal">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
             اكتشف خدمات <span class="gradient-text">TECHNOVA</span>
           </h2>
-          <p class="text-lg text-[color:var(--color-muted)] max-w-2xl mx-auto">
-            نماذج مختارة تُظهر قدرتنا على تلبية جميع احتياجاتك التقنية
-          </p>
+          <p class="text-gray-600">اختر التصنيف المناسب لاحتياجاتك</p>
         </div>
 
-        <!-- Filters -->
+        <div class="flex flex-wrap justify-center gap-3 reveal" id="filter-container">
+          <button class="filter-btn active" data-filter="all">الكل</button>
+          <button class="filter-btn" data-filter="web">تطوير الويب</button>
+          <button class="filter-btn" data-filter="mobile">تطبيقات الموبايل</button>
+          <button class="filter-btn" data-filter="iot">إنترنت الأشياء</button>
+          <button class="filter-btn" data-filter="ai">الذكاء الاصطناعي</button>
+          <button class="filter-btn" data-filter="electronics">إلكترونيات</button>
+          <button class="filter-btn" data-filter="student">خدمات الطلاب</button>
+          <button class="filter-btn" data-filter="marketing">التسويق الرقمي</button>
+          <button class="filter-btn" data-filter="network">الشبكات</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Grid -->
+    <main class="flex-grow py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="col-span-full text-center py-20" id="loadingMessage">
+            <div class="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4">
+            </div>
+            <p class="text-gray-500 text-lg">جاري تحميل الخدمات...</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Service Detail Modal -->
+    <div id="serviceModal" class="modal-backdrop" onclick="closeModal(event)">
+      <div class="modal-card" onclick="event.stopPropagation()">
+        <!-- Header -->
         <div
-          class="flex flex-wrap items-center justify-center gap-3 mb-8"
-          data-aos="fade-up"
-          data-aos-delay="100"
-        >
-          <button
-            class="filter-btn active px-4 py-2 rounded-full text-sm"
-            data-filter="all"
-          >
-            الكل
-          </button>
-          <button
-            class="filter-btn px-4 py-2 rounded-full text-sm"
-            data-filter="web"
-          >
-            تطوير الويب
-          </button>
-          <button
-            class="filter-btn px-4 py-2 rounded-full text-sm"
-            data-filter="mobile"
-          >
-            تطبيقات الموبايل
-          </button>
-          <button
-            class="filter-btn px-4 py-2 rounded-full text-sm"
-            data-filter="iot"
-          >
-            إنترنت الأشياء
-          </button>
-          <button
-            class="filter-btn px-4 py-2 rounded-full text-sm"
-            data-filter="ai"
-          >
-            الذكاء الاصطناعي
-          </button>
-          <button
-            class="filter-btn px-4 py-2 rounded-full text-sm"
-            data-filter="electronics"
-          >
-            إلكترونيات
-          </button>
-          <button
-            class="filter-btn px-4 py-2 rounded-full text-sm"
-            data-filter="student"
-          >
-            خدمات الطلاب
-          </button>
-          <button
-            class="filter-btn px-4 py-2 rounded-full text-sm"
-            data-filter="marketing"
-          >
-            التسويق الرقمي
-          </button>
-          <button
-            class="filter-btn px-4 py-2 rounded-full text-sm"
-            data-filter="network"
-          >
-            الشبكات
-          </button>
-          <button
-            class="filter-btn px-4 py-2 rounded-full text-sm"
-            data-filter="other"
-          >
-            أخرى
+          class="flex justify-between items-center p-6 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white">
+          <div>
+            <h2 id="modalTitle" class="text-2xl font-bold text-gray-900 mb-1"></h2>
+            <span id="modalCategory"
+              class="inline-block px-3 py-1 rounded-full text-xs text-white font-semibold"></span>
+          </div>
+          <button onclick="closeModal()"
+            class="w-10 h-10 rounded-full bg-gray-100 hover:bg-red-100 text-gray-600 hover:text-red-600 transition flex items-center justify-center">
+            <i class="ri-close-line text-xl"></i>
           </button>
         </div>
-      </section>
 
-      <!-- Services Grid -->
-      <main class="flex-grow py-16 bg-bg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            id="services-grid"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            <!-- Service cards will be injected here by the script -->
-            <div
-              class="text-center p-10 col-span-full text-muted"
-              id="loadingMessage"
-            >
-              <i
-                class="ri-loader-4-line animate-spin text-3xl text-primary"
-              ></i>
-              <p class="mt-2">جاري تحميل الخدمات...</p>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      <!-- Service Detail Modal -->
-      <div id="serviceModal" class="modal-backdrop" onclick="closeModal(event)">
-        <div class="modal-card" onclick="event.stopPropagation()">
-          <!-- Header -->
-          <div
-            class="flex justify-between items-start p-4 border-b border-gray-200 bg-gray-50/60"
-          >
-            <h2 id="modalTitle" class="text-2xl font-bold text-gray-800"></h2>
-            <button
-              onclick="closeModal()"
-              class="text-gray-600 hover:text-red-500 transition"
-              title="إغلاق"
-            >
-              <i class="ri-close-line text-3xl"></i>
-            </button>
+        <!-- Content -->
+        <div class="overflow-y-auto flex-grow p-6">
+          <!-- Swiper -->
+          <div id="modalSwiperContainer" class="swiper modal-swiper-container mb-6 shadow-2xl">
+            <div id="modalSwiperWrapper" class="swiper-wrapper"></div>
+            <div class="swiper-button-prev !w-10 !h-10 !bg-white/80 !rounded-full !text-blue-600 after:!text-lg"></div>
+            <div class="swiper-button-next !w-10 !h-10 !bg-white/80 !rounded-full !text-blue-600 after:!text-lg"></div>
+            <div class="swiper-pagination !bottom-4"></div>
           </div>
 
-          <!-- Content -->
-          <div
-            class="overflow-y-auto flex-grow p-4"
-            style="max-height: calc(80vh - 70px)"
-          >
-            <!-- Swiper Container -->
-            <div
-              id="modalSwiperContainer"
-              class="swiper modal-swiper-container w-full rounded-xl overflow-hidden mb-6 shadow-md"
-            >
-              <div id="modalSwiperWrapper" class="swiper-wrapper">
-                <!-- Slides injected dynamically -->
-              </div>
-
-              <!-- Swiper Controls -->
-              <div
-                class="swiper-button-prev !text-gray-800 hover:!text-primary transition"
-              ></div>
-              <div
-                class="swiper-button-next !text-gray-800 hover:!text-primary transition"
-              ></div>
-              <div class="swiper-pagination"></div>
+          <!-- Description -->
+          <div class="space-y-6">
+            <div class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-blue-50 rounded-2xl">
+              <span class="text-gray-600 font-medium">السعر المبدئي:</span>
+              <span id="modalPrice" class="text-2xl font-bold text-blue-600"></span>
             </div>
 
-            <!-- Description -->
-            <div class="px-1">
-              <div class="flex items-center mb-4">
-                <span id="modalPrice" class="text-xl font-bold text-primary ml-4"></span>
-                <span id="modalCategory" class="px-3 py-1 rounded-full text-xs text-white"></span>
-              </div>
-              
-              <p
-                id="modalDescription"
-                class="text-gray-600 text-lg mb-4 leading-relaxed"
-              ></p>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                <i class="ri-file-text-line text-blue-600"></i>
+                وصف الخدمة
+              </h3>
+              <p id="modalDescription" class="text-gray-600 leading-relaxed text-lg"></p>
+            </div>
 
-              <h3 class="text-lg font-bold text-gray-800 mb-3">تفاصيل الخدمة:</h3>
-              <ul id="modalDetails" class="list-disc list-inside text-gray-600 mb-6 space-y-2">
-                <!-- Details injected dynamically -->
-              </ul>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                <i class="ri-list-check-2 text-blue-600"></i>
+                ما يشمله العرض
+              </h3>
+              <ul id="modalDetails" class="grid grid-cols-1 md:grid-cols-2 gap-3"></ul>
+            </div>
 
-              <div class="flex justify-start items-center">
-                <a
-                  id="modalLink"
-                  href="contact.html"
-                  class="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition inline-flex items-center gap-2"
-                >
-                  <i class="ri-customer-service-2-line text-lg"></i>
-                  اطلب الخدمة
-                </a>
-              </div>
+            <div class="flex justify-center pt-4">
+              <a href="contact.html"
+                class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-2xl transition-all transform hover:scale-105 flex items-center gap-3">
+                <i class="ri-customer-service-2-line text-xl"></i>
+                اطلب الخدمة الآن
+              </a>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- End Service Detail Modal -->
-
-      <!-- Back to Top Button -->
-      <button
-        id="backToTopBtn"
-        class="fixed bottom-6 right-6 bg-primary text-white p-3 rounded-full shadow-lg hover:bg-primary-600 transition-all duration-300 z-50 opacity-0 translate-y-8 md:right-10 md:bottom-10"
-        aria-label="العودة إلى الأعلى"
-      >
-        <i class="ri-arrow-up-line text-2xl"></i>
-      </button>
-      <!-- End Back to Top Button -->
-<script src="./assets/js/main.js"></script>
-      <script>
-        /* ========== تهيئة مكتبات الرسوم المتحركة ========== */
-        AOS?.init?.();
-
-        /* ========== وظائف التبديل (ثيم، لغة، قائمة الجوال) ========== */
-        // Simplified Theme/Lang Toggles (as in previous projects.html)
-        document
-          .getElementById("themeToggleBtn")
-          ?.addEventListener("click", () => {
-            const html = document.documentElement;
-            const currentTheme = html.getAttribute("data-theme") || "default";
-            const newTheme =
-              currentTheme === "default"
-                ? "navy"
-                : currentTheme === "navy"
-                ? "accent"
-                : "default";
-            html.setAttribute("data-theme", newTheme);
-            // Note: Actual theme colors would need to be managed by CSS based on data-theme attribute.
-          });
-
-        document
-          .getElementById("langToggleBtn")
-          ?.addEventListener("click", () => {
-            const html = document.documentElement;
-            const currentDir = html.getAttribute("dir");
-            const newDir = currentDir === "rtl" ? "ltr" : "rtl";
-            html.setAttribute("dir", newDir);
-            html.setAttribute("lang", newDir === "rtl" ? "ar" : "en");
-            document.getElementById("langToggleBtn").textContent =
-              newDir === "rtl" ? "EN" : "AR";
-            // If you have different language content, this would need more logic.
-          });
-
-        document.getElementById("mobileBtn")?.addEventListener("click", () => {
-          document.getElementById("mobileMenu").classList.toggle("hidden");
-        });
-
-        /* ========== وظائف التمرير السلس وزر "العودة للأعلى" ========== */
-        // Smooth Scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
-            e.preventDefault(); // Prevent default anchor click behavior
-
-            const targetId = this.getAttribute("href");
-            const targetElement = document.querySelector(targetId);
-
-            if (targetElement) {
-              const headerOffset = 70; // Approximate height of the fixed header to account for scroll
-              const elementPosition = targetElement.getBoundingClientRect().top;
-              const offsetPosition =
-                elementPosition + window.pageYOffset - headerOffset;
-
-              window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth",
-              });
-            }
-          });
-        });
-
-        // Back to Top Button Logic
-        const backToTopBtn = document.getElementById("backToTopBtn");
-        const scrollThreshold = 300; // Show button after scrolling 300px
-
-        window.addEventListener("scroll", () => {
-          if (window.scrollY > scrollThreshold) {
-            backToTopBtn.classList.add("opacity-100", "translate-y-0");
-            backToTopBtn.classList.remove("opacity-0", "translate-y-8");
-          } else {
-            backToTopBtn.classList.add("opacity-0", "translate-y-8");
-            backToTopBtn.classList.remove("opacity-100", "translate-y-0");
-          }
-        });
-
-        backToTopBtn.addEventListener("click", () => {
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
-        });
-
-        /* ========== منطق جلب الخدمات ========== */
-        const servicesJsonUrl = "./assets/json/services.json";
-        let services = []; // المصفوفة النهائية للخدمات (كائنات)
-        let currentFilter = "all";
-        let modalSwiperInstance = null;
-        const serviceModal = document.getElementById("serviceModal"); // Get modal element
-
-        /* مساعدة لحماية النص من XSS */
-        function escapeHtml(s) {
-          if (!s && s !== 0) return "";
-          return String(s).replace(
-            /[&<>"']/g,
-            (m) =>
-              ({
-                "&": "&amp;",
-                "<": "&lt;",
-                ">": "&gt;",
-                '"': "&quot;",
-                "'": "&#39;",
-              }[m])
-          );
-        }
-
-        /* جلب بيانات الخدمات من ملف JSON */
-        async function fetchServices() {
-          try {
-            const response = await fetch(servicesJsonUrl);
-            if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            return data || [];
-          } catch (error) {
-            console.error("Error fetching services:", error);
-            // Return empty array if fetch fails
-            return [];
-          }
-        }
-
-        /* دالة لفتح النافذة المنبثقة (Modal) */
-        function openModal(serviceId) {
-          const service = services.find((s) => s.id === serviceId);
-          if (!service) {
-            console.error(`Service with ID ${serviceId} not found.`);
-            return;
-          }
-
-          // 1. Update Modal Content
-          const modalTitleElement = document.getElementById("modalTitle");
-          modalTitleElement.textContent = service.title;
-          // For accessibility, link the modal title to the modal dialog
-          serviceModal.setAttribute("aria-labelledby", modalTitleElement.id);
-
-          document.getElementById("modalDescription").textContent =
-            service.description;
-          document.getElementById("modalPrice").textContent = service.price;
-          
-          // Set category badge
-          const categoryElement = document.getElementById("modalCategory");
-          categoryElement.textContent = getCategoryName(service.category);
-          categoryElement.className = `px-3 py-1 rounded-full text-xs text-white category-${service.category}`;
-
-          // Update details list
-          const detailsElement = document.getElementById("modalDetails");
-          detailsElement.innerHTML = (service.details || [])
-            .map(
-              (detail) =>
-                `<li>${escapeHtml(detail)}</li>`
-            )
-            .join("");
-
-          // 2. Update Swiper Slides
-          const swiperWrapper = document.getElementById("modalSwiperWrapper");
-          // Use a default image if no images are provided
-          const defaultImage = "./assets/images/default-service-image.jpg"; // Create this placeholder or use a CDN link
-          swiperWrapper.innerHTML = (
-            service.images && service.images.length > 0
-              ? service.images
-              : [defaultImage]
-          )
-            .map(
-              (src) =>
-                `<div class="swiper-slide"><img src="${escapeHtml(
-                  src
-                )}" alt="${escapeHtml(service.title)}"/></div>`
-            )
-            .join("");
-
-          // 3. Initialize/Update Swiper
-          if (modalSwiperInstance) {
-            // Destroy previous instance if it exists
-            modalSwiperInstance.destroy(true, true);
-          }
-          modalSwiperInstance = new Swiper("#modalSwiperContainer", {
-            slidesPerView: 1,
-            spaceBetween: 10,
-            loop: true,
-            navigation: {
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-            },
-            pagination: {
-              el: ".swiper-pagination",
-              clickable: true,
-            },
-          });
-
-          // 4. Show Modal
-          serviceModal.classList.add("open");
-          document.body.style.overflow = "hidden"; // Prevent scrolling background
-        }
-
-        /* دالة لإغلاق النافذة المنبثقة (Modal) */
-        function closeModal(event) {
-          // Check if the click was on the backdrop itself or if called without event
-          if (
-            !event ||
-            event.target.id === "serviceModal" ||
-            event.target.closest('button[onclick="closeModal()"]')
-          ) {
-            serviceModal.classList.remove("open");
-            document.body.style.overflow = "";
-            // Optionally, destroy Swiper instance when modal closes to free resources
-            if (modalSwiperInstance) {
-              modalSwiperInstance.destroy(true, true);
-              modalSwiperInstance = null;
-            }
-          }
-        }
-
-        /* دالة للحصول على اسم الفئة */
-        function getCategoryName(category) {
-          const categories = {
-            web: "تطوير الويب",
-            mobile: "تطبيقات الموبايل",
-            iot: "إنترنت الأشياء",
-            ai: "الذكاء الاصطناعي",
-            electronics: "إلكترونيات",
-            student: "خدمات الطلاب",
-            marketing: "التسويق الرقمي",
-            network: "الشبكات",
-            other: "أخرى"
-          };
-          return categories[category] || "أخرى";
-        }
-
-        /* دالة للحصول على أيقونة الفئة */
-        function getCategoryIcon(category) {
-          const icons = {
-            web: "ri-global-line",
-            mobile: "ri-smartphone-line",
-            iot: "ri-router-line",
-            ai: "ri-brain-line",
-            electronics: "ri-cpu-line",
-            student: "ri-graduation-cap-line",
-            marketing: "ri-megaphone-line",
-            network: "ri-wifi-line",
-            other: "ri-apps-line"
-          };
-          return icons[category] || "ri-apps-line";
-        }
-
-        /* دمج وعرض الخدمات في الشبكة */
-        function renderServices(list, filter) {
-          const grid = document.getElementById("services-grid");
-          grid.innerHTML = ""; // Clear existing content
-
-          const filteredServices = list.filter(
-            (s) => filter === "all" || s.category === filter
-          );
-
-          if (filteredServices.length === 0) {
-            grid.innerHTML =
-              '<div class="text-center p-10 col-span-full text-muted"><i class="ri-error-warning-line text-3xl text-accent"></i><p class="mt-2">لا توجد خدمات في هذا التصنيف حاليًا.</p></div>';
-            return;
-          }
-
-          filteredServices.forEach((s, index) => {
-            // Get first 3 details for the card
-            const shortDetails = (s.details || []).slice(0, 3);
-            
-            // Get first 3 tech tags for the card
-            const techTags = s.techTags ? s.techTags.slice(0, 3) : [];
-            
-            const serviceHtml = `
-              <div class="service-card bg-gray-50 rounded-lg p-8 shadow-lg" 
-                   data-aos="fade-up" 
-                   data-category="${s.category}"
-                   onclick="openModal('${s.id}')">
-                <div class="feature-icon w-20 h-20 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6 float-animation" style="animation-delay: ${index * 0.2}s;">
-                  <i class="${getCategoryIcon(s.category)} text-3xl"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">${s.title}</h3>
-                <p class="text-gray-600 mb-6 text-center">
-                  ${s.description}
-                </p>
-                <ul class="space-y-2 mb-6 text-gray-600">
-                  ${shortDetails.map(detail => `
-                    <li class="flex items-start">
-                      <i class="ri-check-line text-primary ml-2 mt-1"></i>
-                      <span>${detail}</span>
-                    </li>
-                  `).join('')}
-                </ul>
-                <div class="flex flex-wrap gap-2 mb-6 justify-center">
-                  ${techTags.map(tag => `
-                    <span class="tech-badge px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm">${tag}</span>
-                  `).join('')}
-                </div>
-                <div class="text-center">
-                  <span class="text-primary font-bold text-lg block mb-3">${s.price}</span>
-                  <a href="#" class="bg-primary text-white px-6 py-3 rounded-lg font-bold hover:bg-secondary transition-all">
-                    تفاصيل الخدمة
-                  </a>
-                </div>
-              </div>
-            `;
-            grid.insertAdjacentHTML("beforeend", serviceHtml);
-          });
-        }
-
-        /* وظيفة جلب وعرض الخدمات الرئيسية */
-        async function loadServices() {
-          const loadingMessage = document.getElementById("loadingMessage");
-          loadingMessage.style.display = "block"; // Show loading indicator
-
-          // Fetch services from JSON
-          services = await fetchServices();
-          
-          // Add unique IDs to services if they don't have them
-          services = services.map((service, index) => ({
-            ...service,
-            id: service.id || `service-${index}`,
-            category: service.category || 'other',
-            techTags: service.techTags || []
-          }));
-          
-          // If no services were loaded, show an error message
-          if (services.length === 0) {
-            document.getElementById("services-grid").innerHTML =
-              '<div class="text-center p-10 col-span-full text-muted"><i class="ri-error-warning-line text-3xl text-accent"></i><p class="mt-2">لم يتم العثور على خدمات. يرجى المحاولة مرة أخرى لاحقًا.</p></div>';
-            loadingMessage.style.display = "none";
-            return;
-          }
-
-          renderServices(services, currentFilter); // Render services based on current filter
-          loadingMessage.style.display = "none"; // Hide loading indicator
-        }
-
-        /* ========== تهيئة كل شيء عند تحميل الصفحة ========== */
-        document.addEventListener("DOMContentLoaded", () => {
-          // Initial load of services
-          loadServices();
-
-          // Setup filter button listeners
-          document.querySelectorAll(".filter-btn").forEach((button) => {
-            button.addEventListener("click", function () {
-              // Remove 'active' class from all filter buttons
-              document
-                .querySelectorAll(".filter-btn")
-                .forEach((btn) => btn.classList.remove("active"));
-              // Add 'active' class to the clicked button
-              this.classList.add("active");
-
-              currentFilter = this.getAttribute("data-filter"); // Update current filter
-              renderServices(services, currentFilter); // Re-render services
-            });
-          });
-
-          /* ========== إعدادات سهولة الوصول للـ Modal ========== */
-          // Add ARIA roles to modal for accessibility
-          serviceModal.setAttribute("role", "dialog");
-          serviceModal.setAttribute("aria-modal", "true");
-
-          // Add Escape key listener to close modal
-          document.addEventListener("keydown", (event) => {
-            if (
-              event.key === "Escape" &&
-              serviceModal.classList.contains("open")
-            ) {
-              closeModal();
-            }
-          });
-        });
-      </script>
     </div>
-  </body>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-blue-900/20"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          <div class="col-span-1 md:col-span-2">
+            <div class="flex items-center gap-3 mb-6">
+              <div
+                class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-500 flex items-center justify-center text-white font-bold text-2xl">
+                T
+              </div>
+              <span class="text-3xl font-bold">TECHNOVA</span>
+            </div>
+            <p class="text-gray-400 leading-relaxed mb-6 max-w-md">
+              نحن شركة تقنية رائدة نقدم حلولاً مبتكرة للأفراد والطلاب وأصحاب المشاريع والشركات.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold mb-6">روابط سريعة</h4>
+            <ul class="space-y-3">
+              <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">الرئيسية</a></li>
+              <li><a href="#" class="text-white font-semibold">الخدمات</a></li>
+              <li><a href="projects.html" class="text-gray-400 hover:text-white transition-colors">المشاريع</a></li>
+              <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">تواصل معنا</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold mb-6">تواصل معنا</h4>
+            <ul class="space-y-3 text-gray-400">
+              <li class="flex items-center gap-2"><i class="ri-phone-line"></i> +967 737 721 613</li>
+              <li class="flex items-center gap-2"><i class="ri-mail-line"></i> info@technova.sa</li>
+              <li class="flex items-center gap-2"><i class="ri-map-pin-line"></i> الرياض، السعودية</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+          <p>© <span id="year"></span> TECHNOVA. جميع الحقوق محفوظة.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- زر العودة للأعلى -->
+  <button id="backToTopBtn">
+    <i class="ri-arrow-up-line"></i>
+  </button>
+<script>
+    // القائمة المتنقلة
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenuBtn = document.getElementById('close-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    mobileMenuBtn.addEventListener('click', () => {
+
+  mobileMenu.classList.toggle('hidden');
+
+  if (mobileMenu.classList.contains('hidden')) {
+    document.body.style.overflow = '';
+  } else {
+    document.body.style.overflow = 'hidden';
+  }
+
+});
+
+    const closeMenu = () => {
+      mobileMenu.classList.add('hidden');
+      document.body.style.overflow = '';
+    };
+
+    closeMenuBtn.addEventListener('click', closeMenu);
+    mobileMenu.addEventListener('click', (e) => {
+  if (e.target === mobileMenu) {
+    closeMenu();
+  }
+});
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+</script>
+  <!-- JavaScript -->
+  <script>
+    // Three.js خلفية
+    const initThreeJS = () => {
+      const container = document.getElementById('canvas-container');
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      // إنشاء شبكة من النقاط
+      const geometry = new THREE.BufferGeometry();
+      const count = 500;
+      const positions = new Float32Array(count * 3);
+
+      for (let i = 0; i < count * 3; i++) {
+        positions[i] = (Math.random() - 0.5) * 20;
+      }
+
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+      const material = new THREE.PointsMaterial({
+        size: 0.05,
+        color: 0x6366f1,
+        transparent: true,
+        opacity: 0.6
+      });
+
+      const particles = new THREE.Points(geometry, material);
+      scene.add(particles);
+
+      // إضافة أشكال هندسية عائمة
+      const shapes = [];
+      const geometries = [
+        new THREE.IcosahedronGeometry(0.5, 0),
+        new THREE.OctahedronGeometry(0.5, 0),
+        new THREE.TetrahedronGeometry(0.5, 0)
+      ];
+
+      for (let i = 0; i < 8; i++) {
+        const geom = geometries[Math.floor(Math.random() * geometries.length)];
+        const mat = new THREE.MeshBasicMaterial({
+          color: i % 2 === 0 ? 0x6366f1 : 0xec4899,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.15
+        });
+        const mesh = new THREE.Mesh(geom, mat);
+
+        mesh.position.set(
+          (Math.random() - 0.5) * 15,
+          (Math.random() - 0.5) * 15,
+          (Math.random() - 0.5) * 10
+        );
+
+        scene.add(mesh);
+        shapes.push({
+          mesh,
+          rotSpeed: {
+            x: (Math.random() - 0.5) * 0.01,
+            y: (Math.random() - 0.5) * 0.01
+          }
+        });
+      }
+
+      camera.position.z = 5;
+
+      let mouseX = 0;
+      let mouseY = 0;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+      });
+
+      const animate = () => {
+        requestAnimationFrame(animate);
+
+        particles.rotation.y += 0.001;
+        particles.rotation.x += 0.0005;
+
+        shapes.forEach(shape => {
+          shape.mesh.rotation.x += shape.rotSpeed.x;
+          shape.mesh.rotation.y += shape.rotSpeed.y;
+          shape.mesh.position.y += Math.sin(Date.now() * 0.001) * 0.002;
+        });
+
+        camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.02;
+        camera.position.y += (mouseY * 0.5 - camera.position.y) * 0.02;
+
+        renderer.render(scene, camera);
+      };
+
+      animate();
+
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    };
+
+    // إنشاء الجزيئات
+    const createParticles = () => {
+      const container = document.getElementById('particles');
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 20 + 's';
+        particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
+        container.appendChild(particle);
+      }
+    };
+
+    // متغيرات الخدمات
+    const servicesJsonUrl = "./assets/json/services.json";
+    let services = [];
+    let currentFilter = "all";
+    let modalSwiperInstance = null;
+    const serviceModal = document.getElementById("serviceModal");
+
+    // حماية XSS
+    function escapeHtml(s) {
+      if (!s && s !== 0) return "";
+      return String(s).replace(/[&<>"']/g, (m) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      }[m]));
+    }
+
+    // جلب الخدمات
+    async function fetchServices() {
+      try {
+        const response = await fetch(servicesJsonUrl);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const data = await response.json();
+        return data || [];
+      } catch (error) {
+        console.error("Error fetching services:", error);
+        return [];
+      }
+    }
+
+    // فتح الـ Modal
+    function openModal(serviceId) {
+      const service = services.find((s) => s.id === serviceId);
+      if (!service) return;
+
+      document.getElementById("modalTitle").textContent = service.title;
+      document.getElementById("modalDescription").textContent = service.description;
+      document.getElementById("modalPrice").textContent = service.price;
+
+      const categoryEl = document.getElementById("modalCategory");
+      categoryEl.textContent = getCategoryName(service.category);
+      categoryEl.className = `inline-block px-3 py-1 rounded-full text-xs text-white font-semibold category-${service.category}`;
+
+      document.getElementById("modalDetails").innerHTML = (service.details || [])
+        .map(detail => `
+            <li class="flex items-start gap-2 p-3 bg-gray-50 rounded-xl">
+              <i class="ri-check-line text-green-500 mt-0.5"></i>
+              <span class="text-gray-700">${escapeHtml(detail)}</span>
+            </li>
+          `).join("");
+
+      const swiperWrapper = document.getElementById("modalSwiperWrapper");
+      const defaultImage = "./assets/images/default-service-image.jpg";
+      swiperWrapper.innerHTML = (service.images && service.images.length > 0 ? service.images : [defaultImage])
+        .map(src => `
+            <div class="swiper-slide">
+              <img src="${escapeHtml(src)}" alt="${escapeHtml(service.title)}"/>
+            </div>
+          `).join("");
+
+      if (modalSwiperInstance) {
+        modalSwiperInstance.destroy(true, true);
+      }
+
+      modalSwiperInstance = new Swiper("#modalSwiperContainer", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        autoplay: { delay: 3000, disableOnInteraction: false },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+
+      serviceModal.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    // إغلاق الـ Modal
+    function closeModal(event) {
+      if (!event || event.target.id === "serviceModal" || event.target.closest('button[onclick="closeModal()"]')) {
+        serviceModal.classList.remove("open");
+        document.body.style.overflow = "";
+        if (modalSwiperInstance) {
+          modalSwiperInstance.destroy(true, true);
+          modalSwiperInstance = null;
+        }
+      }
+    }
+
+    // أسماء التصنيفات
+    function getCategoryName(category) {
+      const categories = {
+        web: "تطوير الويب",
+        mobile: "تطبيقات الموبايل",
+        iot: "إنترنت الأشياء",
+        ai: "الذكاء الاصطناعي",
+        electronics: "إلكترونيات",
+        student: "خدمات الطلاب",
+        marketing: "التسويق الرقمي",
+        network: "الشبكات",
+        other: "أخرى"
+      };
+      return categories[category] || "أخرى";
+    }
+
+    // أيقونات التصنيفات
+    function getCategoryIcon(category) {
+      const icons = {
+        web: "ri-global-line",
+        mobile: "ri-smartphone-line",
+        iot: "ri-router-line",
+        ai: "ri-brain-line",
+        electronics: "ri-cpu-line",
+        student: "ri-graduation-cap-line",
+        marketing: "ri-megaphone-line",
+        network: "ri-wifi-line",
+        other: "ri-apps-line"
+      };
+      return icons[category] || "ri-apps-line";
+    }
+
+    // ألوان التصنيفات للأيقونات
+    function getCategoryColors(category) {
+      const colors = {
+        web: "from-emerald-400 to-emerald-600",
+        mobile: "from-amber-400 to-amber-600",
+        iot: "from-blue-400 to-blue-600",
+        ai: "from-violet-400 to-violet-600",
+        electronics: "from-red-400 to-red-600",
+        student: "from-blue-400 to-blue-600",
+        marketing: "from-cyan-400 to-cyan-600",
+        network: "from-blue-400 to-blue-600",
+        other: "from-gray-400 to-gray-600"
+      };
+      return colors[category] || "from-blue-400 to-blue-600";
+    }
+
+    // عرض الخدمات
+    function renderServices(list, filter) {
+      const grid = document.getElementById("services-grid");
+      grid.innerHTML = "";
+
+      const filtered = list.filter(s => filter === "all" || s.category === filter);
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+            <div class="col-span-full text-center py-20">
+              <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="ri-search-line text-4xl text-gray-400"></i>
+              </div>
+              <h3 class="text-xl font-bold text-gray-800 mb-2">لا توجد خدمات</h3>
+              <p class="text-gray-500">لا توجد خدمات في هذا التصنيف حالياً</p>
+            </div>
+          `;
+        return;
+      }
+
+      filtered.forEach((s, index) => {
+        const shortDetails = (s.details || []).slice(0, 3);
+        const techTags = s.techTags ? s.techTags.slice(0, 3) : [];
+        const colors = getCategoryColors(s.category);
+
+        const html = `
+            <div class="service-card-3d reveal" style="transition-delay: ${index * 100}ms" onclick="openModal('${s.id}')">
+              <div class="shimmer"></div>
+              
+              <div class="service-icon bg-gradient-to-br ${colors} text-white shadow-lg">
+                <i class="${getCategoryIcon(s.category)}"></i>
+              </div>
+              
+              <h3 class="text-2xl font-bold text-gray-900 mb-3">${escapeHtml(s.title)}</h3>
+              
+              <p class="text-gray-600 mb-4 line-clamp-2">${escapeHtml(s.description)}</p>
+              
+              <ul class="space-y-2 mb-4">
+                ${shortDetails.map(d => `
+                  <li class="flex items-center gap-2 text-sm text-gray-600">
+                    <i class="ri-check-line text-green-500"></i>
+                    <span>${escapeHtml(d)}</span>
+                  </li>
+                `).join('')}
+              </ul>
+              
+              <div class="flex flex-wrap gap-2 mb-6">
+                ${techTags.map(tag => `
+                  <span class="tech-tag">${escapeHtml(tag)}</span>
+                `).join('')}
+              </div>
+              
+              <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                <span class="text-2xl font-bold text-blue-600">${escapeHtml(s.price)}</span>
+                <span class="text-blue-600 font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+                  التفاصيل <i class="ri-arrow-left-line"></i>
+                </span>
+              </div>
+            </div>
+          `;
+        grid.insertAdjacentHTML("beforeend", html);
+      });
+
+      // إعادة تفعيل تأثيرات الظهور
+      setTimeout(() => {
+        document.querySelectorAll('.reveal').forEach(el => {
+          el.classList.add('active');
+        });
+      }, 100);
+    }
+
+    // تحميل الخدمات
+    async function loadServices() {
+      const loadingMsg = document.getElementById("loadingMessage");
+      loadingMsg.style.display = "block";
+
+      services = await fetchServices();
+      services = services.map((s, i) => ({
+        ...s,
+        id: s.id || `service-${i}`,
+        category: s.category || 'other',
+        techTags: s.techTags || []
+      }));
+
+      loadingMsg.style.display = "none";
+      renderServices(services, currentFilter);
+    }
+
+    // تهيئة الصفحة
+    document.addEventListener("DOMContentLoaded", () => {
+      initThreeJS();
+      createParticles();
+      loadServices();
+
+      // الفلاتر
+      document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.addEventListener("click", function () {
+          document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+          this.classList.add("active");
+          currentFilter = this.getAttribute("data-filter");
+          renderServices(services, currentFilter);
+        });
+      });
+
+      // مؤشر التمرير
+      window.addEventListener("scroll", () => {
+        const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        document.getElementById("scrollIndicator").style.width = scrollPercent + "%";
+
+        // زر العودة للأعلى
+        const backBtn = document.getElementById("backToTopBtn");
+        if (window.scrollY > 500) {
+          backBtn.classList.add("visible");
+        } else {
+          backBtn.classList.remove("visible");
+        }
+
+        // هيدر شفاف
+        const header = document.getElementById("header");
+        if (window.scrollY > 100) {
+          header.classList.add("shadow-lg");
+        } else {
+          header.classList.remove("shadow-lg");
+        }
+      });
+
+      document.getElementById("backToTopBtn").addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // إغلاق Modal بالـ Escape
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && serviceModal.classList.contains("open")) {
+          closeModal();
+        }
+      });
+
+      // تأثيرات الظهور
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+      // السنة
+      document.getElementById("year").textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+
 </html>

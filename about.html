@@ -1,1347 +1,1549 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>من نحن - تكنوفا للبرمجيات</title>
 
-    <meta
-      name="description"
-      content="تعرف على تكنوفا للبرمجيات - شركة رائدة في مجال تطوير الحلول البرمجية المتكاملة للشركات والطلاب"
-    />
-    <meta
-      name="keywords"
-      content="تكنوفا, عن الشركة, من نحن, برمجيات, حلول تقنية, فريق العمل"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>من نحن - TECHNOVA</title>
 
-    <meta property="og:title" content="من نحن - تكنوفا للبرمجيات" />
-    <meta
-      property="og:description"
-      content="شركة رائدة في مجال تطوير الحلول البرمجية المتكاملة للشركات والطلاب"
-    />
-    <meta
-      property="og:image"
-      content="https://technova.com/images/about-og.jpg"
-    />
-    <meta property="og:url" content="https://technova.com/about.html" />
-    <meta property="og:type" content="website" />
+  <meta name="description"
+    content="تعرف على TECHNOVA - شركة رائدة في مجال تطوير الحلول البرمجية المتكاملة للشركات والطلاب" />
+  <meta name="keywords" content="TECHNOVA, عن الشركة, من نحن, برمجيات, حلول تقنية, فريق العمل" />
 
-    <link rel="icon" type="image/x-icon" href="./assets/images/logo.jpg" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <link rel="stylesheet" href="./assets/css/remixicon.css" />
-    <script src="./assets/js/tailwind.js"></script>
-    <link rel="stylesheet" href="./assets/css/colors.css" />
-    <link rel="stylesheet" href="./assets/css/styles.css" />
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-    <!-- AOS Animation Library -->
-    <link href="./assets/css/aos.css" rel="stylesheet" />
-    <script src="./assets/js/aos.js"></script>
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-    <style>
-      :root {
-        --primary: #1e3a8a;
-        --secondary: #3b82f6;
-        --accent: #60a5fa;
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-primary: #0B3D91;
+      --color-secondary: #1E5ED6;
+      --color-accent: #4DA3FF;
+      --color-dark: #0A1F44;
+      --color-bg: #f8fafc;
+      --color-surface: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: var(--color-bg);
+      color: var(--color-dark);
+      overflow-x: hidden;
+    }
+
+    /* خلفية Three.js */
+    #canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* تأثير الزجاج */
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* النص المتدرج */
+    .gradient-text {
+      background: linear-gradient(135deg, #0B3D91 0%, #1E5ED6 50%, #4DA3FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* أشكال عائمة */
+    .floating-shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.3;
+      animation: float 10s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
       }
 
-      body {
-        font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial,
-          "Noto Sans Kufi Arabic", "Noto Sans Arabic", "Droid Arabic Kufi",
-          "Traditional Arabic", "Tahoma", sans-serif;
+      50% {
+        transform: translateY(-30px) rotate(10deg);
       }
+    }
 
-      .gradient-bg {
-        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      }
+    /* بطاقات الفريق ثلاثية الأبعاد */
+    .team-card-3d {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
 
-      .gradient-text {
-        background: linear-gradient(90deg, var(--primary), var(--secondary));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
+    .team-card-3d::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent));
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
 
-      .timeline-line {
-        background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
-      }
+    .team-card-3d:hover {
+      transform: translateY(-15px) rotateX(5deg) rotateY(5deg);
+      box-shadow: 0 30px 60px rgba(99, 102, 241, 0.25);
+    }
 
-      .team-card {
-        transition: all 0.3s ease;
-        border: 1px solid rgba(0, 0, 0, 0.05);
-      }
+    .team-card-3d:hover::before {
+      transform: scaleX(1);
+    }
 
-      .team-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-      }
+    /* صورة العضو */
+    .team-image-wrapper {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto;
+    }
 
-      .value-card {
-        transition: all 0.3s ease;
-        border: 2px solid transparent;
-        background: linear-gradient(
-          to bottom right,
-          rgba(255, 255, 255, 0.05),
-          rgba(255, 255, 255, 0.02)
-        );
-      }
+    .team-image-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+      opacity: 0;
+      transition: all 0.4s ease;
+      z-index: 0;
+    }
 
-      .value-card:hover {
-        border-color: var(--primary);
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      }
+    .team-card-3d:hover .team-image-wrapper::before {
+      opacity: 1;
+      transform: scale(1.05);
+    }
 
-      .partner-logo {
-        transition: all 0.3s ease;
-        filter: grayscale(100%);
-        opacity: 0.6;
-      }
+    .team-image-wrapper img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid white;
+      transition: all 0.4s ease;
+    }
 
-      .partner-logo:hover {
-        filter: grayscale(0%);
-        opacity: 1;
-        transform: scale(1.1);
-      }
+    /* بطاقات القيم */
+    .value-card-3d {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 24px;
+      padding: 32px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(99, 102, 241, 0.1);
+      overflow: hidden;
+    }
 
-      .testimonial-card {
-        transition: all 0.3s ease;
-      }
+    .value-card-3d::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(236, 72, 153, 0.05));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
 
-      .testimonial-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      }
+    .value-card-3d:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(99, 102, 241, 0.15);
+    }
 
-      .whatsapp-float {
-        position: fixed;
-        bottom: 20px;
-        left: 20px;
-        z-index: 100;
-      }
+    .value-card-3d:hover::before {
+      opacity: 1;
+    }
 
-      .lang-switch {
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        z-index: 50;
-      }
+    .value-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin-bottom: 20px;
+      position: relative;
+      transition: all 0.4s ease;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+      color: var(--color-primary);
+    }
 
-      .rtl-support {
-        direction: rtl;
-        text-align: right;
-      }
+    .value-card-3d:hover .value-icon {
+      transform: scale(1.1) rotate(-5deg);
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+      color: white;
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+    }
 
-      /* Animations */
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
-      }
+    /* الخط الزمني */
+    .timeline-container {
+      position: relative;
+    }
 
-      @keyframes pulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
-        }
-        70% {
-          box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
-        }
-        100% {
-          box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
-        }
-      }
+    .timeline-line-3d {
+      position: absolute;
+      right: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary), var(--color-accent));
+      transform: translateX(50%);
+      border-radius: 2px;
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+    }
 
-      @keyframes slideInRight {
-        from {
-          transform: translateX(100px);
-          opacity: 0;
-        }
-        to {
-          transform: translateX(0);
-          opacity: 1;
-        }
-      }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 60px;
+    }
 
-      @keyframes slideInLeft {
-        from {
-          transform: translateX(-100px);
-          opacity: 0;
-        }
-        to {
-          transform: translateX(0);
-          opacity: 1;
-        }
-      }
+    .timeline-dot {
+      position: absolute;
+      right: 50%;
+      top: 24px;
+      width: 24px;
+      height: 24px;
+      background: white;
+      border: 4px solid var(--color-primary);
+      border-radius: 50%;
+      transform: translateX(50%);
+      z-index: 10;
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+      transition: all 0.3s ease;
+    }
 
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
+    .timeline-item:hover .timeline-dot {
+      transform: translateX(50%) scale(1.2);
+      border-color: var(--color-secondary);
+      box-shadow: 0 0 0 8px rgba(236, 72, 153, 0.2);
+    }
 
-      /* Custom scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
+    .timeline-content {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
 
-      ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
+    .timeline-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
 
-      ::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 4px;
-      }
+    .timeline-item:hover .timeline-content {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(99, 102, 241, 0.15);
+    }
 
-      ::-webkit-scrollbar-thumb:hover {
-        background: #555;
-      }
+    .timeline-item:hover .timeline-content::before {
+      transform: scaleX(1);
+    }
 
-      /* Mobile optimizations */
-      @media (max-width: 768px) {
-        .hero-title {
-          font-size: 2.5rem;
-          line-height: 1.2;
-        }
-        
-        .section-title {
-          font-size: 1.875rem;
-        }
-        
-        .card-padding {
-          padding: 1.5rem;
-        }
-        
-        .timeline-mobile {
-          padding-right: 2rem;
-        }
-        
-        .timeline-mobile::before {
-          content: '';
-          position: absolute;
-          right: 0;
-          top: 0;
-          bottom: 0;
-          width: 2px;
-          background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
-        }
-        
-        .timeline-dot-mobile {
-          position: absolute;
-          right: -6px;
-          width: 14px;
-          height: 14px;
-          border-radius: 50%;
-          background: var(--secondary);
-          border: 3px solid white;
-          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-        }
-      }
+    /* سلايدر الشهادات */
+    .testimonials-slider {
+      position: relative;
+      overflow: hidden;
+    }
 
-      /* Loading animation */
-      .lazy-load {
+    .testimonial-card-3d {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      transition: all 0.5s ease;
+      border: 1px solid rgba(99, 102, 241, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-card-3d::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), transparent);
+      border-radius: 0 0 0 100%;
+    }
+
+    .testimonial-card-3d:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 60px rgba(99, 102, 241, 0.15);
+    }
+
+    /* أزرار التنقل */
+    .slider-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: white;
+      border: none;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-primary);
+      font-size: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .slider-btn:hover {
+      background: var(--color-primary);
+      color: white;
+      transform: scale(1.1);
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+    }
+
+    /* مؤشر التمرير */
+    .scroll-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent));
+      z-index: 1000;
+      transition: width 0.2s ease;
+    }
+
+    /* زر العودة للأعلى */
+    #backToTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+      color: white;
+      border: none;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+      z-index: 50;
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    #backToTopBtn.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #backToTopBtn:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.6);
+    }
+
+    /* تأثيرات الدخول */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* شريط التمرير المخصص */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+      border-radius: 5px;
+    }
+
+    /* الجزيئات */
+    .particles {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(99, 102, 241, 0.3);
+      border-radius: 50%;
+      animation: particle-float 25s infinite linear;
+    }
+
+    @keyframes particle-float {
+      0% {
+        transform: translateY(100vh) translateX(0);
         opacity: 0;
-        transition: opacity 0.3s;
       }
 
-      .lazy-load.loaded {
+      10% {
         opacity: 1;
       }
-    </style>
-  </head>
-  <body class="bg-gray-50 text-gray-800 rtl-support">
-    <div id="header-container"></div>
 
-    <!-- Hero Section -->
-    <section
-      class="pt-20 pb-12 md:pt-32 md:pb-24 bg-white gradient-bg text-white relative overflow-hidden"
-    >
-      <!-- Background Elements -->
-      <div class="absolute inset-0 overflow-hidden">
-        <div
-          class="absolute -top-40 -right-40 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse-slow"
-        ></div>
-        <div
-          class="absolute bottom-0 -left-40 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float"
-        ></div>
-        <div
-          class="absolute inset-0 bg-gradient-to-b from-black/10 to-transparent"
-        ></div>
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+      }
+    }
+
+    /* إحصائيات متحركة */
+    .stat-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 24px;
+      text-align: center;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(99, 102, 241, 0.1);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(99, 102, 241, 0.15);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e40af 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .timeline-line-3d {
+        right: 20px;
+      }
+
+      .timeline-dot {
+        right: 20px;
+      }
+
+      .timeline-content {
+        margin-right: 50px;
+      }
+
+      .team-card-3d:hover {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
+  <!-- <base target="_blank"> -->
+</head>
+
+<body>
+  <!-- مؤشر التمرير -->
+  <div class="scroll-indicator" id="scrollIndicator"></div>
+
+  <!-- خلفية Three.js -->
+  <div id="canvas-container"></div>
+
+  <!-- الجزيئات -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="header">
+    <div class="glass-effect mx-4 mt-4 rounded-2xl px-6 py-4">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-500 flex items-center justify-center text-white font-bold text-xl pulse-glow">
+            T
+          </div>
+          <span class="text-2xl font-bold gradient-text">TECHNOVA</span>
+        </div>
+
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">الرئيسية</a>
+          <a href="services.html" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">الخدمات</a>
+          <a href="projects.html" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">المشاريع</a>
+          <a href="about.html" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">من نحن</a>
+          <a href="https://wa.me/967737127316"
+            class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all transform hover:scale-105">
+            تواصل معنا
+          </a>
+        </nav>
+
+        <button class="md:hidden text-gray-700 text-2xl" id="mobile-menu-btn">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- القائمة المتنقلة -->
+  <div class="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl hidden" id="mobile-menu">
+    <div class="flex flex-col items-center justify-center h-full gap-8 text-2xl">
+      <a href="index.html" class="text-gray-800 hover:text-blue-600 transition-colors mobile-link">الرئيسية</a>
+      <a href="services.html" class="text-gray-800 hover:text-blue-600 transition-colors mobile-link">الخدمات</a>
+      <a href="projects.html" class="text-gray-800 hover:text-blue-600 transition-colors mobile-link">المشاريع</a>
+      <a href="about.html" class="text-gray-800 hover:text-blue-600 transition-colors mobile-link">من نحن</a>
+      <a href="https://wa.me/967737127316" class="text-gray-800 hover:text-blue-600 transition-colors mobile-link">تواصل
+        معنا</a>
+    </div>
+    <button class="absolute top-8 left-8 text-3xl text-gray-800" id="close-menu">
+      <i class="ri-close-line"></i>
+    </button>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section pt-32 pb-20 relative">
+    <div class="floating-shape w-96 h-96 bg-blue-600/20 -top-20 -right-20"></div>
+    <div class="floating-shape w-72 h-72 bg-blue-600/20 bottom-0 left-10" style="animation-delay: 5s;"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <div
+        class="inline-block px-6 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white/90 text-sm font-semibold mb-6 border border-white/20 reveal">
+        ✨ قصة نجاح متواصلة
       </div>
 
-      <div class="max-w-6xl mx-auto px-4 relative z-10 text-center">
-        <h1
-          class="text-4xl md:text-6xl font-bold mb-6 hero-title"
-          data-aos="fade-up"
-        >
-          من نحن
-        </h1>
-        <p
-          class="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed"
-          data-aos="fade-up"
-          data-aos-delay="100"
-        >
-          نحن <span class="text-accent font-semibold">TECHNOVA</span> – حيث
-          تلتقي الفكرة بالإبداع والتقنية. نبني أنظمة ذكية، تطبيقات متكاملة،
-          وتجارب رقمية تضع عملاءنا في قلب المستقبل.
-        </p>
-        <div class="mt-8" data-aos="fade-up" data-aos-delay="200">
-          <a
-            href="#our-story"
-            class="btn-cta px-6 py-3 rounded-full text-base md:text-lg font-semibold hover:opacity-90 transition bg-white text-primary inline-block"
-          >
-            اكتشف رحلتنا
+      <h1 class="text-5xl md:text-7xl font-black text-white mb-6 leading-tight reveal">
+        من نحن <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">TECHNOVA</span>
+      </h1>
+
+      <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed mb-12 reveal">
+        حيث تلتقي الفكرة بالإبداع والتقنية. نبني أنظمة ذكية، تطبيقات متكاملة،
+        وتجارب رقمية تضع عملاءنا في قلب المستقبل.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-4 reveal">
+        <a href="#story"
+          class="bg-white text-blue-900 px-8 py-4 rounded-full font-bold hover:shadow-2xl transition-all transform hover:scale-105 flex items-center gap-2">
+          اكتشف رحلتنا <i class="ri-arrow-down-line"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- موجة التحويل -->
+    <div class="absolute bottom-0 left-0 right-0">
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
+          fill="#f8fafc" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section id="story" class="py-20 bg-gray-50 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- النص -->
+        <div class="reveal">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            قصة <span class="gradient-text">TECHNOVA</span> للبرمجيات
+          </h2>
+
+          <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+            وُلدت فكرة <strong class="text-blue-600">TECHNOVA</strong> من حلم طلاب جامعيين عام
+            <strong>2021</strong> أرادوا تحويل شغفهم بالتقنية إلى واقعٍ يُحدث
+            فرقًا حقيقيًا. بدأنا بخطوات بسيطة ومشاريع طلابية صغيرة، لكن برؤيةٍ
+            كبيرة.
+          </p>
+
+          <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+            خلال فترة وجيزة، تحولت الفكرة إلى شركة متكاملة تقدّم كل ما يحتاجه
+            العالم الرقمي من <span class="font-semibold text-blue-600">تصميم وبرمجة مواقع، تطوير تطبيقات، أنظمة ذكية،
+              حلول إلكترونية، وتسويق رقمي</span>.
+          </p>
+
+          <!-- إحصائيات -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="stat-card reveal" style="transition-delay: 100ms;">
+              <div class="stat-number counter" data-target="120">0</div>
+              <div class="text-gray-600 text-sm mt-1">مشروع ناجح</div>
+            </div>
+            <div class="stat-card reveal" style="transition-delay: 200ms;">
+              <div class="stat-number counter" data-target="90">0</div>
+              <div class="text-gray-600 text-sm mt-1">عميل راضٍ</div>
+            </div>
+            <div class="stat-card reveal" style="transition-delay: 300ms;">
+              <div class="stat-number counter" data-target="4">0</div>
+              <div class="text-gray-600 text-sm mt-1">سنوات من النمو</div>
+            </div>
+            <div class="stat-card reveal" style="transition-delay: 400ms;">
+              <div class="stat-number counter" data-target="20">0</div>
+              <div class="text-gray-600 text-sm mt-1">عضو في الفريق</div>
+            </div>
+          </div>
+
+          <a href="contact.html"
+            class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-600 text-white px-8 py-4 rounded-full font-bold hover:shadow-xl transition-all transform hover:scale-105 reveal">
+            انضم إلى رحلتنا <i class="ri-arrow-left-line"></i>
           </a>
         </div>
-      </div>
-    </section>
 
-    <!-- Company Story Section -->
-    <section class="py-16 md:py-20 bg-white relative overflow-hidden">
-      <div class="absolute inset-0">
-        <div
-          class="absolute -top-20 -right-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl"
-        ></div>
-        <div
-          class="absolute bottom-0 -left-20 w-72 h-72 bg-secondary/5 rounded-full blur-3xl"
-        ></div>
+        <!-- الصورة -->
+        <div class="relative reveal">
+          <div
+            class="relative rounded-3xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
+            <img src="./assets/images/logo.jpg" alt="فريق TECHNOVA" class="w-full h-auto object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent"></div>
+          </div>
+
+          <!-- شارة عائمة -->
+          <div class="absolute -bottom-6 -left-6 glass-effect rounded-2xl p-4 shadow-xl animate-pulse">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white">
+                <i class="ri-check-line text-xl"></i>
+              </div>
+              <div>
+                <div class="font-bold text-gray-800">موثوقون</div>
+                <div class="text-sm text-gray-500">منذ 2021</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision & Mission -->
+  <section class="py-20 bg-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-50"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-50"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">رؤيتنا ورسالتنا</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-500 mx-auto rounded-full"></div>
       </div>
 
-      <div class="max-w-7xl mx-auto px-4 relative z-10">
-        <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-          <!-- Text Content -->
-          <div data-aos="fade-right">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-snug">
-              قصة <span class="text-primary">TECHNOVA</span> للبرمجيات
-            </h2>
-            <p class="text-gray-700 mb-4 leading-relaxed text-base md:text-lg">
-              وُلدت فكرة <strong>TECHNOVA</strong> من حلم طلاب جامعيين عام
-              <strong>2021</strong> أرادوا تحويل شغفهم بالتقنية إلى واقعٍ يُحدث
-              فرقًا حقيقيًا. بدأنا بخطوات بسيطة ومشاريع طلابية صغيرة، لكن برؤيةٍ
-              كبيرة: أن نصنع حلولًا رقمية تفوق التوقعات وتُلهم الآخرين.
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- الرؤية -->
+        <div class="value-card-3d reveal">
+          <div class="value-icon">
+            <i class="ri-eye-2-line"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">رؤيتنا</h3>
+          <p class="text-gray-600 leading-relaxed">
+            أن نصبح الوجهة الأولى للحلول الرقمية الذكية في العالم العربي، حيث
+            تلتقي التقنية بالإبداع لتبني مستقبلًا رقميًا أكثر كفاءة وإنسانية.
+            نحن نطمح لأن تكون <span class="text-blue-600 font-semibold">Technova</span> مرادفًا
+            للابتكار والثقة في كل تجربة رقمية.
+          </p>
+        </div>
+
+        <!-- الرسالة -->
+        <div class="value-card-3d reveal" style="transition-delay: 100ms;">
+          <div class="value-icon">
+            <i class="ri-rocket-line"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">رسالتنا</h3>
+          <p class="text-gray-600 leading-relaxed">
+            نساعد المؤسسات وروّاد الأعمال على تحقيق طموحاتهم بثقة عبر حلول
+            برمجية متكاملة، مصممة بعناية لتواكب احتياجات السوق وتفوق التوقعات.
+            رسالتنا أن نحول الأفكار إلى منتجات رقمية تُحدث أثرًا حقيقيًا.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Team Section -->
+  <section class="py-20 bg-white relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-80 h-80 bg-blue-100 rounded-full blur-3xl opacity-30"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-30"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">فريق عملنا</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-500 mx-auto rounded-full mb-6"></div>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto">في Technova، نقود الابتكار بروح الفريق. كل فرد منّا يلعب
+          دورًا أساسيًا في بناء حلول تكنولوجية تُحدث فرقًا حقيقيًا.</p>
+      </div>
+
+      <!-- CEO -->
+      <div class="text-center mb-16 reveal ">
+        <div class="team-card-3d inline-block p-8 max-w-md">
+          <div class="team-image-wrapper mb-6">
+            <img src="./assets/images/nader.png" alt="نادر وضاح" class="w-36 h-36 object-cover">
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">نــادر وضــاح</h3>
+          <p class="text-blue-600 font-semibold mb-4">المدير التنفيذي ومدير المشاريع</p>
+          <p class="text-gray-600 text-sm leading-relaxed">يقود Technova برؤية تجمع بين الإبداع والتقنية لتصميم أنظمة
+            متكاملة تُلهم التطور وتبني مستقبلًا رقميًا أكثر ذكاءً.</p>
+        </div>
+      </div>
+
+      <!-- Engineers -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="team-card-3d reveal" style="transition-delay: 100ms;">
+          <div class="p-6 text-center">
+            <div class="team-image-wrapper mb-4">
+              <img src="./assets/images/Mohammed.jpg" alt="المهندس محمد" class="w-32 h-32">
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-1">المهندس محمد</h3>
+            <p class="text-blue-600 font-medium text-sm mb-3">مهندس برمجيات</p>
+            <p class="text-gray-600 text-sm">يطوّر أنظمة متكاملة تربط بين البرمجيات والأجهزة لتقديم حلول ذكية ومستقرة.
             </p>
-            <p class="text-gray-700 mb-6 leading-relaxed text-base md:text-lg">
-              خلال فترة وجيزة، تحولت الفكرة إلى شركة متكاملة تقدّم كل ما يحتاجه
-              العالم الرقمي من
-              <span class="font-semibold text-primary"
-                >تصميم وبرمجة مواقع، تطوير تطبيقات، أنظمة ذكية، حلول إلكترونية،
-                وتسويق رقمي</span
-              >. توسع فريقنا ليشمل نخبة من المبرمجين والمبدعين الذين يربطهم هدف
-              واحد:
-              <span class="text-secondary font-semibold"
-                >تمكين الأفراد والشركات من النجاح عبر التكنولوجيا.</span
-              >
+          </div>
+        </div>
+
+        <div class="team-card-3d reveal" style="transition-delay: 200ms;">
+          <div class="p-6 text-center">
+            <div class="team-image-wrapper mb-4">
+              <img src="./assets/images/Abdulaziz.jpg" alt="المهندس عبد العزيز" class="w-32 h-32">
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-1">المهندس عبد العزيز</h3>
+            <p class="text-blue-600 font-medium text-sm mb-3">مهندس ميكاترونكس</p>
+            <p class="text-gray-600 text-sm">يدمج بين الهندسة الميكانيكية والإلكترونية لتطوير أنظمة ذكية دقيقة الأداء.
             </p>
-            <div class="grid grid-cols-2 gap-4 md:gap-6 mb-8">
+          </div>
+        </div>
+
+        <div class="team-card-3d reveal" style="transition-delay: 300ms;">
+          <div class="p-6 text-center">
+            <div class="team-image-wrapper mb-4">
+              <img src="./assets/images/Saeed.jpg" alt="المهندس سعيد" class="w-32 h-32">
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-1">المهندس سعيد</h3>
+            <p class="text-blue-600 font-medium text-sm mb-3">مهندس نظم</p>
+            <p class="text-gray-600 text-sm">يضمن كفاءة الأنظمة ويدير تكامل البيانات لتحقيق أداء مستدام وموثوق.</p>
+          </div>
+        </div>
+
+        <div class="team-card-3d reveal" style="transition-delay: 400ms;">
+          <div class="p-6 text-center">
+            <div class="team-image-wrapper mb-4">
+              <img src="./assets/images/Ashraf.jpg" alt="المهندس أشرف" class="w-32 h-32">
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-1">المهندس أشرف</h3>
+            <p class="text-blue-600 font-medium text-sm mb-3">مهندس واجهات وتجربة المستخدم</p>
+            <p class="text-gray-600 text-sm">يصمم واجهات تفاعلية وأنيقة توازن بين الجمال وسهولة الاستخدام.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Core Values -->
+  <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">قيمنا الأساسية</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-500 mx-auto rounded-full mb-6"></div>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto">نستلهم قيمنا من شغفنا بالابتكار والتفاني في تقديم حلول رقمية
+          تصنع الفرق.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="value-card-3d reveal" style="transition-delay: 100ms;">
+          <div class="value-icon">
+            <i class="ri-vip-crown-line"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">الاحترافية</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">نعمل وفق معايير عالمية تضمن الكفاءة والتميز في كل خطوة من
+            رحلتنا مع العميل.</p>
+        </div>
+
+        <div class="value-card-3d reveal" style="transition-delay: 200ms;">
+          <div class="value-icon">
+            <i class="ri-lightbulb-flash-line"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">الابتكار</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">نسعى لإعادة تعريف الحلول التقنية عبر أفكار مبتكرة تُلهم وتحقق
+            نتائج ملموسة.</p>
+        </div>
+
+        <div class="value-card-3d reveal" style="transition-delay: 300ms;">
+          <div class="value-icon">
+            <i class="ri-shield-star-line"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">الجودة</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">نضمن تقديم خدمات ومنتجات بمعايير تفوق التوقعات، لأن الجودة
+            ليست خيارًا بل التزام.</p>
+        </div>
+
+        <div class="value-card-3d reveal" style="transition-delay: 400ms;">
+          <div class="value-icon">
+            <i class="ri-hand-heart-line"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">الشراكة</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">نبني علاقات قائمة على الثقة والنجاح المشترك لتحقيق أهداف
+            عملائنا المستدامة.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Timeline Section -->
+  <section class="py-20 bg-gray-50 relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">رحلتنا</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-500 mx-auto rounded-full mb-6"></div>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto">منذ انطلاقتنا في عام 2021، وضعنا حجر الأساس لرؤية طموحة في
+          عالم البرمجيات.</p>
+      </div>
+
+      <div class="timeline-container relative">
+        <div class="timeline-line-3d hidden md:block"></div>
+
+        <!-- 2021 -->
+        <div class="timeline-item reveal">
+          <div class="timeline-dot hidden md:block"></div>
+          <div class="md:flex items-center">
+            <div class="md:w-1/2 md:pl-12 md:text-left hidden md:block"></div>
+            <div class="md:w-1/2 md:pr-12">
+              <div class="timeline-content">
+                <h3 class="text-2xl font-bold text-blue-600 mb-2">2021</h3>
+                <h4 class="text-lg font-bold text-gray-900 mb-3">تأسيس TECHNOVA</h4>
+                <p class="text-gray-600 leading-relaxed">انطلقت TECHNOVA كمبادرة طموحة يقودها فريق صغير من المطورين
+                  بخبرة عالية وشغف كبير لتطوير حلول برمجية مبتكرة.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2022 -->
+        <div class="timeline-item reveal" style="transition-delay: 100ms;">
+          <div class="timeline-dot hidden md:block"></div>
+          <div class="md:flex items-center">
+            <div class="md:w-1/2 md:pl-12">
+              <div class="timeline-content">
+                <h3 class="text-2xl font-bold text-blue-600 mb-2">2022</h3>
+                <h4 class="text-lg font-bold text-gray-900 mb-3">التوسع في المشاريع</h4>
+                <p class="text-gray-600 leading-relaxed">بدأنا بتنفيذ مشاريع كبرى في مجالات إدارة الفنادق، الأنظمة
+                  الذكية، وتطبيقات الأعمال، مما عزز سمعتنا كشركة تقدم حلولًا عملية وفعالة.</p>
+              </div>
+            </div>
+            <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
+          </div>
+        </div>
+
+        <!-- 2023 -->
+        <div class="timeline-item reveal" style="transition-delay: 200ms;">
+          <div class="timeline-dot hidden md:block"></div>
+          <div class="md:flex items-center">
+            <div class="md:w-1/2 md:pl-12 md:text-left hidden md:block"></div>
+            <div class="md:w-1/2 md:pr-12">
+              <div class="timeline-content">
+                <h3 class="text-2xl font-bold text-blue-600 mb-2">2023</h3>
+                <h4 class="text-lg font-bold text-gray-900 mb-3">إطلاق الهوية الرقمية</h4>
+                <p class="text-gray-600 leading-relaxed">أطلقنا الهوية الجديدة لعلامتنا التجارية TECHNOVA، ووسعنا
+                  خدماتنا لتشمل تطوير تطبيقات الهواتف الذكية وحلول التكامل الذكي.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2024 -->
+        <div class="timeline-item reveal" style="transition-delay: 300ms;">
+          <div class="timeline-dot hidden md:block"></div>
+          <div class="md:flex items-center">
+            <div class="md:w-1/2 md:pl-12">
+              <div class="timeline-content">
+                <h3 class="text-2xl font-bold text-blue-600 mb-2">2024</h3>
+                <h4 class="text-lg font-bold text-gray-900 mb-3">الريادة في التحول الرقمي</h4>
+                <p class="text-gray-600 leading-relaxed">نفذنا أكثر من 150 مشروعًا ناجحًا مع نسبة رضا عملاء تفوق 97%،
+                  وأصبحنا شركاء في تطوير حلول رقمية لقطاعات حيوية كالكهرباء والمياه والتعليم.</p>
+              </div>
+            </div>
+            <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
+          </div>
+        </div>
+
+        <!-- 2025 -->
+        <div class="timeline-item reveal" style="transition-delay: 400ms;">
+          <div class="timeline-dot hidden md:block"></div>
+          <div class="md:flex items-center">
+            <div class="md:w-1/2 md:pl-12 md:text-left hidden md:block"></div>
+            <div class="md:w-1/2 md:pr-12">
+              <div class="timeline-content">
+                <h3 class="text-2xl font-bold text-blue-600 mb-2">2025</h3>
+                <h4 class="text-lg font-bold text-gray-900 mb-3">الابتكار نحو المستقبل</h4>
+                <p class="text-gray-600 leading-relaxed">نواصل رحلتنا لنصبح مركزًا تقنيًا رائدًا في الشرق الأوسط، من
+                  خلال الاستثمار في الذكاء الاصطناعي وحلول إنترنت الأشياء.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-12 md:py-20 bg-gradient-to-br  to-cyan-50 relative overflow-hidden">
+    <!-- Background decoration -->
+    <div
+      class="absolute top-0 left-0 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob">
+    </div>
+    <div
+      class="absolute top-0 right-0 w-72 h-72 bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000">
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <!-- Header -->
+      <div class="text-center mb-10 md:mb-16">
+        <span class="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-4">
+          💬 شهادات العملاء
+        </span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          آراء <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">عملائنا</span>
+        </h2>
+        <div class="w-20 md:w-24 h-1.5 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto rounded-full mb-4"></div>
+        <p class="text-gray-600 text-base md:text-lg max-w-2xl mx-auto px-4">
+          نفتخر بثقة عملائنا الذين اختبروا الفرق معنا — الجودة، الالتزام، والإبداع في كل تفصيل.
+        </p>
+      </div>
+
+      <!-- Testimonials Slider -->
+      <div class="relative">
+        <!-- Navigation Buttons - Hidden on mobile, visible on md+ -->
+        <button id="prevBtn"
+          class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/90 backdrop-blur text-blue-600 rounded-full shadow-lg items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-110 border border-blue-100">
+          <i class="ri-arrow-right-s-line text-2xl"></i>
+        </button>
+
+        <button id="nextBtn"
+          class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/90 backdrop-blur text-blue-600 rounded-full shadow-lg items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-110 border border-blue-100">
+          <i class="ri-arrow-left-s-line text-2xl"></i>
+        </button>
+
+        <!-- Slider Container -->
+        <div class="overflow-hidden px-0 md:px-16">
+          <div id="testimonialsTrack" class="flex transition-transform duration-500 ease-out">
+
+            <!-- Testimonial 1 -->
+            <div class="w-full flex-shrink-0 px-2 md:px-4">
               <div
-                class="text-center p-3 md:p-4 bg-primary/10 rounded-xl"
-                data-aos="fade-up"
-                data-aos-delay="100"
-              >
-                <div class="text-2xl md:text-3xl font-bold text-primary mb-1">+120</div>
-                <div class="text-gray-600 text-sm md:text-base">مشروع ناجح</div>
+                class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-10 shadow-xl hover:shadow-2xl transition-all duration-500 border border-blue-50 relative overflow-hidden group h-full">
+                <!-- Quote Icon -->
+                <div
+                  class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-blue-100 to-blue-50 rounded-full opacity-50 group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <i
+                  class="ri-double-quotes-l text-5xl md:text-7xl text-blue-200 absolute top-4 right-4 md:top-6 md:right-6 group-hover:text-blue-300 transition-colors duration-300"></i>
+
+                <!-- Stars -->
+                <div class="flex gap-1 mb-4">
+                  <i class="ri-star-fill text-yellow-400 text-sm md:text-base"></i>
+                  <i class="ri-star-fill text-yellow-400 text-sm md:text-base"></i>
+                  <i class="ri-star-fill text-yellow-400 text-sm md:text-base"></i>
+                  <i class="ri-star-fill text-yellow-400 text-sm md:text-base"></i>
+                  <i class="ri-star-fill text-yellow-400 text-sm md:text-base"></i>
+                </div>
+
+                <!-- Content -->
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-6 relative z-10">
+                  "تجربتنا مع <span class='font-bold text-blue-600'>TECHNOVA</span> كانت مذهلة، تم تطوير نظام مخصص بدقة
+                  عالية وفريقهم كان متعاونًا ومرنًا بشكل رائع."
+                </p>
+
+                <!-- Author -->
+                <div class="flex items-center gap-3 md:gap-4 pt-4 border-t border-gray-100">
+                  <div class="relative">
+                    <img src="./assets/images/user (1).jpg" alt="أحمد عبد الرحمن"
+                      class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-blue-200 group-hover:border-blue-400 transition-colors duration-300">
+                    <div
+                      class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+                      <i class="ri-check-line text-white text-xs"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-gray-900 text-sm md:text-base">أحمد عبد الرحمن</h4>
+                    <p class="text-gray-500 text-xs md:text-sm">مدير عام - شركة النخبة</p>
+                  </div>
+                </div>
               </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="w-full flex-shrink-0 px-2 md:px-4">
               <div
-                class="text-center p-3 md:p-4 bg-primary/10 rounded-xl"
-                data-aos="fade-up"
-                data-aos-delay="200"
-              >
-                <div class="text-2xl md:text-3xl font-bold text-primary mb-1">+90</div>
-                <div class="text-gray-600 text-sm md:text-base">عميل راضٍ</div>
+                class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-10 shadow-xl hover:shadow-2xl transition-all duration-500 border border-blue-50 relative overflow-hidden group h-full">
+                <div
+                  class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-cyan-100 to-cyan-50 rounded-full opacity-50 group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <i
+                  class="ri-double-quotes-l text-5xl md:text-7xl text-cyan-200 absolute top-4 right-4 md:top-6 md:right-6 group-hover:text-cyan-300 transition-colors duration-300"></i>
+
+                <div class="flex gap-1 mb-4">
+                  <i class="ri-star-fill text-yellow-400 text-sm md:text-base"></i>
+                  <i class="ri-star-fill text-yellow-400 text-sm md:text-base"></i>
+                  <i class="ri-star-fill text-yellow-400 text-sm md:text-base"></i>
+                  <i class="ri-star-fill text-yellow-400 text-sm md:text-base"></i>
+                  <i class="ri-star-fill text-yellow-400 text-sm md:text-base"></i>
+                </div>
+
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-6 relative z-10">
+                  "تصميم رائع وتنفيذ احترافي! تطبيقنا الذي أنشأته <span class='font-bold text-cyan-600'>TECHNOVA</span>
+                  ساعدنا في الوصول إلى عملاء جدد وزيادة المبيعات بشكل مذهل."
+                </p>
+
+                <div class="flex items-center gap-3 md:gap-4 pt-4 border-t border-gray-100">
+                  <div class="relative">
+                    <img src="./assets/images/user (2).jpg" alt="سارة يوسف"
+                      class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-cyan-200 group-hover:border-cyan-400 transition-colors duration-300">
+                    <div
+                      class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+                      <i class="ri-check-line text-white text-xs"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-gray-900 text-sm md:text-base">سارة يوسف</h4>
+                    <p class="text-gray-500 text-xs md:text-sm">مديرة التسويق - Vision Group</p>
+                  </div>
+                </div>
               </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="w-full flex-shrink-0 px-2 md:px-4">
               <div
-                class="text-center p-3 md:p-4 bg-primary/10 rounded-xl"
-                data-aos="fade-up"
-                data-aos-delay="300"
-              >
-                <div class="text-2xl md:text-3xl font-bold text-primary mb-1">+4</div>
-                <div class="text-gray-600 text-sm md:text-base">سنوات من النمو</div>
-              </div>
-              <div
-                class="text-center p-3 md:p-4 bg-primary/10 rounded-xl"
-                data-aos="fade-up"
-                data-aos-delay="400"
-              >
-                <div class="text-2xl md:text-3xl font-bold text-primary mb-1">+20</div>
-                <div class="text-gray-600 text-sm md:text-base">عضو في الفريق</div>
-              </div>
-            </div>
-            <a
-              href="contact.html"
-              class="bg-primary text-white px-6 py-3 rounded-full font-semibold shadow-md hover:bg-secondary transition-all inline-block"
-              data-aos="fade-up"
-              data-aos-delay="500"
-            >
-              انضم إلى رحلتنا
-            </a>
-          </div>
-
-          <!-- Image Side -->
-          <div data-aos="fade-left">
-            <img
-              src="./assets/images/logo.jpg"
-              alt="فريق تكنوفا أثناء العمل"
-              class="rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl w-full object-cover lazy-load"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Mission & Vision Section -->
-    <section
-      id="our-mission-vision"
-      class="relative py-16 md:py-24 bg-gradient-to-br from-primary/5 via-white to-secondary/5 overflow-hidden"
-    >
-      <!-- Background Decoration -->
-      <div
-        class="absolute top-0 right-0 w-80 h-80 bg-primary/10 rounded-full blur-3xl"
-      ></div>
-      <div
-        class="absolute bottom-0 left-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"
-      ></div>
-
-      <!-- Light Pattern Shapes -->
-      <div class="absolute inset-0 opacity-5">
-        <div class="absolute top-10 left-10 text-primary">
-          <svg
-            width="100"
-            height="100"
-            viewBox="0 0 100 100"
-            fill="currentColor"
-          >
-            <path d="M50,5 L95,50 L50,95 L5,50 Z" />
-          </svg>
-        </div>
-        <div class="absolute bottom-10 right-10 text-secondary">
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="currentColor">
-            <circle cx="40" cy="40" r="35" />
-          </svg>
-        </div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 relative z-10">
-        <!-- Section Header -->
-        <div class="text-center mb-12" data-aos="fade-up">
-          <div
-            class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-tr from-primary to-secondary rounded-full mb-4"
-          >
-            <i class="ri-lightbulb-flash-line text-blue-500 text-2xl"></i>
-          </div>
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">رؤيتنا ورسالتنا</h2>
-          <div
-            class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-4"
-          ></div>
-          <p class="text-gray-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            في <span class="text-primary font-semibold">تكنوفا</span>، نؤمن أن
-            التقنية هي القوة المحركة للتطور — نعيد صياغة المفهوم التقليدي
-            للبرمجيات لتصبح تجربة تلهم، تُبسّط، وتُحدث فرقًا حقيقيًا.
-          </p>
-        </div>
-
-        <!-- Vision & Mission Cards -->
-        <div class="grid md:grid-cols-2 gap-6 md:gap-10">
-          <!-- Vision -->
-          <div
-            class="group bg-white/90 backdrop-blur-sm p-6 md:p-10 rounded-2xl md:rounded-3xl shadow-lg md:shadow-xl hover:shadow-2xl transition-all duration-500 border-t-4 border-primary relative overflow-hidden"
-            data-aos="fade-right"
-          >
-            <div
-              class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full"
-            ></div>
-            <div
-              class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 md:mb-6 bg-gradient-to-tr from-primary to-primary/70 text-white rounded-xl md:rounded-2xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500 shadow-lg relative z-10"
-            >
-              <i class="ri-eye-2-line text-2xl md:text-3xl text-blue-500"></i>
-            </div>
-            <h3
-              class="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 text-center relative z-10"
-            >
-              رؤيتنا
-            </h3>
-            <p class="text-gray-600 text-center leading-relaxed text-sm md:text-base relative z-10">
-              أن نصبح الوجهة الأولى للحلول الرقمية الذكية في العالم العربي، حيث
-              تلتقي التقنية بالإبداع لتبني مستقبلًا رقميًا أكثر كفاءة وإنسانية.
-              نحن نطمح لأن تكون
-              <span class="text-primary font-semibold">Technova</span> مرادفًا
-              للابتكار والثقة في كل تجربة رقمية.
-            </p>
-            <div
-              class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
-            ></div>
-          </div>
-
-          <!-- Mission -->
-          <div
-            class="group bg-white/90 backdrop-blur-sm p-6 md:p-10 rounded-2xl md:rounded-3xl shadow-lg md:shadow-xl hover:shadow-2xl transition-all duration-500 border-t-4 border-primary relative overflow-hidden"
-            data-aos="fade-left"
-          >
-            <div
-              class="absolute top-0 left-0 w-32 h-32 bg-secondary/5 rounded-br-full"
-            ></div>
-            <div
-              class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 md:mb-6 bg-gradient-to-tr from-secondary to-secondary/70 text-white rounded-xl md:rounded-2xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500 shadow-lg relative z-10"
-            >
-              <i class="ri-rocket-line text-2xl md:text-3xl text-blue-500"></i>
-            </div>
-            <h3
-              class="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 text-center relative z-10"
-            >
-              رسالتنا
-            </h3>
-            <p class="text-gray-600 text-center leading-relaxed text-sm md:text-base relative z-10">
-              نساعد المؤسسات وروّاد الأعمال على تحقيق طموحاتهم بثقة عبر حلول
-              برمجية متكاملة، مصممة بعناية لتواكب احتياجات السوق وتفوق التوقعات.
-              رسالتنا أن نحول الأفكار إلى منتجات رقمية تُحدث أثرًا حقيقيًا،
-              تقودها
-              <span class="text-secondary font-semibold"
-                >الابتكار، الدقة، والتجربة الإنسانية.</span
-              >
-            </p>
-            <div
-              class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-secondary to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
-            ></div>
-          </div>
-        </div>
-
-        <!-- Bottom Decoration -->
-        <div class="flex justify-center mt-8 md:mt-12 space-x-4 space-x-reverse">
-          <div class="w-2 h-2 rounded-full bg-primary/60"></div>
-          <div class="w-2 h-2 rounded-full bg-secondary/60"></div>
-          <div class="w-2 h-2 rounded-full bg-primary/60"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Core Values Section -->
-    <section
-      class="relative py-16 md:py-20 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden"
-    >
-      <div
-        class="absolute top-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl opacity-70 -z-10"
-      ></div>
-      <div
-        class="absolute bottom-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl opacity-50 -z-10"
-      ></div>
-
-      <div class="max-w-7xl mx-auto px-4 md:px-6">
-        <!-- Header -->
-        <div class="text-center mb-12" data-aos="fade-up">
-          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 tracking-tight">
-            قيمنا الأساسية
-          </h2>
-          <div class="w-24 h-1 bg-primary mx-auto mb-6 rounded-full"></div>
-          <p class="text-gray-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            نستلهم قيمنا من شغفنا بالابتكار والتفاني في تقديم حلول رقمية تصنع
-            الفرق.
-          </p>
-        </div>
-
-        <!-- Value Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          <!-- Card 1 -->
-          <div
-            class="group bg-white shadow-md hover:shadow-xl transition-all duration-500 p-6 md:p-8 rounded-xl md:rounded-2xl text-center border border-transparent hover:border-primary/20"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            <div
-              class="w-16 h-16 md:w-20 md:h-20 bg-primary/10 text-primary rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-500"
-            >
-              <i class="ri-vip-crown-line text-2xl md:text-3xl"></i>
-            </div>
-            <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-3">
-              الاحترافية
-            </h3>
-            <p class="text-gray-600 leading-relaxed text-sm md:text-base">
-              نعمل وفق معايير عالمية تضمن الكفاءة والتميز في كل خطوة من رحلتنا
-              مع العميل.
-            </p>
-          </div>
-
-          <!-- Card 2 -->
-          <div
-            class="group bg-white shadow-md hover:shadow-xl transition-all duration-500 p-6 md:p-8 rounded-xl md:rounded-2xl text-center border border-transparent hover:border-primary/20"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <div
-              class="w-16 h-16 md:w-20 md:h-20 bg-primary/10 text-primary rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-500"
-            >
-              <i class="ri-lightbulb-flash-line text-2xl md:text-3xl"></i>
-            </div>
-            <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-3">الابتكار</h3>
-            <p class="text-gray-600 leading-relaxed text-sm md:text-base">
-              نسعى لإعادة تعريف الحلول التقنية عبر أفكار مبتكرة تُلهم وتحقق
-              نتائج ملموسة.
-            </p>
-          </div>
-
-          <!-- Card 3 -->
-          <div
-            class="group bg-white shadow-md hover:shadow-xl transition-all duration-500 p-6 md:p-8 rounded-xl md:rounded-2xl text-center border border-transparent hover:border-primary/20"
-            data-aos="fade-up"
-            data-aos-delay="300"
-          >
-            <div
-              class="w-16 h-16 md:w-20 md:h-20 bg-primary/10 text-primary rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-500"
-            >
-              <i class="ri-shield-star-line text-2xl md:text-3xl"></i>
-            </div>
-            <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-3">الجودة</h3>
-            <p class="text-gray-600 leading-relaxed text-sm md:text-base">
-              نضمن تقديم خدمات ومنتجات بمعايير تفوق التوقعات، لأن الجودة ليست
-              خيارًا بل التزام.
-            </p>
-          </div>
-
-          <!-- Card 4 -->
-          <div
-            class="group bg-white shadow-md hover:shadow-xl transition-all duration-500 p-6 md:p-8 rounded-xl md:rounded-2xl text-center border border-transparent hover:border-primary/20"
-            data-aos="fade-up"
-            data-aos-delay="400"
-          >
-            <div
-              class="w-16 h-16 md:w-20 md:h-20 bg-primary/10 text-primary rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-500"
-            >
-              <i class="ri-hand-heart-line text-2xl md:text-3xl"></i>
-            </div>
-            <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-3">الشراكة</h3>
-            <p class="text-gray-600 leading-relaxed text-sm md:text-base">
-              نبني علاقات قائمة على الثقة والنجاح المشترك لتحقيق أهداف عملائنا
-              المستدامة.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Our Team Section -->
-    <section class="py-16 md:py-24 bg-gray-50 relative overflow-hidden">
-      <!-- Background Decorations -->
-      <div class="absolute top-0 left-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl -z-10"></div>
-      <div class="absolute bottom-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl -z-10"></div>
-
-      <div class="max-w-7xl mx-auto px-4 md:px-6">
-        <!-- Section Header -->
-        <div class="text-center mb-12" data-aos="fade-up">
-          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 tracking-tight">
-            فريق عملنا
-          </h2>
-          <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6 rounded-full"></div>
-          <p class="text-gray-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            في Technova، نقود الابتكار بروح الفريق. كل فرد منّا يلعب دورًا أساسيًا
-            في بناء حلول تكنولوجية تُحدث فرقًا حقيقيًا.
-          </p>
-        </div>
-
-        <!-- CEO (Center Focus) -->
-        <div class="text-center mb-16" data-aos="zoom-in">
-          <div class="relative inline-block">
-            <div class="absolute -inset-1 rounded-full bg-gradient-to-tr from-primary to-secondary blur-lg opacity-30 group-hover:opacity-60 transition-all duration-500"></div>
-            <img
-              src="./assets/images/nader.png"
-              alt="نادر وضاح - المدير التنفيذي ومدير المشاريع في تكنوفا"
-              class="w-36 h-36 md:w-48 md:h-48 object-cover rounded-full mx-auto border-4 border-primary/20 hover:border-primary/60 transition-all duration-500 relative z-10 shadow-xl lazy-load"
-            />
-          </div>
-          <h3 class="text-xl md:text-2xl font-bold text-gray-800 mt-4 md:mt-6 mb-2">نــادر وضــاح</h3>
-          <p class="text-primary font-semibold text-base md:text-lg">
-            المدير التنفيذي ومدير المشاريع
-          </p>
-          <p class="text-gray-600 max-w-xl mx-auto mt-3 md:mt-4 text-sm md:text-base">
-            يقود Technova برؤية تجمع بين الإبداع والتقنية لتصميم أنظمة متكاملة
-            تُلهم التطور وتبني مستقبلًا رقميًا أكثر ذكاءً.
-          </p>
-        </div>
-
-        <!-- Engineers Container with Horizontal Scroll for Mobile -->
-        <div class="relative">
-          <!-- Scroll Indicator for Mobile -->
-          <div class="lg:hidden flex justify-center mb-4">
-            <div class="bg-gray-200 rounded-full p-1 flex items-center space-x-1 space-x-reverse">
-              <div class="bg-primary rounded-full w-6 h-6 flex items-center justify-center text-white text-xs">
-                <i class="ri-arrow-left-s-line"></i>
-              </div>
-              <span class="text-xs text-gray-600 px-2">اسحب لليمين</span>
-            </div>
-          </div>
-
-          <!-- Engineers Grid with Horizontal Scroll for Mobile -->
-          <div class="flex flex-row lg:grid lg:grid-cols-4 gap-6 md:gap-8 overflow-x-auto pb-4 lg:pb-0 scrollbar-hide">
-            <!-- Mohammed -->
-            <div
-              class="group bg-white rounded-xl md:rounded-2xl shadow-md hover:shadow-xl p-4 md:p-6 text-center transition-all duration-500 hover:-translate-y-2 flex-shrink-0 w-72 sm:w-80 lg:w-full"
-              data-aos="fade-up"
-              data-aos-delay="100"
-            >
-              <img
-                src="./assets/images/Mohammed.jpg"
-                alt="المهندس محمد - مهندس برمجيات في تكنوفا"
-                class="w-32 h-32 md:w-36 md:h-36 object-cover rounded-full mx-auto mb-3 md:mb-4 border-4 border-primary/10 group-hover:border-primary transition-all duration-500 lazy-load"
-              />
-              <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-1">المهندس محمد</h3>
-              <p class="text-primary font-medium mb-2 md:mb-3 text-sm md:text-base">مهندس برمجيات</p>
-              <p class="text-gray-600 text-sm leading-relaxed">
-                يطوّر أنظمة متكاملة تربط بين البرمجيات والأجهزة لتقديم حلول ذكية ومستقرة.
-              </p>
-            </div>
-            <!-- Abdulaziz -->
-            <div
-              class="group bg-white rounded-xl md:rounded-2xl shadow-md hover:shadow-xl p-4 md:p-6 text-center transition-all duration-500 hover:-translate-y-2 flex-shrink-0 w-72 sm:w-80 lg:w-full"
-              data-aos="fade-up"
-              data-aos-delay="400"
-            >
-              <img
-                src="./assets/images/Abdulaziz.jpg"
-                alt="المهندس عبد العزيز - مهندس ميكاترونكس في تكنوفا"
-                class="w-32 h-32 md:w-36 md:h-36 object-cover rounded-full mx-auto mb-3 md:mb-4 border-4 border-primary/10 group-hover:border-primary transition-all duration-500 lazy-load"
-              />
-              <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-1">المهندس عبد العزيز</h3>
-              <p class="text-primary font-medium mb-2 md:mb-3 text-sm md:text-base">مهندس ميكاترونكس</p>
-              <p class="text-gray-600 text-sm leading-relaxed">
-                يدمج بين الهندسة الميكانيكية والإلكترونية لتطوير أنظمة ذكية دقيقة الأداء.
-              </p>
-            </div>
-            <!-- Saeed -->
-            <div
-              class="group bg-white rounded-xl md:rounded-2xl shadow-md hover:shadow-xl p-4 md:p-6 text-center transition-all duration-500 hover:-translate-y-2 flex-shrink-0 w-72 sm:w-80 lg:w-full"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <img
-                src="./assets/images/Saeed.jpg"
-                alt="المهندس سعيد - مهندس نظم في تكنوفا"
-                class="w-32 h-32 md:w-36 md:h-36 object-cover rounded-full mx-auto mb-3 md:mb-4 border-4 border-primary/10 group-hover:border-primary transition-all duration-500 lazy-load"
-              />
-              <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-1">المهندس سعيد</h3>
-              <p class="text-primary font-medium mb-2 md:mb-3 text-sm md:text-base">مهندس نظم</p>
-              <p class="text-gray-600 text-sm leading-relaxed">
-                يضمن كفاءة الأنظمة ويدير تكامل البيانات لتحقيق أداء مستدام وموثوق.
-              </p>
-            </div>
-
-            <!-- Ashraf -->
-            <div
-              class="group bg-white rounded-xl md:rounded-2xl shadow-md hover:shadow-xl p-4 md:p-6 text-center transition-all duration-500 hover:-translate-y-2 flex-shrink-0 w-72 sm:w-80 lg:w-full"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <img
-                src="./assets/images/Ashraf.jpg"
-                alt="المهندس أشرف - مهندس واجهات وتجربة المستخدم في تكنوفا"
-                class="w-32 h-32 md:w-36 md:h-36 object-cover rounded-full mx-auto mb-3 md:mb-4 border-4 border-primary/10 group-hover:border-primary transition-all duration-500 lazy-load"
-              />
-              <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-1">المهندس أشرف</h3>
-              <p class="text-primary font-medium mb-2 md:mb-3 text-sm md:text-base">مهندس واجهات وتجربة المستخدم</p>
-              <p class="text-gray-600 text-sm leading-relaxed">
-                يصمم واجهات تفاعلية وأنيقة توازن بين الجمال وسهولة الاستخدام.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Custom CSS for hiding scrollbar -->
-      <style>
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      </style>
-    </section>
-
-    <!-- Timeline Section -->
-    <section class="py-20 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
-      <div class="absolute inset-0 opacity-5 bg-[url('https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-outline.png')]"></div>
-
-      <div class="max-w-7xl mx-auto px-4 relative">
-        <div class="text-center mb-16" data-aos="fade-up">
-          <h2 class="text-4xl font-bold text-gray-800 mb-4">رحلتنا</h2>
-          <div class="w-24 h-1 bg-primary mx-auto mb-6 rounded-full"></div>
-          <p class="text-gray-600 max-w-2xl mx-auto leading-relaxed text-lg">
-            منذ انطلاقتنا في عام 2021، وضعنا حجر الأساس لرؤية طموحة في عالم البرمجيات —  
-            لنصبح الاسم الأول في التحول الرقمي وصناعة الحلول الذكية في المنطقة.
-          </p>
-        </div>
-
-        <!-- Desktop Timeline -->
-        <div class="hidden md:block relative">
-          <div class="absolute right-1/2 transform translate-x-1/2 h-full w-1 bg-primary/20 rounded-full"></div>
-
-          <div class="space-y-16">
-            <!-- 2021 -->
-            <div class="flex items-center">
-              <div class="md:w-1/2 md:pr-8 text-right" data-aos="fade-right">
-                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
-                  <h3 class="text-xl font-bold text-gray-800 mb-2">2021</h3>
-                  <h4 class="text-lg font-semibold text-primary mb-2">تأسيس Technova</h4>
-                  <p class="text-gray-600 leading-relaxed">
-                    انطلقت Technova كمبادرة طموحة يقودها فريق صغير من المطورين بخبرة عالية وشغف كبير
-                    لتطوير حلول برمجية مبتكرة تخدم السوق المحلي والإقليمي.
-                  </p>
+                class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-10 shadow-xl hover:shadow-2xl transition-all duration-500 border border-blue-50 relative overflow-hidden group h-full">
+                <div
+                  class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-indigo-100 to-indigo-50 rounded-full opacity-50 group-hover:scale-110 transition-transform duration-500">
                 </div>
-              </div>
-              <div class="md:w-0 flex justify-center">
-                <div class="w-8 h-8 bg-primary rounded-full border-4 border-white shadow-md"></div>
-              </div>
-              <div class="md:w-1/2 md:pl-8"></div>
-            </div>
+                <i
+                  class="ri-double-quotes-l text-5xl md:text-7xl text-indigo-200 absolute top-4 right-4 md:top-6 md:right-6 group-hover:text-indigo-300 transition-colors duration-300"></i>
 
-            <!-- 2022 -->
-            <div class="flex items-center">
-              <div class="md:w-1/2 md:pr-8"></div>
-              <div class="md:w-0 flex justify-center">
-                <div class="w-8 h-8 bg-primary rounded-full border-4 border-white shadow-md"></div>
-              </div>
-              <div class="md:w-1/2 md:pl-8" data-aos="fade-left">
-                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
-                  <h3 class="text-xl font-bold text-gray-800 mb-2">2022</h3>
-                  <h4 class="text-lg font-semibold text-primary mb-2">التوسع في المشاريع</h4>
-                  <p class="text-gray-600 leading-relaxed">
-                    بدأنا بتنفيذ مشاريع كبرى في مجالات إدارة الفنادق، الأنظمة الذكية، وتطبيقات الأعمال، 
-                    مما عزز سمعتنا كشركة تقدم حلولًا عملية وفعالة.
-                  </p>
+                <div class="flex gap-1 mb-4">
+                  <i class="ri-star-fill text-yellow-400 text-sm md:text-base"></i>
+                  <i class="ri-star-fill text-yellow-400 text-sm md:text-base"></i>
+                  <i class="ri-star-fill text-yellow-400 text-sm md:text-base"></i>
+                  <i class="ri-star-fill text-yellow-400 text-sm md:text-base"></i>
+                  <i class="ri-star-fill text-yellow-400 text-sm md:text-base"></i>
+                </div>
+
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-6 relative z-10">
+                  "تعامل راقٍ، تواصل دائم، وتسليم في الموعد المحدد. <span
+                    class='font-bold text-indigo-600'>TECHNOVA</span> غيرت مفهومنا عن الشركات التقنية!"
+                </p>
+
+                <div class="flex items-center gap-3 md:gap-4 pt-4 border-t border-gray-100">
+                  <div class="relative">
+                    <img src="./assets/images/user (3).jpg" alt="خالد العتيبي"
+                      class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-indigo-200 group-hover:border-indigo-400 transition-colors duration-300">
+                    <div
+                      class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+                      <i class="ri-check-line text-white text-xs"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-gray-900 text-sm md:text-base">خالد العتيبي</h4>
+                    <p class="text-gray-500 text-xs md:text-sm">رائد أعمال</p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <!-- 2023 -->
-            <div class="flex items-center">
-              <div class="md:w-1/2 md:pr-8 text-right" data-aos="fade-right">
-                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
-                  <h3 class="text-xl font-bold text-gray-800 mb-2">2023</h3>
-                  <h4 class="text-lg font-semibold text-primary mb-2">إطلاق الهوية الرقمية</h4>
-                  <p class="text-gray-600 leading-relaxed">
-                    أطلقنا الهوية الجديدة لعلامتنا التجارية Technova، 
-                    ووسعنا خدماتنا لتشمل تطوير تطبيقات الهواتف الذكية وحلول التكامل الذكي بين الأنظمة.
-                  </p>
-                </div>
-              </div>
-              <div class="md:w-0 flex justify-center">
-                <div class="w-8 h-8 bg-primary rounded-full border-4 border-white shadow-md"></div>
-              </div>
-              <div class="md:w-1/2 md:pl-8"></div>
-            </div>
-
-            <!-- 2024 -->
-            <div class="flex items-center">
-              <div class="md:w-1/2 md:pr-8"></div>
-              <div class="md:w-0 flex justify-center">
-                <div class="w-8 h-8 bg-primary rounded-full border-4 border-white shadow-md"></div>
-              </div>
-              <div class="md:w-1/2 md:pl-8" data-aos="fade-left">
-                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
-                  <h3 class="text-xl font-bold text-gray-800 mb-2">2024</h3>
-                  <h4 class="text-lg font-semibold text-primary mb-2">الريادة في التحول الرقمي</h4>
-                  <p class="text-gray-600 leading-relaxed">
-                    نفذنا أكثر من 150 مشروعًا ناجحًا مع نسبة رضا عملاء تفوق 97%، 
-                    وأصبحنا شركاء في تطوير حلول رقمية لقطاعات حيوية كالكهرباء والمياه والتعليم.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- 2025 -->
-            <div class="flex items-center">
-              <div class="md:w-1/2 md:pr-8 text-right" data-aos="fade-right">
-                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
-                  <h3 class="text-xl font-bold text-gray-800 mb-2">2025</h3>
-                  <h4 class="text-lg font-semibold text-primary mb-2">الابتكار نحو المستقبل</h4>
-                  <p class="text-gray-600 leading-relaxed">
-                    نواصل رحلتنا لنصبح مركزًا تقنيًا رائدًا في الشرق الأوسط، 
-                    من خلال الاستثمار في الذكاء الاصطناعي وحلول إنترنت الأشياء، 
-                    لتحقيق مستقبل أكثر ذكاءً واتصالًا.
-                  </p>
-                </div>
-              </div>
-              <div class="md:w-0 flex justify-center">
-                <div class="w-8 h-8 bg-primary rounded-full border-4 border-white shadow-md"></div>
-              </div>
-              <div class="md:w-1/2 md:pl-8"></div>
-            </div>
           </div>
         </div>
 
-        <!-- Mobile Timeline -->
-        <div class="md:hidden space-y-6 mt-10">
-          <div class="bg-white p-6 rounded-lg shadow-md border-r-4 border-primary" data-aos="fade-up">
-            <h3 class="text-lg font-bold text-gray-800 mb-1">2021</h3>
-            <h4 class="text-base font-semibold text-primary mb-2">تأسيس Technova</h4>
-            <p class="text-gray-600 text-sm">
-              انطلقنا بفريق شغوف هدفه إحداث فرق حقيقي في عالم البرمجيات.
-            </p>
-          </div>
-
-          <div class="bg-white p-6 rounded-lg shadow-md border-r-4 border-primary" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="text-lg font-bold text-gray-800 mb-1">2022</h3>
-            <h4 class="text-base font-semibold text-primary mb-2">التوسع في المشاريع</h4>
-            <p class="text-gray-600 text-sm">
-              توسعنا في تقديم حلول مبتكرة في إدارة الأنظمة والتطبيقات الذكية.
-            </p>
-          </div>
-
-          <div class="bg-white p-6 rounded-lg shadow-md border-r-4 border-primary" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="text-lg font-bold text-gray-800 mb-1">2023</h3>
-            <h4 class="text-base font-semibold text-primary mb-2">إطلاق الهوية الرقمية</h4>
-            <p class="text-gray-600 text-sm">
-              عززنا حضورنا الرقمي وأطلقنا مشاريع جديدة بهوية عصرية.
-            </p>
-          </div>
-
-          <div class="bg-white p-6 rounded-lg shadow-md border-r-4 border-primary" data-aos="fade-up" data-aos-delay="300">
-            <h3 class="text-lg font-bold text-gray-800 mb-1">2024</h3>
-            <h4 class="text-base font-semibold text-primary mb-2">التحول الرقمي</h4>
-            <p class="text-gray-600 text-sm">
-              ساعدنا العشرات من المؤسسات على التحول الرقمي الكامل.
-            </p>
-          </div>
-
-          <div class="bg-white p-6 rounded-lg shadow-md border-r-4 border-primary" data-aos="fade-up" data-aos-delay="400">
-            <h3 class="text-lg font-bold text-gray-800 mb-1">2025</h3>
-            <h4 class="text-base font-semibold text-primary mb-2">الابتكار نحو المستقبل</h4>
-            <p class="text-gray-600 text-sm">
-              نستعد لتوسيع خدماتنا في الذكاء الاصطناعي وإنترنت الأشياء.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="py-20 bg-gradient-to-br from-primary/5 via-white to-secondary/5 relative overflow-hidden">
-      <!-- Soft Background Glow -->
-      <div class="absolute inset-0 overflow-hidden">
-        <div class="absolute top-10 right-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
-        <div class="absolute bottom-10 left-20 w-72 h-72 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 relative z-10">
-        <!-- Section Header -->
-        <div class="text-center mb-16" data-aos="fade-up">
-          <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-tr from-primary to-secondary rounded-full mb-4 shadow-md">
-            <i class="ri-user-star-line text-white text-2xl"></i>
-          </div>
-          <h2 class="text-4xl font-bold text-gray-800 mb-4">آراء عملائنا</h2>
-          <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6 rounded-full"></div>
-          <p class="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
-            نفتخر بثقة عملائنا الذين اختبروا الفرق معنا — الجودة، الالتزام، والإبداع في كل تفصيل.
-          </p>
-        </div>
-
-        <!-- Testimonials Slider -->
-        <div class="relative">
-          <!-- Progress Bar -->
-          <div class="absolute top-0 left-0 right-0 h-1 bg-gray-200 rounded-full overflow-hidden z-20">
-            <div id="progress-bar" class="h-full bg-gradient-to-r from-primary to-secondary rounded-full transition-all duration-300 ease-linear" style="width: 33.33%"></div>
-          </div>
-
-          <!-- Navigation Buttons -->
-          <button id="prev-testimonial" class="absolute top-1/2 -right-4 md:-right-8 transform -translate-y-1/2 z-20 bg-white/80 backdrop-blur-sm text-primary w-12 h-12 rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110">
-            <i class="ri-arrow-left-s-line text-xl"></i>
-          </button>
-          <button id="next-testimonial" class="absolute top-1/2 -left-4 md:-left-8 transform -translate-y-1/2 z-20 bg-white/80 backdrop-blur-sm text-primary w-12 h-12 rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110">
+        <!-- Mobile Navigation Buttons -->
+        <div class="flex md:hidden justify-center gap-4 mt-6">
+          <button id="prevBtnMobile"
+            class="w-12 h-12 bg-white text-blue-600 rounded-full shadow-lg flex items-center justify-center active:scale-95 transition-transform border border-blue-100">
             <i class="ri-arrow-right-s-line text-xl"></i>
           </button>
+          <button id="nextBtnMobile"
+            class="w-12 h-12 bg-white text-blue-600 rounded-full shadow-lg flex items-center justify-center active:scale-95 transition-transform border border-blue-100">
+            <i class="ri-arrow-left-s-line text-xl"></i>
+          </button>
+        </div>
 
-          <!-- Slider Container -->
-          <div class="overflow-hidden rounded-2xl shadow-2xl">
-            <div id="testimonials-container" class="flex transition-all duration-1000 ease-out">
-              
-              <!-- Testimonial 1 -->
-              <div class="w-full flex-shrink-0 px-4">
-                <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl p-8 h-full text-center transition-all duration-500 hover:-translate-y-2 border-t-4 border-primary/80 relative overflow-hidden group">
-                  <!-- Background Pattern -->
-                  <div class="absolute inset-0 opacity-5">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-primary rounded-full -translate-y-32 translate-x-32"></div>
-                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-primary rounded-full translate-y-32 -translate-x-32"></div>
-                  </div>
-                  
-                  <div class="absolute top-6 right-6 text-primary/10 group-hover:text-primary/20 transition-all duration-500 transform group-hover:scale-110">
-                    <i class="ri-double-quotes-l text-6xl"></i>
-                  </div>
-                  
-                  <p class="text-gray-700 mb-6 text-base md:text-lg leading-relaxed relative z-10">
-                    "تجربتنا مع <span class='font-semibold text-primary'>Technova</span> كانت مذهلة، تم تطوير نظام مخصص بدقة عالية وفريقهم كان متعاونًا ومرنًا بشكل رائع."
-                  </p>
-                  
-                  <div class="flex flex-col items-center space-y-2 mt-6 relative z-10">
-                    <div class="relative">
-                      <img src="./assets/images/user (1).jpg" alt="أحمد عبد الرحمن - مدير عام في شركة النخبة" class="w-16 h-16 rounded-full border-4 border-primary/20 object-cover transition-all duration-500 group-hover:scale-110 lazy-load">
-                      <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white"></div>
-                    </div>
-                    <h4 class="font-bold text-gray-800 text-lg">أحمد عبد الرحمن</h4>
-                    <p class="text-gray-600 text-sm">مدير عام - شركة النخبة</p>
-                  </div>
-                </div>
-              </div>
+        <!-- Dots -->
+        <div class="flex justify-center gap-2 md:gap-3 mt-6 md:mt-8">
+          <button
+            class="testimonial-dot w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-blue-600 transition-all duration-300 hover:scale-125"
+            data-index="0"></button>
+          <button
+            class="testimonial-dot w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-gray-300 transition-all duration-300 hover:scale-125"
+            data-index="1"></button>
+          <button
+            class="testimonial-dot w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-gray-300 transition-all duration-300 hover:scale-125"
+            data-index="2"></button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-              <!-- Testimonial 2 -->
-              <div class="w-full flex-shrink-0 px-4">
-                <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl p-8 h-full text-center transition-all duration-500 hover:-translate-y-2 border-t-4 border-secondary/80 relative overflow-hidden group">
-                  <!-- Background Pattern -->
-                  <div class="absolute inset-0 opacity-5">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-secondary rounded-full -translate-y-32 translate-x-32"></div>
-                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-secondary rounded-full translate-y-32 -translate-x-32"></div>
-                  </div>
-                  
-                  <div class="absolute top-6 right-6 text-secondary/10 group-hover:text-secondary/20 transition-all duration-500 transform group-hover:scale-110">
-                    <i class="ri-double-quotes-l text-6xl"></i>
-                  </div>
-                  
-                  <p class="text-gray-700 mb-6 text-base md:text-lg leading-relaxed relative z-10">
-                    "تصميم رائع وتنفيذ احترافي! تطبيقنا الذي أنشأته Technova ساعدنا في الوصول إلى عملاء جدد وزيادة المبيعات بشكل مذهل."
-                  </p>
-                  
-                  <div class="flex flex-col items-center space-y-2 mt-6 relative z-10">
-                    <div class="relative">
-                      <img src="./assets/images/user (2).jpg" alt="سارة يوسف - مديرة التسويق في Vision Group" class="w-16 h-16 rounded-full border-4 border-secondary/20 object-cover transition-all duration-500 group-hover:scale-110 lazy-load">
-                      <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white"></div>
-                    </div>
-                    <h4 class="font-bold text-gray-800 text-lg">سارة يوسف</h4>
-                    <p class="text-gray-600 text-sm">مديرة التسويق - Vision Group</p>
-                  </div>
-                </div>
-              </div>
+  <!-- CTA Section -->
+  <section class="cta-section py-20 relative">
+    <div class="floating-shape w-96 h-96 bg-blue-500/20 -top-20 -right-20"></div>
+    <div class="floating-shape w-72 h-72 bg-blue-500/20 bottom-0 left-10" style="animation-delay: 3s;"></div>
 
-              <!-- Testimonial 3 -->
-              <div class="w-full flex-shrink-0 px-4">
-                <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl p-8 h-full text-center transition-all duration-500 hover:-translate-y-2 border-t-4 border-accent/80 relative overflow-hidden group">
-                  <!-- Background Pattern -->
-                  <div class="absolute inset-0 opacity-5">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-accent rounded-full -translate-y-32 translate-x-32"></div>
-                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-accent rounded-full translate-y-32 -translate-x-32"></div>
-                  </div>
-                  
-                  <div class="absolute top-6 right-6 text-accent/10 group-hover:text-accent/20 transition-all duration-500 transform group-hover:scale-110">
-                    <i class="ri-double-quotes-l text-6xl"></i>
-                  </div>
-                  
-                  <p class="text-gray-700 mb-6 text-base md:text-lg leading-relaxed relative z-10">
-                    "تعامل راقٍ، تواصل دائم، وتسليم في الموعد المحدد. Technova غيرت مفهومنا عن الشركات التقنية!"
-                  </p>
-                  
-                  <div class="flex flex-col items-center space-y-2 mt-6 relative z-10">
-                    <div class="relative">
-                      <img src="./assets/images/user (3).jpg" alt="خالد العتيبي - رائد أعمال" class="w-16 h-16 rounded-full border-4 border-accent/20 object-cover transition-all duration-500 group-hover:scale-110 lazy-load">
-                      <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white"></div>
-                    </div>
-                    <h4 class="font-bold text-gray-800 text-lg">خالد العتيبي</h4>
-                    <p class="text-gray-600 text-sm">رائد أعمال</p>
-                  </div>
-                </div>
-              </div>
+    <div class="max-w-4xl mx-auto px-4 text-center relative z-10 reveal">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">هل أنت مستعد للبدء معنا؟</h2>
+      <p class="text-xl text-blue-100 mb-10">انضم إلى مئات العملاء الراضين الذين اختاروا TECHNOVA كشريكهم التقني</p>
 
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="https://wa.me/967737127316"
+          class="bg-white text-blue-900 px-8 py-4 rounded-full font-bold hover:shadow-2xl transition-all transform hover:scale-105">
+          تواصل معنا الآن
+        </a>
+        <a href="projects.html"
+          class="border-2 border-white text-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-blue-900 transition-all">
+          شاهد أعمالنا
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-16 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-blue-900/20"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div class="col-span-1 md:col-span-2">
+          <div class="flex items-center gap-3 mb-6">
+            <div
+              class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-500 flex items-center justify-center text-white font-bold text-2xl">
+              T
             </div>
+            <span class="text-3xl font-bold">TECHNOVA</span>
           </div>
-
-          <!-- Enhanced Dots Navigation -->
-          <div class="flex justify-center mt-8 space-x-3 space-x-reverse">
-            <button class="testimonial-dot relative group" data-index="0">
-              <span class="block w-3 h-3 rounded-full bg-primary transition-all duration-300"></span>
-              <span class="absolute inset-0 w-3 h-3 rounded-full bg-primary opacity-30 scale-150 group-hover:scale-200 transition-all duration-300"></span>
-            </button>
-            <button class="testimonial-dot relative group" data-index="1">
-              <span class="block w-3 h-3 rounded-full bg-gray-300 transition-all duration-300"></span>
-              <span class="absolute inset-0 w-3 h-3 rounded-full bg-gray-300 opacity-30 scale-150 group-hover:scale-200 transition-all duration-300"></span>
-            </button>
-            <button class="testimonial-dot relative group" data-index="2">
-              <span class="block w-3 h-3 rounded-full bg-gray-300 transition-all duration-300"></span>
-              <span class="absolute inset-0 w-3 h-3 rounded-full bg-gray-300 opacity-30 scale-150 group-hover:scale-200 transition-all duration-300"></span>
-            </button>
-          </div>
-
-          <!-- Counter -->
-          <div class="flex justify-center mt-4 text-sm text-gray-500 font-medium">
-            <span id="current-slide">1</span>
-            <span class="mx-1">/</span>
-            <span id="total-slides">3</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Professional JS for Apple-like Carousel -->
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          const container = document.getElementById('testimonials-container');
-          const dots = document.querySelectorAll('.testimonial-dot');
-          const prevBtn = document.getElementById('prev-testimonial');
-          const nextBtn = document.getElementById('next-testimonial');
-          const progressBar = document.getElementById('progress-bar');
-          const currentSlideEl = document.getElementById('current-slide');
-          const totalSlidesEl = document.getElementById('total-slides');
-          
-          let currentIndex = 0;
-          const total = dots.length;
-          let autoplayInterval;
-          let progressInterval;
-          let isAnimating = false;
-          let progressValue = 0;
-          
-          // Check if elements exist before using them
-          if (!container || !dots.length || !prevBtn || !nextBtn || !progressBar || !currentSlideEl || !totalSlidesEl) {
-            console.error('One or more required elements not found');
-            return;
-          }
-          
-          // Initialize
-          totalSlidesEl.textContent = total;
-          
-          // Update carousel with smooth transitions
-          function updateCarousel(instant = false) {
-            if (isAnimating && !instant) return;
-            isAnimating = true;
-            
-            // Update transform with hardware acceleration
-            if (instant) {
-              container.style.transition = 'none';
-              container.style.transform = `translateX(-${currentIndex * 100}%)`;
-              // Force reflow
-              container.offsetHeight;
-              container.style.transition = '';
-            } else {
-              container.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }
-            
-            // Update dots with smooth transitions
-            dots.forEach((dot, i) => {
-              const dotSpan = dot.querySelector('span:first-child');
-              const dotPulse = dot.querySelector('span:last-child');
-              
-              if (i === currentIndex) {
-                dotSpan.classList.remove('bg-gray-300', 'w-3');
-                dotSpan.classList.add('bg-primary', 'w-8');
-                dotPulse.classList.remove('bg-gray-300');
-                dotPulse.classList.add('bg-primary');
-              } else {
-                dotSpan.classList.remove('bg-primary', 'w-8');
-                dotSpan.classList.add('bg-gray-300', 'w-3');
-                dotPulse.classList.remove('bg-primary');
-                dotPulse.classList.add('bg-gray-300');
-              }
-            });
-            
-            // Update counter
-            currentSlideEl.textContent = currentIndex + 1;
-            
-            // Update progress bar
-            updateProgressBar();
-            
-            // Reset animation lock
-            setTimeout(() => {
-              isAnimating = false;
-            }, instant ? 50 : 1000);
-          }
-          
-          // Update progress bar
-          function updateProgressBar() {
-            progressValue = 0;
-            progressBar.style.width = `${progressValue}%`;
-            
-            // Clear existing progress interval
-            clearInterval(progressInterval);
-            
-            // Start new progress animation
-            progressInterval = setInterval(() => {
-              progressValue += (100 / 60); // Complete in 6 seconds (60 intervals)
-              progressBar.style.width = `${progressValue}%`;
-              
-              if (progressValue >= 100) {
-                clearInterval(progressInterval);
-              }
-            }, 100);
-          }
-          
-          // Navigation functions
-          function goToSlide(index) {
-            currentIndex = index;
-            updateCarousel();
-            resetAutoplay();
-          }
-          
-          function nextSlide() {
-            currentIndex = (currentIndex + 1) % total;
-            updateCarousel();
-            resetAutoplay();
-          }
-          
-          function prevSlide() {
-            currentIndex = (currentIndex - 1 + total) % total;
-            updateCarousel();
-            resetAutoplay();
-          }
-          
-          // Autoplay control
-          function startAutoplay() {
-            clearInterval(autoplayInterval);
-            autoplayInterval = setInterval(nextSlide, 6000);
-            updateProgressBar();
-          }
-          
-          function resetAutoplay() {
-            clearInterval(autoplayInterval);
-            startAutoplay();
-          }
-          
-          // Event listeners
-          dots.forEach((dot, i) => {
-            dot.addEventListener('click', () => goToSlide(i));
-          });
-          
-          prevBtn.addEventListener('click', prevSlide);
-          nextBtn.addEventListener('click', nextSlide);
-          
-          // Touch/Swipe support for mobile
-          let touchStartX = 0;
-          let touchEndX = 0;
-          
-          container.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-          }, { passive: true });
-          
-          container.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-          }, { passive: true });
-          
-          function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
-            
-            if (Math.abs(diff) > swipeThreshold) {
-              if (diff > 0) {
-                nextSlide(); // Swiped left
-              } else {
-                prevSlide(); // Swiped right
-              }
-            }
-          }
-          
-          // Pause on hover
-          container.addEventListener('mouseenter', () => {
-            clearInterval(autoplayInterval);
-            clearInterval(progressInterval);
-          });
-          
-          container.addEventListener('mouseleave', () => {
-            startAutoplay();
-          });
-          
-          // Keyboard navigation
-          document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') prevSlide();
-            if (e.key === 'ArrowRight') nextSlide();
-          });
-          
-          // Initialize
-          updateCarousel(true);
-          startAutoplay();
-        });
-      </script>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-16 gradient-bg text-white relative overflow-hidden">
-      <!-- Background Elements -->
-      <div class="absolute inset-0 overflow-hidden">
-        <div
-          class="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl"
-        ></div>
-        <div
-          class="absolute bottom-0 -left-40 w-80 h-80 bg-secondary/10 rounded-full blur-3xl"
-        ></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 relative z-10">
-        <div class="text-center">
-          <h2 class="text-2xl md:text-5xl font-bold mb-4" data-aos="fade-up">
-            هل أنت مستعد للبدء معنا؟
-          </h2>
-          <p
-            class="text-lg md:text-xl mb-6 md:mb-8 opacity-90 max-w-2xl mx-auto"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            انضم إلى مئات العملاء الراضين الذين اختاروا تكنوفا كشريكهم التقني
+          <p class="text-gray-400 leading-relaxed mb-6 max-w-md">
+            نحن شركة تقنية رائدة نقدم حلولاً مبتكرة للأفراد والطلاب وأصحاب المشاريع والشركات. نجمع بين الخبرة والابتكار.
           </p>
-          <div
-            class="flex flex-wrap justify-center gap-4"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <a
-              href="contact.html"
-              class="bg-white text-primary px-6 py-3 md:px-8 md:py-4 rounded-full font-bold hover:bg-gray-100 transition-all shadow-xl"
-            >
-              تواصل معنا الآن
-            </a>
-            <a
-              href="portfolio.html"
-              class="border-2 border-white text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-bold hover:bg-white hover:text-primary transition-all"
-            >
-              شاهد أعمالنا
-            </a>
-          </div>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold mb-6">روابط سريعة</h4>
+          <ul class="space-y-3">
+            <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">الرئيسية</a></li>
+            <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">الخدمات</a></li>
+            <li><a href="projects.html" class="text-gray-400 hover:text-white transition-colors">المشاريع</a></li>
+            <li><a href="#" class="text-white font-semibold">من نحن</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold mb-6">تواصل معنا</h4>
+          <ul class="space-y-3 text-gray-400">
+            <li class="flex items-center gap-2"><i class="ri-phone-line"></i> +967 737 721 613</li>
+            <li class="flex items-center gap-2"><i class="ri-mail-line"></i> info@technova.sa</li>
+            <li class="flex items-center gap-2"><i class="ri-map-pin-line"></i> الرياض، السعودية</li>
+          </ul>
         </div>
       </div>
-    </section>
 
-    <a
-      href="https://wa.me/967737127316"
-      target="_blank"
-      class="whatsapp-float bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl md:text-3xl shadow-lg hover:bg-green-600 transition-all transform hover:scale-110"
-      aria-label="تواصل عبر واتساب"
-    >
-      <i class="ri-whatsapp-line"></i>
-    </a>
+      <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+        <p>© <span id="year"></span> TECHNOVA. جميع الحقوق محفوظة.</p>
+      </div>
+    </div>
+  </footer>
 
-    <script src="./assets/js/main.js"></script>
-    <script>
-      // Initialize AOS
-      document.addEventListener("DOMContentLoaded", () => {
-        // Check if AOS is available
-        if (typeof AOS !== 'undefined') {
-          AOS.init({
-            duration: 800,
-            once: true,
+  <!-- زر العودة للأعلى -->
+  <button id="backToTopBtn">
+    <i class="ri-arrow-up-line"></i>
+  </button>
+
+  <!-- واتساب -->
+  <a href="https://wa.me/967737127316" target="_blank"
+    class="fixed bottom-24 left-6 w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center text-2xl shadow-lg hover:bg-green-600 transition-all transform hover:scale-110 z-40">
+    <i class="ri-whatsapp-line"></i>
+  </a>
+  <script>
+    // القائمة المتنقلة
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenuBtn = document.getElementById('close-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    mobileMenuBtn.addEventListener('click', () => {
+
+      mobileMenu.classList.toggle('hidden');
+
+      if (mobileMenu.classList.contains('hidden')) {
+        document.body.style.overflow = '';
+      } else {
+        document.body.style.overflow = 'hidden';
+      }
+
+    });
+
+    const closeMenu = () => {
+      mobileMenu.classList.add('hidden');
+      document.body.style.overflow = '';
+    };
+
+    closeMenuBtn.addEventListener('click', closeMenu);
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) {
+        closeMenu();
+      }
+    });
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+  </script>
+  <!-- JavaScript -->
+  <script>
+    // Three.js خلفية
+    const initThreeJS = () => {
+      const container = document.getElementById('canvas-container');
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      // شبكة النقاط
+      const geometry = new THREE.BufferGeometry();
+      const count = 400;
+      const positions = new Float32Array(count * 3);
+
+      for (let i = 0; i < count * 3; i++) {
+        positions[i] = (Math.random() - 0.5) * 20;
+      }
+
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+      const material = new THREE.PointsMaterial({
+        size: 0.05,
+        color: 0x6366f1,
+        transparent: true,
+        opacity: 0.4
+      });
+
+      const particles = new THREE.Points(geometry, material);
+      scene.add(particles);
+
+      // أشكال هندسية
+      const shapes = [];
+      const geometries = [
+        new THREE.IcosahedronGeometry(0.6, 0),
+        new THREE.OctahedronGeometry(0.6, 0),
+        new THREE.TetrahedronGeometry(0.6, 0)
+      ];
+
+      for (let i = 0; i < 6; i++) {
+        const geom = geometries[Math.floor(Math.random() * geometries.length)];
+        const mat = new THREE.MeshBasicMaterial({
+          color: i % 2 === 0 ? 0x6366f1 : 0xec4899,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.1
+        });
+        const mesh = new THREE.Mesh(geom, mat);
+
+        mesh.position.set(
+          (Math.random() - 0.5) * 15,
+          (Math.random() - 0.5) * 15,
+          (Math.random() - 0.5) * 10
+        );
+
+        scene.add(mesh);
+        shapes.push({
+          mesh,
+          rotSpeed: {
+            x: (Math.random() - 0.5) * 0.008,
+            y: (Math.random() - 0.5) * 0.008
+          }
+        });
+      }
+
+      camera.position.z = 5;
+
+      let mouseX = 0;
+      let mouseY = 0;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+      });
+
+      const animate = () => {
+        requestAnimationFrame(animate);
+
+        particles.rotation.y += 0.0008;
+        particles.rotation.x += 0.0003;
+
+        shapes.forEach(shape => {
+          shape.mesh.rotation.x += shape.rotSpeed.x;
+          shape.mesh.rotation.y += shape.rotSpeed.y;
+          shape.mesh.position.y += Math.sin(Date.now() * 0.001) * 0.002;
+        });
+
+        camera.position.x += (mouseX * 0.3 - camera.position.x) * 0.02;
+        camera.position.y += (mouseY * 0.3 - camera.position.y) * 0.02;
+
+        renderer.render(scene, camera);
+      };
+
+      animate();
+
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    };
+
+    // إنشاء الجزيئات
+    const createParticles = () => {
+      const container = document.getElementById('particles');
+      for (let i = 0; i < 25; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 20 + 's';
+        particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
+        container.appendChild(particle);
+      }
+    };
+
+    // عداد الإحصائيات
+    const animateCounters = () => {
+      const counters = document.querySelectorAll('.counter');
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+
+        const updateCounter = () => {
+          current += step;
+          if (current < target) {
+            counter.textContent = Math.floor(current) + '+';
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target + '+';
+          }
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              updateCounter();
+              observer.unobserve(entry.target);
+            }
           });
-        } else {
-          console.warn('AOS library not loaded');
+        });
+
+        observer.observe(counter);
+      });
+    };
+
+    // سلايدر الشهادات
+    const initTestimonialsSlider = () => {
+      const track = document.getElementById('testimonialsTrack');
+      const dots = document.querySelectorAll('.testimonial-dot');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+
+      let currentIndex = 0;
+      const total = dots.length;
+      let autoplayInterval;
+
+      const updateSlider = () => {
+        track.style.transform = `translateX(${currentIndex * 100}%)`;
+
+        dots.forEach((dot, i) => {
+          if (i === currentIndex) {
+            dot.classList.remove('bg-gray-300');
+            dot.classList.add('bg-blue-600');
+          } else {
+            dot.classList.remove('bg-blue-600');
+            dot.classList.add('bg-gray-300');
+          }
+        });
+      };
+
+      const goToSlide = (index) => {
+        currentIndex = index;
+        updateSlider();
+        resetAutoplay();
+      };
+
+      const nextSlide = () => {
+        currentIndex = (currentIndex + 1) % total;
+        updateSlider();
+        resetAutoplay();
+      };
+
+      const prevSlide = () => {
+        currentIndex = (currentIndex - 1 + total) % total;
+        updateSlider();
+        resetAutoplay();
+      };
+
+      const startAutoplay = () => {
+        autoplayInterval = setInterval(nextSlide, 5000);
+      };
+
+      const resetAutoplay = () => {
+        clearInterval(autoplayInterval);
+        startAutoplay();
+      };
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => goToSlide(i));
+      });
+
+      prevBtn.addEventListener('click', prevSlide);
+      nextBtn.addEventListener('click', nextSlide);
+
+      // Touch support
+      let touchStartX = 0;
+      track.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      track.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+          diff > 0 ? nextSlide() : prevSlide();
         }
-        
-        // Lazy loading for images
-        const lazyImages = document.querySelectorAll('.lazy-load');
-        
-        if ('IntersectionObserver' in window) {
-          const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                const img = entry.target;
-                img.classList.add('loaded');
-                imageObserver.unobserve(img);
-              }
-            });
-          });
-          
-          lazyImages.forEach(img => {
-            imageObserver.observe(img);
-          });
+      }, { passive: true });
+
+      // Pause on hover
+      track.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+      track.addEventListener('mouseleave', startAutoplay);
+
+      startAutoplay();
+    };
+
+    // تهيئة الصفحة
+    document.addEventListener("DOMContentLoaded", () => {
+      initThreeJS();
+      createParticles();
+      animateCounters();
+      initTestimonialsSlider();
+
+      // مؤشر التمرير والزر
+      window.addEventListener("scroll", () => {
+        const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        document.getElementById("scrollIndicator").style.width = scrollPercent + "%";
+
+        const backBtn = document.getElementById("backToTopBtn");
+        if (window.scrollY > 500) {
+          backBtn.classList.add("visible");
         } else {
-          // Fallback for browsers that don't support IntersectionObserver
-          lazyImages.forEach(img => {
-            img.classList.add('loaded');
-          });
+          backBtn.classList.remove("visible");
+        }
+
+        const header = document.getElementById("header");
+        if (window.scrollY > 100) {
+          header.classList.add("shadow-lg");
+        } else {
+          header.classList.remove("shadow-lg");
         }
       });
-    </script>
-  </body>
+
+      document.getElementById("backToTopBtn").addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // تأثيرات الظهور
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+      // السنة
+      document.getElementById("year").textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+
 </html>

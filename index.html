@@ -1,1325 +1,1711 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>TECHNOVA — الابتكار في كل نقرة</title>
-    <meta
-      name="description"
-      content="TECHNOVA — حلول تقنية متكاملة: مواقع، تطبيقات، أنظمة كاميرات، مشاريع طلابية، تسويق، كهرباء وإلكترونيات وبنية تحتية."
-    />
 
-    <!-- Tailwind (CDN for quick demo) -->
-    <script src="./assets/js/tailwind.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TECHNOVA — الابتكار في كل نقرة</title>
+  <meta name="description"
+    content="TECHNOVA — حلول تقنية متكاملة: مواقع، تطبيقات، أنظمة كاميرات، مشاريع طلابية، تسويق، كهرباء وإلكترونيات وبنية تحتية." />
+  <meta name="keywords" content="تطوير مواقع, تطوير تطبيقات, مشاريع تخرج, برمجة, أنظمة ذكية, اليمن, TECHNOVA">
+  <meta property="og:title">
+  <meta property="og:description">
+  <meta property="og:image">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Colors / CSS variables (themeable) -->
-    <link rel="stylesheet" href="assets/css/colors.css" />
-    <!-- Custom styles -->
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <link rel="stylesheet" href="assets/css/remixicon.css" />
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-    <!-- Inline small favicons or manifest could be added here -->
+  <!-- GSAP للرسوم المتحركة المتقدمة -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-    <!-- Load optional heavy libs lazily (commented) -->
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
 
-  </head>
-  <body class="bg-bg text-black antialiased">
-    <!-- top-level: theme + lang initialized by JS -->
-    <div id="app" class="min-h-screen flex flex-col">
-      <div class="scroll-indicator" id="scrollIndicator"></div>
-      <!-- NAV -->
- <div id="header-container"></div>
-      <!-- HERO -->
-      <main class="flex-grow">
-        <!-- ! hero section -->
-        <section
-          id="home"
-          class="pt-24 pb-16 bg-gradient-to-br from-blue-50 to-white overflow-hidden relative"
-        >
-          <!-- Background Elements -->
-          <div class="absolute inset-0 overflow-hidden">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-primary: #0B3D91;
+      --color-secondary: #1E5ED6;
+      --color-accent: #4DA3FF;
+      --color-dark: #0A1F44;
+      --color-bg: #f8fafc;
+      --color-surface: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: var(--color-bg);
+      color: var(--color-dark);
+      overflow-x: hidden;
+    }
+
+    /* خلفية ثلاثية الأبعاد */
+
+    #canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* تأثير الزجاج */
+
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .glass-dark {
+      background: rgba(10, 31, 68, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* النص المتدرج */
+
+    .gradient-text {
+      background: linear-gradient(135deg, #0B3D91 0%, #1E5ED6 50%, #4DA3FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* البطاقات ثلاثية الأبعاد */
+
+    .card-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card-3d:hover {
+      transform: rotateY(5deg) rotateX(5deg) translateZ(20px);
+    }
+
+    /* تأثير العوم */
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-20px) rotate(2deg);
+      }
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-float-delayed {
+      animation: float 6s ease-in-out infinite;
+      animation-delay: 2s;
+    }
+
+    /* تأثير النبض */
+
+    @keyframes pulse-glow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 20px rgba(11, 61, 145, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 0 40px rgba(11, 61, 145, 0.8), 0 0 60px rgba(30, 94, 214, 0.4);
+      }
+    }
+
+    .pulse-glow {
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+
+    /* مؤشر التمرير */
+
+    .scroll-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #0B3D91, #1E5ED6, #4DA3FF);
+      z-index: 100;
+      transition: width 0.2s ease;
+    }
+
+    /* الأشكال العائمة */
+
+    .floating-shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.6;
+      animation: float 10s ease-in-out infinite;
+    }
+
+    /* الضوء المتحرك */
+
+    .light-beam {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(11, 61, 145, 0.4) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    /* زر العودة للأعلى */
+
+    #back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0B3D91, #1E5ED6);
+      color: white;
+      border: none;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 50;
+      box-shadow: 0 10px 30px rgba(11, 61, 145, 0.4);
+    }
+
+    #back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #back-to-top:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 15px 40px rgba(11, 61, 145, 0.6);
+    }
+
+    /* مؤشر الكتابة */
+
+    .typewriter {
+      overflow: hidden;
+      border-left: 3px solid #0B3D91;
+      white-space: nowrap;
+      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0
+      }
+
+      to {
+        width: 100%
+      }
+    }
+
+    @keyframes blink-caret {
+
+      from,
+      to {
+        border-color: transparent
+      }
+
+      50% {
+        border-color: #0B3D91
+      }
+    }
+
+    /* الجزيئات */
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(11, 61, 145, 0.5);
+      border-radius: 50%;
+      animation: particle-float 20s infinite linear;
+    }
+
+    /* scrollbar */
+
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #0B3D91, #1E5ED6);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, #082d6a, #174db0);
+    }
+
+    /* glow text */
+
+    .glow-text {
+      text-shadow: 0 0 10px rgba(11, 61, 145, 0.5), 0 0 20px rgba(11, 61, 145, 0.3);
+    }
+
+    /* timeline */
+
+    .timeline-line {
+      position: absolute;
+      right: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #0B3D91, #1E5ED6, #4DA3FF);
+      transform: translateX(50%);
+    }
+
+    /* loader */
+
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0A1F44;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .loader-circle {
+      width: 80px;
+      height: 80px;
+      border: 4px solid transparent;
+      border-top-color: #0B3D91;
+      border-right-color: #1E5ED6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* service cards */
+
+    .service-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(11, 61, 145, 0.2);
+    }
+
+    .service-card::before {
+      background: linear-gradient(90deg, #0B3D91, #1E5ED6, #4DA3FF);
+    }
+
+    .focus-effect:focus-within {
+      box-shadow: 0 0 0 3px rgba(11, 61, 145, 0.3);
+    }
+  </style>
+  <!-- <base target="_blank"> -->
+</head>
+
+<body class="antialiased bg-slate-50">
+  <!-- شاشة التحميل -->
+  <div class="loader" id="loader">
+    <div class="loader-circle"></div>
+  </div>
+
+  <!-- مؤشر التمرير -->
+  <div class="scroll-indicator" id="scrollIndicator"></div>
+
+  <!-- خلفية Three.js -->
+  <div id="canvas-container"></div>
+
+  <!-- الجزيئات العائمة -->
+  <div class="particles" id="particles"></div>
+
+  <!-- التطبيق الرئيسي -->
+  <div id="app" class="relative min-h-screen">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="header">
+      <div class="glass-effect mx-4 mt-4 rounded-2xl px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+          <div class="flex items-center gap-3">
             <div
-              class="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl"
-            ></div>
-            <div
-              class="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary/10 rounded-full blur-3xl"
-            ></div>
+              class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-500 flex items-center justify-center text-white font-bold text-xl pulse-glow">
+              T
+            </div>
+            <span class="text-2xl font-bold gradient-text">TECHNOVA</span>
           </div>
 
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <!-- Logo for mobile only -->
-            <div class="text-center mb-8 lg:hidden">
+          <nav class="hidden md:flex items-center gap-8">
+            <a href="#home" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">الرئيسية</a>
+            <a href="services.html" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">الخدمات</a>
+            <a href="projects.html" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">المشاريع</a>
+            <a href="about.html" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">من نحن</a>
+            <a href="#contact"
+              class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all transform hover:scale-105">
+              تواصل معنا
+            </a>
+          </nav>
+
+          <button class="md:hidden text-gray-700 text-2xl" id="mobile-menu-btn">
+            <i class="ri-menu-line"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- القائمة المتنقلة -->
+    <div class="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl hidden" id="mobile-menu">
+      <div class="flex flex-col items-center justify-center h-full gap-8 text-2xl">
+        <a href="#home" class="text-gray-800 hover:text-blue-600 transition-colors mobile-link">الرئيسية</a>
+        <a href="services.html" class="text-gray-800 hover:text-blue-600 transition-colors mobile-link">الخدمات</a>
+        <a href="projects.html" class="text-gray-800 hover:text-blue-600 transition-colors mobile-link">المشاريع</a>
+        <a href="about.html" class="text-gray-800 hover:text-blue-600 transition-colors mobile-link">من نحن</a>
+        <a href="#contact" class="text-gray-800 hover:text-blue-600 transition-colors mobile-link">تواصل معنا</a>
+      </div>
+      <button class="absolute top-8 left-8 text-3xl text-gray-800" id="close-menu">
+        <i class="ri-close-line"></i>
+      </button>
+    </div>
+
+    <main class="flex-grow">
+      <br>
+      <!-- Hero Section -->
+      <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-40">
+        <!-- أشكال خلفية عائمة -->
+        <div class="floating-shape w-96 h-96 bg-blue-500/30 -top-20 -right-20 animate-float"></div>
+        <div class="floating-shape w-72 h-72 bg-blue-500/30 bottom-20 left-10 animate-float-delayed"></div>
+        <div class="floating-shape w-64 h-64 bg-cyan-500/20 top-1/2 right-1/4 animate-float"
+          style="animation-delay: 4s;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            <!-- النص -->
+            <div class="text-center lg:text-right order-2 lg:order-1">
               <div
-                class="font-['Pacifico'] text-3xl sm:text-4xl md:text-6xl text-primary animate-float"
-              >
-                <span class="gradient-text">TECHNOVA</span>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <!-- Left Column: Image for Desktop Only -->
-              <div class="relative order-2 lg:order-1 hidden lg:block">
-                <div
-                  class="rounded-2xl bg-white/60 backdrop-blur-md p-3 shadow-2xl"
-                >
-                  <img
-                    src="./assets/images/hero-image.jpg"
-                    alt="فريق TECHNOVA"
-                    class="rounded-xl w-full h-auto object-cover"
-                  />
-                </div>
-
-                <!-- Floating badges for Desktop -->
-                <div
-                  class="absolute -bottom-3 right-4 bg-primary text-white px-3 py-2 rounded-xl shadow-lg animate-pulse-slow"
-                >
-                  <div class="text-lg font-bold">250+</div>
-                  <div class="text-xs">مشروع مكتمل</div>
-                </div>
-                <div
-                  class="absolute -top-3 left-4 bg-secondary text-white px-3 py-2 rounded-xl shadow-lg animate-pulse-slow"
-                >
-                  <div class="text-lg font-bold">4+</div>
-                  <div class="text-xs">سنة خبرة</div>
-                </div>
+                class="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold mb-6 reveal">
+                🚀 نحو المستقبل الرقمي
               </div>
 
-              <!-- Right Column: Text Content for All Screens + Image for Mobile -->
-              <div class="text-right order-1 lg:order-2">
-                <!-- Logo for desktop only -->
-                <div class="hidden lg:block mb-8">
-                  <div
-                    class="font-['Pacifico'] text-3xl sm:text-4xl md:text-6xl text-primary animate-float"
-                  >
-                    <span class="gradient-text">TECHNOVA</span>
-                  </div>
-                </div>
+              <h1 class="text-4xl sm:text-5xl md:text-7xl font-black text-gray-900 mb-6 leading-tight reveal">
+                نحول أفكارك إلى
+                <span class="gradient-text glow-text block mt-2">واقع رقمي مذهل</span>
+              </h1>
 
-                <h1
-                  class="text-center text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 mb-6"
-                >
-                  مرحباً بكم في عالم
-                  <span class="gradient-text">التقنية المتطورة</span>
-                </h1>
-
-                <!-- Image for Mobile Only (appears after the H1) -->
-                <div class="relative block lg:hidden mb-8">
-                  <div
-                    class="rounded-2xl bg-white/60 backdrop-blur-md p-3 shadow-2xl"
-                  >
-                    <img
-                      src="./assets/images/hero-image.jpg"
-                      alt="فريق TECHNOVA"
-                      class="rounded-xl w-full h-auto object-cover"
-                    />
-                  </div>
-
-                  <!-- Floating badges for Mobile -->
-                  <div
-                    class="absolute -bottom-3 right-4 bg-primary text-white px-3 py-2 rounded-xl shadow-lg animate-pulse-slow"
-                  >
-                    <div class="text-lg font-bold">250+</div>
-                    <div class="text-xs">مشروع مكتمل</div>
-                  </div>
-                  <div
-                    class="absolute -top-3 left-4 bg-secondary text-white px-3 py-2 rounded-xl shadow-lg animate-pulse-slow"
-                  >
-                    <div class="text-lg font-bold">4+</div>
-                    <div class="text-xs">سنة خبرة</div>
-                  </div>
-                </div>
-
-                <!-- Subtitle -->
-                <p
-                  class="text-lg sm:text-xl md:text-2xl text-gray-600 mb-6 sm:mb-8"
-                >
-                  نحول أفكارك التقنية إلى واقع مبتكر
-                </p>
-
-                <!-- Description -->
-                <p
-                  class="text-base font-bold sm:text-lg text-gray-500 mb-8 sm:mb-10 max-w-3xl mx-auto lg:mx-0"
-                >
-                  شركة تقنية رائدة تقدم حلولاً مبتكرة للأفراد والطلاب وأصحاب
-                  المشاريع والشركات، نجمع بين الخبرة والابتكار لتحقيق أهدافك
-                  التقنية بأعلى معايير الجودة والاحتراف.
-                </p>
-
-                <!-- Buttons Container -->
-                <div
-                  class="flex flex-row gap-3 justify-center sm:justify-start"
-                >
-                  <a
-                    href="Services.html"
-                    class="btn-cta inline-flex items-center justify-center px-4 py-2 sm:px-6 sm:py-3 rounded-lg shadow bg-primary text-white hover:bg-blue-700 transition-colors text-sm sm:text-base"
-                  >
-                    اكتشف خدماتنا
-                  </a>
-                  <a
-                    href="projects.html"
-                    class="border-2 border-primary text-primary px-4 py-2 sm:px-6 sm:py-3 rounded-lg inline-flex items-center justify-center hover:bg-primary hover:text-white transition text-sm sm:text-base"
-                  >
-                    اطلع على المشاريع
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!--! SERVICES PREVIEW -->
-        <section
-          id="services"
-          class="relative py-24 overflow-hidden bg-gradient-to-br from-white via-blue-50 to-cyan-50"
-        >
-          <!-- دوائر خلفية متحركة -->
-          <div class="absolute inset-0 overflow-hidden">
-            <div
-              class="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-primary/10 blur-3xl animate-float"
-            ></div>
-            <div
-              class="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-accent/10 blur-3xl animate-float-delay"
-            ></div>
-          </div>
-
-          <!-- المحتوى -->
-          <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- العنوان -->
-            <div class="text-center mb-20" data-aos="fade-up">
-              <h2
-                class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight"
-              >
-                اكتشف <span class="gradient-text">عالم TECHNOVA</span>
-              </h2>
-              <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                حلول متكاملة تجمع بين
-                <span class="text-primary font-semibold">الإبداع</span>،
-                <span class="text-secondary font-semibold">الاحتراف</span>،
-                و<span class="text-accent font-semibold">النتائج الحقيقية</span
-                >. نحن لا نبرمج فقط، نحن نصنع تجارب رقمية تنبض بالحياة.
+              <p class="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed reveal">
+                نصمم ونطور حلولاً رقمية متقدمة تساعد الشركات
+                والأفراد على بناء حضور رقمي قوي وتحويل الأفكار
+                إلى منتجات ناجحة في السوق.. من تطوير المواقع والتطبيقات إلى الأنظمة الذكية
+                والبنية التحتية.
               </p>
+
+              <!-- إحصائيات -->
+              <div class="flex flex-wrap justify-center lg:justify-start gap-8 mb-10 reveal">
+                <div class="text-center">
+                  <div class="text-3xl font-bold gradient-text counter" data-target="250">0</div>
+                  <div class="text-sm text-gray-500">مشروع مكتمل</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold gradient-text counter" data-target="4">0</div>
+                  <div class="text-sm text-gray-500">سنوات خبرة</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold gradient-text counter" data-target="98">0</div>
+                  <div class="text-sm text-gray-500">% رضا العملاء</div>
+                </div>
+              </div>
+
+              <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal">
+                <a href="#services"
+                  class="ripple-btn bg-gradient-to-r from-blue-600 to-blue-600 text-white px-8 py-4 rounded-full text-lg font-bold hover:shadow-2xl transition-all transform hover:scale-105 flex items-center justify-center gap-2">
+                  اكتشف خدماتنا
+                  <i class="ri-arrow-left-line"></i>
+                </a>
+                <a href="#projects"
+                  class="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-full text-lg font-bold hover:bg-blue-600 hover:text-white transition-all flex items-center justify-center gap-2">
+                  شاهد أعمالنا
+                  <i class="ri-play-circle-line"></i>
+                </a>
+              </div>
             </div>
 
-            <!-- بطاقات الخدمات -->
-            <div
-              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"
-              data-aos="fade-up"
-              data-aos-delay="150"
-            >
-              <!-- خدمة 1 -->
-              <div
-                class="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden card-hover"
-              >
-                <!-- تعديل: أزلنا overflow:hidden من الصورة وغيّرنا object-cover إلى object-contain -->
+            <!-- الصورة ثلاثية الأبعاد -->
+            <div class="relative order-1 lg:order-2 reveal">
+              <div class="relative w-full aspect-square max-w-lg mx-auto">
+                <!-- الدائرة المتحركة -->
+                <div class="absolute inset-0 rounded-full border-2 border-blue-200 animate-pulse"></div>
+                <div class="absolute inset-4 rounded-full border-2 border-blue-200 animate-pulse"
+                  style="animation-delay: 0.5s;"></div>
+
+                <!-- الصورة الرئيسية -->
                 <div
-                  class="h-60 relative flex items-center justify-center bg-gray-50"
-                >
-                  <img
-                    src="./assets/images/webServices.png"
-                    alt="تطوير مواقع وتطبيقات"
-                    class="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center p-4 text-white"
-                  >
-                    <span class="text-sm font-medium">حلول رقمية مذهلة</span>
+                  class="relative z-10 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500 card-3d">
+                  <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=800&fit=crop"
+                    alt="فريق TECHNOVA" class="w-full h-full object-cover" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent"></div>
+                </div>
+
+                <!-- البطاقات العائمة -->
+                <div class="absolute -bottom-6 -right-6 glass-effect rounded-2xl p-4 shadow-xl animate-float z-20">
+                  <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white">
+                      <i class="ri-check-line text-xl"></i>
+                    </div>
+                    <div>
+                      <div class="font-bold text-gray-800">مشروع جديد</div>
+                      <div class="text-sm text-gray-500">تم التسليم بنجاح</div>
+                    </div>
                   </div>
                 </div>
 
-                <div class="p-8 text-center">
-                  <div
-                    class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center"
-                  >
-                    <i class="ri-code-s-slash-line text-3xl text-primary"></i>
+                <div class="absolute -top-6 -left-6 glass-effect rounded-2xl p-4 shadow-xl animate-float-delayed z-20">
+                  <div class="flex items-center gap-3">
+                    <div
+                      class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-500 flex items-center justify-center text-white">
+                      <i class="ri-code-box-line text-xl"></i>
+                    </div>
+                    <div>
+                      <div class="font-bold text-gray-800">+1000</div>
+                      <div class="text-sm text-gray-500">سطر كود يومياً</div>
+                    </div>
                   </div>
-                  <h3 class="text-2xl font-bold text-gray-900 mb-3">
-                    تطوير مواقع وتطبيقات
-                  </h3>
-                  <p class="text-gray-600 mb-6 leading-relaxed">
-                    نصمم ونبرمج تجارب رقمية متجاوبة وسريعة الأداء، لتُبرز علامتك
-                    التجارية بأناقة واحتراف.
-                  </p>
-                  <a
-                    href="services.html#web"
-                    class="inline-flex items-center text-primary font-semibold hover:text-primary-400 transition-colors"
-                  >
-                    اكتشف المزيد <i class="ri-arrow-left-line mr-2"></i>
-                  </a>
-                </div>
-              </div>
-
-              <!-- خدمة 2 -->
-              <div
-                class="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden card-hover"
-              >
-                <div class="h-52 overflow-hidden relative">
-                  <img
-                    src="./assets/images/CamraServices.jpg"
-                    alt="أنظمة وكاميرات"
-                    class="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center p-4 text-white"
-                  >
-                    <span class="text-sm font-medium">مراقبة وذكاء أمني</span>
-                  </div>
-                </div>
-                <div class="p-8 text-center">
-                  <div
-                    class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-secondary/10 flex items-center justify-center"
-                  >
-                    <i class="ri-camera-lens-line text-3xl text-secondary"></i>
-                  </div>
-                  <h3 class="text-2xl font-bold text-gray-900 mb-3">
-                    أنظمة وكاميرات ذكية
-                  </h3>
-                  <p class="text-gray-600 mb-6 leading-relaxed">
-                    نوفر حلول مراقبة ذكية آمنة، متصلة بالسحابة، لتبقى على اطلاع
-                    في أي وقت ومن أي مكان.
-                  </p>
-                  <a
-                    href="services.html#security"
-                    class="inline-flex items-center text-primary font-semibold hover:text-primary-400 transition-colors"
-                  >
-                    استكشف الحلول <i class="ri-arrow-left-line mr-2"></i>
-                  </a>
-                </div>
-              </div>
-
-              <!-- خدمة 3 -->
-              <div
-                class="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden card-hover"
-              >
-                <div class="h-52 overflow-hidden relative">
-                  <img
-                    src="./assets/images/consultingServices.png"
-                    alt="استشارات تقنية"
-                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center p-4 text-white"
-                  >
-                    <span class="text-sm font-medium"
-                      >رؤية تقنية استراتيجية</span
-                    >
-                  </div>
-                </div>
-                <div class="p-8 text-center">
-                  <div
-                    class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-accent/10 flex items-center justify-center"
-                  >
-                    <i class="ri-lightbulb-line text-3xl text-accent"></i>
-                  </div>
-                  <h3 class="text-2xl font-bold text-gray-900 mb-3">
-                    استشارات تقنية وابتكار
-                  </h3>
-                  <p class="text-gray-600 mb-6 leading-relaxed">
-                    نساعدك على اتخاذ القرارات التقنية الصحيحة وتحويل أفكارك إلى
-                    حلول قابلة للتنفيذ والنجاح.
-                  </p>
-                  <a
-                    href="services.html#consulting"
-                    class="inline-flex items-center text-primary font-semibold hover:text-primary-400 transition-colors"
-                  >
-                    احجز استشارة <i class="ri-arrow-left-line mr-2"></i>
-                  </a>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            <!-- زر استعراض الخدمات -->
+        <!-- موجة التحويل -->
+        <div class="wave">
+          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+              fill="#ffffff" fill-opacity="0.5"></path>
+          </svg>
+        </div>
+      </section>
+      <!-- Services Preview Section -->
+      <section id="services" class="py-24 bg-gradient-to-br from-white to-blue-50 relative overflow-hidden">
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+          <!-- العنوان -->
+          <div class="text-center mb-20 reveal">
+
+            <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6">
+              ماذا يمكننا أن <span class="gradient-text">نقدّم لك؟</span>
+            </h2>
+
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              في <span class="font-bold text-blue-600">TECHNOVA</span> لا نقدم خدمات تقنية عادية،
+              بل نصنع حلولاً رقمية متكاملة تساعدك على تحويل فكرتك إلى مشروع ناجح،
+              وتنقل عملك إلى مستوى جديد من الاحتراف والابتكار.
+            </p>
+
+          </div>
+
+          <!-- بطاقات الخدمات -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+            <!-- الخدمة 1 -->
             <div
-              class="text-center mt-16"
-              data-aos="zoom-in"
-              data-aos-delay="250"
-            >
-              <a
-                href="services.html"
-                class="btn-cta px-10 py-4 rounded-full text-lg font-semibold hover:scale-105 transition-transform"
-              >
-                استعرض جميع خدماتنا
+              class="bg-white rounded-3xl shadow-xl p-8 hover:-translate-y-2 transition-all duration-300 reveal tilt-card">
+
+              <div
+                class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-3xl mb-6 shadow-lg">
+                <i class="ri-code-s-slash-line"></i>
+              </div>
+
+              <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                تطوير المواقع والتطبيقات
+              </h3>
+
+              <p class="text-gray-600 leading-relaxed mb-6">
+                نصمم ونطور مواقع وتطبيقات عصرية تجمع بين الأداء العالي
+                والتجربة المميزة للمستخدم، لتمنح مشروعك حضوراً رقمياً
+                احترافياً يلفت الأنظار ويحقق النتائج.
+              </p>
+
+              <a href="#services" class="inline-flex items-center text-blue-600 font-bold hover:gap-2 transition-all">
+                اكتشف الحلول
+                <i class="ri-arrow-left-line mr-2"></i>
+              </a>
+
+            </div>
+
+
+            <!-- الخدمة 2 -->
+            <div
+              class="bg-white rounded-3xl shadow-xl p-8 hover:-translate-y-2 transition-all duration-300 reveal tilt-card"
+              style="transition-delay:100ms">
+
+              <div
+                class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-3xl mb-6 shadow-lg">
+                <i class="ri-lightbulb-flash-line"></i>
+              </div>
+
+              <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                الاستشارات التقنية
+              </h3>
+
+              <p class="text-gray-600 leading-relaxed mb-6">
+                نساعدك على اتخاذ القرارات التقنية الصحيحة من خلال
+                استشارات احترافية مبنية على الخبرة والتحليل،
+                لنحول فكرتك إلى مشروع قابل للنمو والنجاح.
+              </p>
+
+              <a href="#services" class="inline-flex items-center text-blue-600 font-bold hover:gap-2 transition-all">
+                تعرّف أكثر
+                <i class="ri-arrow-left-line mr-2"></i>
+              </a>
+
+            </div>
+
+
+            <!-- الخدمة 3 -->
+            <div
+              class="bg-white rounded-3xl shadow-xl p-8 hover:-translate-y-2 transition-all duration-300 reveal tilt-card"
+              style="transition-delay:200ms">
+
+              <div
+                class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-700 flex items-center justify-center text-white text-3xl mb-6 shadow-lg">
+                <i class="ri-camera-lens-line"></i>
+              </div>
+
+              <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                الأنظمة الذكية والبنية التحتية
+              </h3>
+
+              <p class="text-gray-600 leading-relaxed mb-6">
+                نقدم حلولاً تقنية متقدمة تشمل أنظمة المراقبة الذكية،
+                البنية التحتية للشبكات، وحلول الأمان الرقمي
+                لضمان استقرار وأمان أعمالك.
+              </p>
+
+              <a href="#services" class="inline-flex items-center text-cyan-600 font-bold hover:gap-2 transition-all">
+                استكشف الخدمات
+                <i class="ri-arrow-left-line mr-2"></i>
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <!-- زر استعراض جميع الخدمات -->
+          <div class="text-center mt-16 reveal">
+
+            <a href="#services"
+              class="inline-flex items-center px-10 py-4 bg-gradient-to-r from-blue-600 to-blue-600 text-white rounded-full font-bold text-lg hover:shadow-xl transition-all transform hover:scale-105">
+
+              استعرض جميع خدماتنا
+              <i class="ri-arrow-left-line mr-2"></i>
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- Target Audience Section -->
+      <section id="audience" class="py-24 bg-gradient-to-br from-blue-50 to-cyan-50 relative overflow-hidden">
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+          <!-- العنوان -->
+          <div class="text-center mb-20 reveal">
+            <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6">
+              نخدم <span class="gradient-text">جميع الفئات</span>
+            </h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+              نقدم حلولاً تقنية مخصصة تلبي احتياجات الطلاب ورواد الأعمال والشركات
+            </p>
+          </div>
+
+          <!-- البطاقات -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <!-- الطلاب -->
+            <div
+              class="bg-white rounded-3xl shadow-xl p-8 hover:-translate-y-2 transition-all duration-300 reveal tilt-card">
+              <div class="w-full h-48 mb-6 rounded-2xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=400&fit=crop"
+                  class="w-full h-full object-cover" alt="طلاب">
+              </div>
+
+              <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                طلاب الجامعات
+              </h3>
+
+              <p class="text-gray-600 mb-5">
+                نساعد الطلاب على تنفيذ مشاريع التخرج باحترافية مع التوثيق والشرح الكامل.
+              </p>
+
+              <ul class="space-y-2 mb-6 text-gray-600">
+                <li class="flex items-center gap-2">
+                  <i class="ri-check-line text-blue-600"></i>
+                  دعم كامل لمشاريع التخرج
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-check-line text-blue-600"></i>
+                  توثيق المشروع بالكامل
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-check-line text-blue-600"></i>
+                  شرح عملي للكود
+                </li>
+              </ul>
+
+              <a href="#contact" class="inline-flex items-center text-blue-600 font-bold hover:gap-2 transition-all">
+                ابدأ مشروعك
                 <i class="ri-arrow-left-line mr-2"></i>
               </a>
             </div>
-          </div>
-        </section>
 
-        <!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
-        <!--! Target Audience Section -->
-        <section
-          id="audience"
-          class="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden"
-          role="region"
-          aria-labelledby="audience-title"
-        >
-          <!-- assets/images/bg-pattern.svg -->
+
+            <!-- رواد الأعمال -->
+            <div
+              class="bg-white rounded-3xl shadow-xl p-8 hover:-translate-y-2 transition-all duration-300 reveal tilt-card"
+              style="transition-delay:100ms;">
+
+              <div class="w-full h-48 mb-6 rounded-2xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop"
+                  class="w-full h-full object-cover" alt="رواد أعمال">
+              </div>
+
+              <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                رواد الأعمال
+              </h3>
+
+              <p class="text-gray-600 mb-5">
+                نحول أفكارك إلى منتجات رقمية حقيقية تساعدك على إطلاق مشروعك بسرعة.
+              </p>
+
+              <ul class="space-y-2 mb-6 text-gray-600">
+                <li class="flex items-center gap-2">
+                  <i class="ri-check-line text-blue-600"></i>
+                  تطوير MVP سريع
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-check-line text-blue-600"></i>
+                  تكامل أنظمة الدفع
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-check-line text-blue-600"></i>
+                  استراتيجيات تسويق رقمي
+                </li>
+              </ul>
+
+              <a href="#contact" class="inline-flex items-center text-blue-600 font-bold hover:gap-2 transition-all">
+                اطلب استشارة
+                <i class="ri-arrow-left-line mr-2"></i>
+              </a>
+
+            </div>
+
+
+            <!-- الشركات -->
+            <div
+              class="bg-white rounded-3xl shadow-xl p-8 hover:-translate-y-2 transition-all duration-300 reveal tilt-card"
+              style="transition-delay:200ms;">
+
+              <div class="w-full h-48 mb-6 rounded-2xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=400&fit=crop"
+                  class="w-full h-full object-cover" alt="الشركات">
+              </div>
+
+              <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                الشركات والمؤسسات
+              </h3>
+
+              <p class="text-gray-600 mb-5">
+                نوفر أنظمة متكاملة لإدارة الأعمال والبنية التحتية والتقنيات الحديثة.
+              </p>
+
+              <ul class="space-y-2 mb-6 text-gray-600">
+                <li class="flex items-center gap-2">
+                  <i class="ri-check-line text-cyan-600"></i>
+                  أنظمة ERP و CRM
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-check-line text-cyan-600"></i>
+                  بنية تحتية وشبكات
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-check-line text-cyan-600"></i>
+                  حلول ذكاء اصطناعي
+                </li>
+              </ul>
+
+              <a href="#contact" class="inline-flex items-center text-cyan-600 font-bold hover:gap-2 transition-all">
+                احجز استشارة
+                <i class="ri-arrow-left-line mr-2"></i>
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- Projects Section -->
+      <section id="projects" class="py-24 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden">
+        <div class="absolute inset-0">
           <div
-            class="absolute inset-0 bg-[url('')] bg-center bg-cover opacity-10"
-          ></div>
-
-          <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-            <!-- Section Title -->
-            <div
-              class="text-center mb-16"
-              data-aos="fade-up"
-              data-aos-duration="1000"
-            >
-              <h2
-                id="audience-title"
-                class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight"
-              >
-                نخدم جميع فئات العملاء بحلول تقنية مبتكرة
-              </h2>
-              <p
-                class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
-              >
-                من مشاريع التخرج إلى أنظمة المؤسسات —
-                <span class="text-primary font-semibold">TECHNOVA</span> تقدم
-                حلولًا احترافية تجمع بين التقنية والإبداع لتحقيق أهدافك بثقة
-                واحتراف.
-              </p>
-
-              <!-- Trust Indicators -->
-              <div
-                class="mt-10 flex flex-col md:flex-row items-center justify-center gap-6 text-sm text-gray-700"
-              >
-                <div class="flex items-center gap-2">
-                  <i class="ri-graduation-cap-line text-primary text-xl"></i>
-                  <span>دعم كامل لمشاريع الطلاب والتخرج</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <i class="ri-time-line text-primary text-xl"></i>
-                  <span>التزام بالمواعيد وتسليم بجودة عالية</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <i
-                    class="ri-customer-service-2-line text-primary text-xl"
-                  ></i>
-                  <span>دعم فني ومتابعة بعد التسليم</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Audience Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-              <!-- Students -->
-              <article
-                class="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-3 hover:scale-[1.02] p-8 border-t-4 border-primary"
-                data-aos="fade-right"
-                data-aos-duration="800"
-              >
-                <div
-                  class="w-full h-52 mb-6 rounded-2xl overflow-hidden bg-gray-100"
-                >
-                  <img
-                    src="assets/images/graduated-graduate-svgrepo-com.svg"
-                    alt="طلاب مشاريع التخرج"
-                    class="w-full h-full object-contain"
-                  />
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">
-                  طلاب الجامعات ومشاريع التخرج
-                </h3>
-                <p class="text-gray-600 leading-relaxed mb-5">
-                  نحوّل فكرتك إلى مشروع تخرج احترافي بتوثيق كامل وتصميم يليق
-                  بعرضك النهائي.
-                </p>
-                <ul class="space-y-3 text-gray-700 mb-6">
-                  <li class="flex items-start gap-2">
-                    <i class="ri-check-double-fill text-primary"></i>تصميم
-                    واجهات جذابة وسهلة الاستخدام
-                  </li>
-                  <li class="flex items-start gap-2">
-                    <i class="ri-check-double-fill text-primary"></i>مراجعة
-                    مجانية وتعديلات غير محدودة قبل التسليم
-                  </li>
-                  <li class="flex items-start gap-2">
-                    <i class="ri-check-double-fill text-primary"></i>أسعار خاصة
-                    وخطط ميسرة للطلاب
-                  </li>
-                </ul>
-                <button
-                  class="w-full bg-primary text-white py-3 rounded-xl font-semibold text-lg hover:bg-primary-700 transition-all"
-                >
-                  ابدأ مشروعك الآن
-                </button>
-              </article>
-
-              <!-- Entrepreneurs -->
-              <article
-                class="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-3 hover:scale-[1.02] p-8 border-t-4 border-primary"
-                data-aos="fade-up"
-                data-aos-duration="800"
-              >
-                <div
-                  class="w-full h-52 mb-6 rounded-2xl overflow-hidden bg-gray-100"
-                >
-                  <img
-                    src="assets/images/audience-entrepreneurs.jpg"
-                    alt="أصحاب المشاريع الصغيرة"
-                    class="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">
-                  رواد الأعمال والمشاريع الناشئة
-                </h3>
-                <p class="text-gray-600 leading-relaxed mb-5">
-                  من الفكرة إلى الإطلاق، نبني لك منصة تجذب المستخدمين وتبدأ
-                  بتحقيق الأرباح.
-                </p>
-                <ul class="space-y-3 text-gray-700 mb-6">
-                  <li class="flex items-start gap-2">
-                    <i class="ri-check-double-fill text-primary"></i>تحليل
-                    الفكرة وتحويلها إلى منتج MVP قابل للتطوير
-                  </li>
-                  <li class="flex items-start gap-2">
-                    <i class="ri-check-double-fill text-primary"></i>تكامل مع
-                    أنظمة الدفع والإعلانات
-                  </li>
-                  <li class="flex items-start gap-2">
-                    <i class="ri-check-double-fill text-primary"></i>خطة تسويق
-                    رقمية مخصصة لمنتجك
-                  </li>
-                </ul>
-                <button
-                  class="w-full bg-primary text-white py-3 rounded-xl font-semibold text-lg hover:bg-primary-700 transition-all"
-                >
-                  اطلب استشارة مجانية
-                </button>
-              </article>
-
-              <!-- Companies -->
-              <article
-                class="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-3 hover:scale-[1.02] p-8 border-t-4 border-primary"
-                data-aos="fade-left"
-                data-aos-duration="800"
-              >
-                <div
-                  class="w-full h-52 mb-6 rounded-2xl overflow-hidden bg-gray-100"
-                >
-                  <img
-                    src="assets/images/audience-corporate.png"
-                    alt="الشركات والمؤسسات"
-                    class="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">
-                  الشركات والمؤسسات
-                </h3>
-                <p class="text-gray-600 leading-relaxed mb-5">
-                  نوفر أنظمة متكاملة لإدارة مواردك، أمانك، وبنيتك التحتية بكفاءة
-                  واحتراف.
-                </p>
-                <ul class="space-y-3 text-gray-700 mb-6">
-                  <li class="flex items-start gap-2">
-                    <i class="ri-check-double-fill text-primary"></i>أنظمة ERP
-                    وCRM متكاملة
-                  </li>
-                  <li class="flex items-start gap-2">
-                    <i class="ri-check-double-fill text-primary"></i>خدمات حماية
-                    سيبرانية متقدمة
-                  </li>
-                  <li class="flex items-start gap-2">
-                    <i class="ri-check-double-fill text-primary"></i>إدارة
-                    الشبكات والبنية التحتية
-                  </li>
-                  <li class="flex items-start gap-2">
-                    <i class="ri-check-double-fill text-primary"></i>
-                    اتمته المهام عبر وكلاء الذكاء الاصطناعي
-                  </li>
-                </ul>
-                <button
-                  class="w-full bg-primary text-white py-3 rounded-xl font-semibold text-lg hover:bg-primary-700 transition-all"
-                >
-                  احجز استشارتك الآن
-                </button>
-              </article>
-            </div>
-          </div>
-        </section>
-        <!-- ! Featured Projects Section -->
-<section
-  id="featured-projects"
-  class="py-24 bg-gradient-to-br from-white to-blue-50 relative overflow-hidden"
->
-  <!-- Decorative Background Elements -->
-  <div class="absolute inset-0 overflow-hidden">
-    <div
-      class="absolute -top-40 -left-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float"
-    ></div>
-    <div
-      class="absolute bottom-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-float-delay"
-    ></div>
-  </div>
-
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <!-- Section Title -->
-    <div class="text-center mb-16" data-aos="fade-up">
-      <h2
-        class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4"
-      >
-        مشاريع <span class="gradient-text">TECHNOVA</span> المميزة
-      </h2>
-      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-        بعض من أبرز إنجازاتنا التقنية التي ساعدت الشركات والطلاب على
-        تحويل الأفكار إلى مشاريع ناجحة.
-      </p>
-    </div>
-
-    <!-- Projects Showcase -->
-    <div
-      class="overflow-x-auto"
-      data-aos="fade-up"
-      data-aos-delay="100"
-    >
-      <div
-        class="flex space-x-6 space-x-reverse pb-4"
-        style="width: max-content"
-      >
-        <!-- Project Card 1 - Enterprise -->
-        <div
-          class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 card-hover overflow-hidden w-80"
-        >
-          <div class="h-48 overflow-hidden relative">
-            <img
-              src="./assets/images/projects/smart-energy-management-system.png"
-              alt="نظام متكامل لإدارة محطات توليد الكهرباء"
-              class="w-full h-full object-contain"
-            />
-            <div
-              class="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 flex items-center justify-center text-white text-sm transition-opacity"
-            >
-              نظام طاقة ذكي متكامل
-            </div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-900 mb-3">
-              نظام متكامل لإدارة محطات توليد الكهرباء
-            </h3>
-            <p class="text-gray-600 mb-4">
-              نظام متكامل لإدارة محطات توليد الكهرباء، مع عدادات ذكية ترسل البيانات تلقائيًا دون الحاجة إلى الإنترنت.
-            </p>
-            <div
-              class="flex items-center justify-between text-sm text-gray-500"
-            >
-              <span>مشروع مؤسسي</span>
-              <i
-                class="ri-external-link-line text-primary cursor-pointer hover:text-blue-700"
-              ></i>
-            </div>
+            class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%236366f1%22%20fill-opacity%3D%220.05%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20">
           </div>
         </div>
 
-        <!-- Project Card 2 - Web -->
-        <div
-          class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 card-hover overflow-hidden w-80"
-        >
-          <div class="h-48 overflow-hidden relative">
-            <img
-              src="./assets/images/projects/Original_Yemeni_products.png"
-              alt="متجر المنتجات اليمنية الأصيلة المتكامل"
-              class="w-full h-full object-contain"
-            />
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center mb-20 reveal">
+            <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6">
+              أعمالنا <span class="gradient-text">المميزة</span>
+            </h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+              نفخر بتقديم مشاريع عالية الجودة تلبي احتياجات عملائنا وتتجاوز توقعاتهم
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- مشروع 1 -->
             <div
-              class="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 flex items-center justify-center text-white text-sm transition-opacity"
-            >
-              منصة تجارة إلكترونية عالمية
+              class="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 reveal">
+              <div class="image-hover h-64 relative">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
+                  alt="نظام إدارة الطاقة" class="w-full h-full object-cover" />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                  <span class="text-white font-bold">نظام طاقة ذكي متكامل</span>
+                </div>
+              </div>
+              <div class="p-8">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold">مؤسسي</span>
+                  <span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm font-semibold">مكتمل</span>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                  نظام متكامل لإدارة محطات توليد الكهرباء
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  نظام ذكي لإدارة محطات توليد الكهرباء مع عدادات ذكية ترسل البيانات تلقائياً دون الحاجة للإنترنت.
+                </p>
+                <a href="#" class="inline-flex items-center text-blue-600 font-bold hover:gap-2 transition-all">
+                  عرض التفاصيل <i class="ri-arrow-left-line mr-2"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- مشروع 2 -->
+            <div
+              class="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 reveal"
+              style="transition-delay: 100ms;">
+              <div class="image-hover h-64 relative">
+                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop"
+                  alt="متجر إلكتروني" class="w-full h-full object-cover" />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                  <span class="text-white font-bold">تجارة إلكترونية عالمية</span>
+                </div>
+              </div>
+              <div class="p-8">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold">تجارة
+                    إلكترونية</span>
+                  <span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm font-semibold">مكتمل</span>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                  متجر المنتجات اليمنية الأصيلة
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  منصة تجارة إلكترونية عالمية متخصصة في المنتجات اليمنية الفاخرة مع نظام دفع وشحن دولي متكامل.
+                </p>
+                <a href="#" class="inline-flex items-center text-blue-600 font-bold hover:gap-2 transition-all">
+                  عرض التفاصيل <i class="ri-arrow-left-line mr-2"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- مشروع 3 -->
+            <div
+              class="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 reveal">
+              <div class="image-hover h-64 relative">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop"
+                  alt="تطبيق صحي" class="w-full h-full object-cover" />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                  <span class="text-white font-bold">تطبيق صحي متكامل</span>
+                </div>
+              </div>
+              <div class="p-8">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="px-3 py-1 rounded-full bg-cyan-100 text-cyan-700 text-sm font-semibold">تطبيق
+                    موبايل</span>
+                  <span class="px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 text-sm font-semibold">قيد
+                    التطوير</span>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-cyan-600 transition-colors">
+                  تطبيق Healthify للصحة واللياقة
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  مساعد شخصي للصحة واللياقة البدنية مع خطط مخصصة وتتبع للوجبات والنوم والنشاط البدني.
+                </p>
+                <a href="#" class="inline-flex items-center text-cyan-600 font-bold hover:gap-2 transition-all">
+                  عرض التفاصيل <i class="ri-arrow-left-line mr-2"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- مشروع 4 -->
+            <div
+              class="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 reveal"
+              style="transition-delay: 100ms;">
+              <div class="image-hover h-64 relative">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop" alt="نظام IoT"
+                  class="w-full h-full object-cover" />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                  <span class="text-white font-bold">إنترنت الأشياء</span>
+                </div>
+              </div>
+              <div class="p-8">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="px-3 py-1 rounded-full bg-purple-100 text-purple-700 text-sm font-semibold">IoT</span>
+                  <span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm font-semibold">مكتمل</span>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">
+                  نظام عداد طاقة كهربائية ذكي
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  نظام ذكي لمراقبة استهلاك الطاقة الكهربائية لحظياً باستخدام ESP32 وربطه بتطبيق Blynk.
+                </p>
+                <a href="#" class="inline-flex items-center text-purple-600 font-bold hover:gap-2 transition-all">
+                  عرض التفاصيل <i class="ri-arrow-left-line mr-2"></i>
+                </a>
+              </div>
             </div>
           </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-900 mb-3">
-              متجر المنتجات اليمنية الأصيلة المتكامل
-            </h3>
-            <p class="text-gray-600 mb-4">
-              منصة تجارة إلكترونية عالمية متخصصة في المنتجات اليمنية الفاخرة، مع نظام دفع وشحن دولي متكامل.
-            </p>
-            <div
-              class="flex items-center justify-between text-sm text-gray-500"
-            >
-              <span>مشروع ويب</span>
-              <i
-                class="ri-external-link-line text-primary cursor-pointer hover:text-blue-700"
-              ></i>
-            </div>
+
+          <div class="text-center mt-12 reveal">
+            <a href="#"
+              class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-600 text-white rounded-full font-bold hover:shadow-xl transition-all transform hover:scale-105">
+              استعرض جميع المشاريع
+              <i class="ri-arrow-left-line mr-2"></i>
+            </a>
           </div>
         </div>
+      </section>
 
-        <!-- Project Card 3 - Mobile -->
-        <div
-          class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 card-hover overflow-hidden w-80"
-        >
-          <div class="h-48 overflow-hidden relative">
-            <img
-              src="./assets/images/projects/healthify_1.webp"
-              alt="تطبيق Healthify"
-              class="w-full h-full object-contain"
-            />
-            <div
-              class="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 flex items-center justify-center text-white text-sm transition-opacity"
-            >
-              تطبيق صحي ورياضي
-            </div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-900 mb-3">
-              تطبيق Healthify (تتبع الصحة واللياقة)
-            </h3>
-            <p class="text-gray-600 mb-4">
-              مساعد شخصي للصحة واللياقة البدنية مع خطط مخصصة وتتبع للوجبات والنوم.
-            </p>
-            <div
-              class="flex items-center justify-between text-sm text-gray-500"
-            >
-              <span>مشروع تطبيقات</span>
-              <i
-                class="ri-external-link-line text-primary cursor-pointer hover:text-blue-700"
-              ></i>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project Card 4 - IoT -->
-        <div
-          class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 card-hover overflow-hidden w-80"
-        >
-          <div class="h-48 overflow-hidden relative">
-            <img
-              src="./assets/images/projects/IoT-Electricity-Energy-Meter-1080x607.jpg"
-              alt="نظام عدّاد طاقة كهربائية ذكي"
-              class="w-full h-full object-contain"
-            />
-            <div
-              class="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 flex items-center justify-center text-white text-sm transition-opacity"
-            >
-              نظام طاقة ذكي
-            </div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-900 mb-3">
-              نظام عدّاد طاقة كهربائية ذكي باستخدام ESP32 وBlynk
-            </h3>
-            <p class="text-gray-600 mb-4">
-              نظام ذكي لمراقبة استهلاك الطاقة الكهربائية لحظياً وربطه بتطبيق Blynk لعرض البيانات عن بُعد.
-            </p>
-            <div
-              class="flex items-center justify-between text-sm text-gray-500"
-            >
-              <span>مشروع إنترنت الأشياء</span>
-              <i
-                class="ri-external-link-line text-primary cursor-pointer hover:text-blue-700"
-              ></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Button to View All Projects -->
-    <div
-      class="text-center mt-12"
-      data-aos="fade-up"
-      data-aos-delay="200"
-    >
-      <a
-        href="projects.html"
-        class="inline-flex items-center px-8 py-3 bg-primary text-white rounded-full font-semibold shadow-lg hover:bg-blue-700 transition-transform hover:-translate-y-1"
-      >
-        استعرض جميع المشاريع
-        <i class="ri-arrow-left-line ml-2"></i>
-      </a>
-    </div>
-  </div>
-</section>
-
-        <!-- Why Choose Us Section -->
-        <section
-          class="relative py-24 bg-gradient-to-br from-[var(--color-bg)] to-[var(--color-surface)] overflow-hidden"
-        >
-          <!-- خلفية زخرفية -->
-          <div
-            class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--color-primary)_0%,transparent_70%)] opacity-10"
-          ></div>
-
-          <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
-            <!-- العنوان -->
-            <div
-              class="text-center mb-16"
-              data-aos="fade-up"
-              data-aos-duration="800"
-            >
-              <h2
-                class="text-4xl md:text-5xl font-extrabold gradient-text mb-4"
-              >
-                لماذا <span class="text-dark">TECHNOVA</span>؟
+      <!-- Why Choose Us -->
+      <section id="about" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+              <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6">
+                لماذا تختار <span class="gradient-text">TECHNOVA</span>؟
               </h2>
-              <p
-                class="text-lg text-[color:var(--color-muted)] max-w-3xl mx-auto leading-relaxed"
-              >
-                لأننا لا نطوّر مشاريع فحسب، بل
-                <span class="text-primary font-semibold"
-                  >نبني تجارب رقمية تُحدث فرقًا</span
-                >
-                وتمنح علامتك التجارية حضورًا يليق بعصر التكنولوجيا.
+              <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                نحن نؤمن بأن النجاح يأتي من التفاني في العمل والالتزام بأعلى معايير الجودة. فريقنا من الخبراء جاهز
+                لتحويل رؤيتك إلى حقيقة.
               </p>
-            </div>
 
-            <!-- المزايا -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-              <!-- ميزة 1 -->
-              <div
-                class="group bg-white/70 backdrop-blur-lg rounded-2xl p-8 text-center shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:bg-white"
-                data-aos="zoom-in"
-                data-aos-delay="100"
-              >
-                <div
-                  class="w-20 h-20 flex items-center justify-center mx-auto mb-6 rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500"
-                >
-                  <i class="ri-award-line text-4xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-dark mb-3">
-                  خبرة تصنع الثقة
-                </h3>
-                <p class="text-gray-600 leading-relaxed">
-                  نضع بين يديك
-                  <span class="font-semibold text-primary"
-                    >خبرة تمتد لأكثر من 10 سنوات</span
-                  >
-                  في تطوير المواقع، التطبيقات، والأنظمة المتكاملة بدقة واحتراف.
-                </p>
-              </div>
-
-              <!-- ميزة 2 -->
-              <div
-                class="group bg-white/70 backdrop-blur-lg rounded-2xl p-8 text-center shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:bg-white"
-                data-aos="zoom-in"
-                data-aos-delay="200"
-              >
-                <div
-                  class="w-20 h-20 flex items-center justify-center mx-auto mb-6 rounded-2xl bg-accent/10 text-accent group-hover:bg-accent group-hover:text-white transition-all duration-500"
-                >
-                  <i class="ri-star-smile-line text-4xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-dark mb-3">
-                  جودة تتحدث عن نفسها
-                </h3>
-                <p class="text-gray-600 leading-relaxed">
-                  نهتم بأدق التفاصيل ونُنفّذ بمعايير عالمية لنضمن لك مشروعًا
-                  <span class="font-semibold text-accent"
-                    >مستقرًا وسريع الأداء</span
-                  >
-                  يحقق أهدافك بثقة.
-                </p>
-              </div>
-
-              <!-- ميزة 3 -->
-              <div
-                class="group bg-white/70 backdrop-blur-lg rounded-2xl p-8 text-center shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:bg-white"
-                data-aos="zoom-in"
-                data-aos-delay="300"
-              >
-                <div
-                  class="w-20 h-20 flex items-center justify-center mx-auto mb-6 rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500"
-                >
-                  <i class="ri-lightbulb-flash-line text-4xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-dark mb-3">
-                  ابتكار يحرك المستقبل
-                </h3>
-                <p class="text-gray-600 leading-relaxed">
-                  ندمج الذكاء الاصطناعي وأحدث التقنيات لنقدّم حلولًا
-                  <span class="font-semibold text-primary"
-                    >تواكب التطور وتُبهر المستخدمين</span
-                  >.
-                </p>
-              </div>
-
-              <!-- ميزة 4 -->
-              <div
-                class="group bg-white/70 backdrop-blur-lg rounded-2xl p-8 text-center shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:bg-white"
-                data-aos="zoom-in"
-                data-aos-delay="400"
-              >
-                <div
-                  class="w-20 h-20 flex items-center justify-center mx-auto mb-6 rounded-2xl bg-accent/10 text-accent group-hover:bg-accent group-hover:text-white transition-all duration-500"
-                >
-                  <i class="ri-time-line text-4xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-dark mb-3">
-                  سرعة بدون تنازلات
-                </h3>
-                <p class="text-gray-600 leading-relaxed">
-                  نلتزم بالمواعيد ونقدّم مشاريعنا في وقتها مع
-                  <span class="font-semibold text-accent"
-                    >أداء فائق وتجربة مستخدم مثالية</span
-                  >.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section class="py-20 bg-white">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                ماذا يقول عملاؤنا
-              </h2>
-              <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                آراء وتقييمات عملائنا الكرام تعكس جودة خدماتنا ومستوى رضاهم
-              </p>
-            </div>
-
-            <div class="overflow-x-auto">
-              <div
-                class="flex space-x-6 space-x-reverse pb-4"
-                style="width: max-content"
-              >
-                <!-- Testimonial 1 -->
-                <div
-                  class="bg-gray-50 rounded-2xl p-8 card-hover"
-                  style="width: 350px"
-                >
-                  <div class="flex items-center mb-4">
-                    <div class="flex text-yellow-400">
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                    </div>
-                  </div>
-                  <p class="text-gray-700 mb-6">
-                    "تجربة رائعة مع فريق TECHNOVA، تم تطوير موقعنا الإلكتروني
-                    بأعلى معايير الجودة والاحتراف. الفريق متعاون ومتفهم
-                    لاحتياجاتنا."
-                  </p>
-                  <div class="flex items-center">
-                    <div
-                      class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center ml-4"
-                    >
-                      <i class="ri-user-line text-primary text-xl"></i>
-                    </div>
-                    <div>
-                      <h4 class="font-semibold text-gray-900">
-                        أحمد محمد العتيبي
-                      </h4>
-                      <p class="text-sm text-gray-500">
-                        مدير شركة الرياض التجارية
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Testimonial 2 -->
-                <div
-                  class="bg-gray-50 rounded-2xl p-8 card-hover"
-                  style="width: 350px"
-                >
-                  <div class="flex items-center mb-4">
-                    <div class="flex text-yellow-400">
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                    </div>
-                  </div>
-                  <p class="text-gray-700 mb-6">
-                    "ساعدوني في تنفيذ مشروع التخرج بطريقة احترافية ومميزة. الدعم
-                    الفني والمتابعة المستمرة كانت أكثر من رائعة. أنصح بهم بشدة."
-                  </p>
-                  <div class="flex items-center">
-                    <div
-                      class="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center ml-4"
-                    >
-                      <i class="ri-user-line text-secondary text-xl"></i>
-                    </div>
-                    <div>
-                      <h4 class="font-semibold text-gray-900">
-                        سارة عبدالله القحطاني
-                      </h4>
-                      <p class="text-sm text-gray-500">
-                        طالبة هندسة حاسوب - جامعة الملك سعود
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div
-                  class="bg-gray-50 rounded-2xl p-8 card-hover"
-                  style="width: 350px"
-                >
-                  <div class="flex items-center mb-4">
-                    <div class="flex text-yellow-400">
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                    </div>
-                  </div>
-                  <p class="text-gray-700 mb-6">
-                    "فريق محترف ومتميز، تم تطوير نظام إدارة المستشفى بكفاءة
-                    عالية وفي الوقت المحدد. النظام يعمل بسلاسة ويلبي جميع
-                    احتياجاتنا."
-                  </p>
-                  <div class="flex items-center">
-                    <div
-                      class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center ml-4"
-                    >
-                      <i class="ri-user-line text-primary text-xl"></i>
-                    </div>
-                    <div>
-                      <h4 class="font-semibold text-gray-900">
-                        د. خالد إبراهيم الشمري
-                      </h4>
-                      <p class="text-sm text-gray-500">
-                        مدير تقنية المعلومات - مستشفى الملك فهد
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Testimonial 4 -->
-                <div
-                  class="bg-gray-50 rounded-2xl p-8 card-hover"
-                  style="width: 350px"
-                >
-                  <div class="flex items-center mb-4">
-                    <div class="flex text-yellow-400">
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                    </div>
-                  </div>
-                  <p class="text-gray-700 mb-6">
-                    "منصة التعليم الإلكتروني التي طوروها لنا تجاوزت توقعاتنا.
-                    سهولة الاستخدام والميزات المتقدمة جعلت التعليم عن بُعد أكثر
-                    فعالية."
-                  </p>
-                  <div class="flex items-center">
-                    <div
-                      class="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center ml-4"
-                    >
-                      <i class="ri-user-line text-secondary text-xl"></i>
-                    </div>
-                    <div>
-                      <h4 class="font-semibold text-gray-900">
-                        فاطمة حسن الزهراني
-                      </h4>
-                      <p class="text-sm text-gray-500">
-                        مديرة التطوير - معهد الإدارة العامة
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-gray-50">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                تواصل معنا
-              </h2>
-              <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                نحن هنا لمساعدتك في تحقيق أهدافك التقنية. تواصل معنا الآن للحصول
-                على استشارة مجانية
-              </p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <!-- Contact Form -->
-              <div class="bg-white rounded-2xl shadow-lg p-8">
-                <h3 class="text-2xl font-bold text-gray-900 mb-6">
-                  أرسل لنا رسالة
-                </h3>
-                <form class="space-y-6" id="contactForm">
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
-                      >الاسم الكامل</label
-                    >
-                    <input
-                      type="text"
-                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
-                      placeholder="أدخل اسمك الكامل"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
-                      >البريد الإلكتروني</label
-                    >
-                    <input
-                      type="email"
-                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
-                      placeholder="أدخل بريدك الإلكتروني"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
-                      >رقم الهاتف</label
-                    >
-                    <input
-                      type="tel"
-                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
-                      placeholder="أدخل رقم هاتفك"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
-                      >تفاصيل المشروع</label
-                    >
-                    <textarea
-                      rows="4"
-                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm resize-none"
-                      placeholder="اكتب تفاصيل مشروعك أو استفسارك هنا..."
-                      required
-                    ></textarea>
-                  </div>
-                  <button
-                    type="submit"
-                    class="w-full bg-primary text-white py-4 !rounded-button text-lg font-semibold hover:bg-blue-700 transition-all transform hover:scale-105 cursor-pointer"
-                  >
-                    إرسال الاستفسار
-                  </button>
-                </form>
-              </div>
-
-              <!-- Contact Info -->
-              <div class="space-y-8">
-                <div class="bg-white rounded-2xl shadow-lg p-8">
-                  <h3 class="text-2xl font-bold text-gray-900 mb-6">
-                    معلومات التواصل
-                  </h3>
-                  <div class="space-y-6">
-                    <div class="flex items-center">
-                      <div
-                        class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center ml-4"
-                      >
-                        <i class="ri-phone-line text-primary text-xl"></i>
-                        
-                      </div>
-                      <div>
-                        <h4 class="font-semibold text-gray-900">الهاتف</h4>
-                        <p class="text-gray-600">613 721 737 967+</p>
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <div
-                        class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center ml-4"
-                      >
-                        <i class="ri-phone-line text-primary text-xl"></i>
-                        
-                      </div>
-                      <div>
-                        <h4 class="font-semibold text-gray-900">الهاتف</h4>
-                        <p class="text-gray-600">715643894 967+</p>
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <div
-                        class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center ml-4"
-                      >
-                        <i class="ri-mail-line text-secondary text-xl"></i>
-                      </div>
-                      <div>
-                        <h4 class="font-semibold text-gray-900">
-                          البريد الإلكتروني
-                        </h4>
-                        <p class="text-gray-600">info@technova.sa</p>
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <div
-                        class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center ml-4"
-                      >
-                        <i class="ri-map-pin-line text-primary text-xl"></i>
-                      </div>
-                      <div>
-                        <h4 class="font-semibold text-gray-900">العنوان</h4>
-                        <p class="text-gray-600">
-                          الرياض، حي العليا، شارع الملك فهد
-                        </p>
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <div
-                        class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center ml-4"
-                      >
-                        <i class="ri-time-line text-secondary text-xl"></i>
-                      </div>
-                      <div>
-                        <h4 class="font-semibold text-gray-900">ساعات العمل</h4>
-                        <p class="text-gray-600">
-                          الأحد - الخميس: 9:00 ص - 6:00 م
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Map -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+              <div class="space-y-6">
+                <div class="flex items-start gap-4 p-4 rounded-2xl hover:bg-blue-50 transition-colors group">
                   <div
-                    class="h-64 bg-cover bg-center"
-                    style="
-                      background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png');
-                    "
-                  ></div>
+                    class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                    <i class="ri-award-line"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">خبرة تصنع الثقة</h3>
+                    <p class="text-gray-600">أكثر من 4 سنوات من الخبرة في تقديم حلول تقنية مبتكرة لعملاء من مختلف
+                      القطاعات.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4 p-4 rounded-2xl hover:bg-blue-50 transition-colors group">
+                  <div
+                    class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                    <i class="ri-time-line"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">سرعة ودقة</h3>
+                    <p class="text-gray-600">نلتزم بالمواعيد ونضمن تسليم المشاريع في الوقت المحدد مع الحفاظ على أعلى
+                      معايير الجودة.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4 p-4 rounded-2xl hover:bg-cyan-50 transition-colors group">
+                  <div
+                    class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-700 flex items-center justify-center text-white text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                    <i class="ri-customer-service-2-line"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">دعم مستمر</h3>
+                    <p class="text-gray-600">نقدم دعماً فنياً على مدار الساعة ومتابعة مستمرة بعد انتهاء المشروع لضمان
+                      نجاحك.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative reveal">
+              <div class="relative rounded-3xl overflow-hidden shadow-2xl card-3d">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=1000&fit=crop"
+                  alt="فريق العمل" class="w-full h-auto" />
+                <div class="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+                  <div class="text-3xl font-bold mb-2">فريق من الخبراء</div>
+                  <div class="text-blue-200">نعمل معاً لتحقيق أهدافك</div>
+                </div>
+              </div>
+
+              <!-- شارات الإنجاز -->
+              <div class="absolute -top-6 -right-6 glass-effect rounded-2xl p-4 shadow-xl animate-float">
+                <div class="flex items-center gap-3">
+                  <div class="w-12 h-12 rounded-full bg-yellow-400 flex items-center justify-center text-white text-xl">
+                    <i class="ri-star-fill"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-gray-800">تقييم 5 نجوم</div>
+                    <div class="text-sm text-gray-500">من عملائنا</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="absolute -bottom-6 -left-6 glass-effect rounded-2xl p-4 shadow-xl animate-float-delayed">
+                <div class="flex items-center gap-3">
+                  <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white text-xl">
+                    <i class="ri-shield-check-line"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-gray-800">ضمان الجودة</div>
+                    <div class="text-sm text-gray-500">100% رضا العملاء</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
-      </main>
-
-      <!-- FOOTER -->
-      <footer class="bg-gray-900 text-white py-12">
-        <div
-          class="mt-8 border-t border-gray-800 pt-6 text-center text-gray-400 text-sm"
-        >
-          © <span id="year"></span> TECHNOVA. جميع الحقوق محفوظة.
         </div>
-      </footer>
-    </div>
-    <!-- ! إضافة زر العودة للأعلى مع تحسينات -->
-    <button
-      id="back-to-top"
-      class="fixed bottom-6 right-6 bg-primary text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 z-40"
-    >
-      <i class="ri-arrow-up-line text-xl"></i>
-    </button>
+      </section>
 
-    <script id="scroll-indicator">
-      document.addEventListener("DOMContentLoaded", function () {
-        const scrollIndicator = document.getElementById("scrollIndicator");
+      <!-- Testimonials -->
+      <section class="py-24 bg-gradient-to-br from-blue-50 to-blue-50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center mb-16 reveal">
+            <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6">
+              آراء <span class="gradient-text">عملائنا</span>
+            </h2>
+            <p class="text-lg text-gray-600">نفتخر بثقة عملائنا ونسعى دائماً لتقديم الأفضل</p>
+          </div>
 
-        if (scrollIndicator) {
-          window.addEventListener("scroll", function () {
-            const scrollPercentage =
-              (window.scrollY /
-                (document.documentElement.scrollHeight - window.innerHeight)) *
-              100;
-            scrollIndicator.style.width = scrollPercentage + "%";
-          });
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- رأي 1 -->
+            <div
+              class="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 reveal">
+              <div class="flex text-yellow-400 text-xl mb-4">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+              </div>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                "تجربة رائعة مع فريق TECHNOVA، تم تطوير موقعنا الإلكتروني بأعلى معايير الجودة والاحتراف. الفريق متعاون
+                ومتفهم لاحتياجاتنا."
+              </p>
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xl">
+                  أ
+                </div>
+                <div>
+                  <div class="font-bold text-gray-900">أحمد محمد</div>
+                  <div class="text-sm text-gray-500">مدير شركة الرياض التجارية</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- رأي 2 -->
+            <div
+              class="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 reveal"
+              style="transition-delay: 100ms;">
+              <div class="flex text-yellow-400 text-xl mb-4">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+              </div>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                "ساعدوني في تنفيذ مشروع التخرج بطريقة احترافية ومميزة. الدعم الفني والمتابعة المستمرة كانت أكثر من
+                رائعة."
+              </p>
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xl">
+                  س
+                </div>
+                <div>
+                  <div class="font-bold text-gray-900">سارة عبدالله</div>
+                  <div class="text-sm text-gray-500">طالبة هندسة حاسوب</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- رأي 3 -->
+            <div
+              class="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 reveal"
+              style="transition-delay: 200ms;">
+              <div class="flex text-yellow-400 text-xl mb-4">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+              </div>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                "فريق محترف ومتميز، تم تطوير نظام إدارة المستشفى بكفاءة عالية وفي الوقت المحدد. النظام يعمل بسلاسة ويلبي
+                جميع احتياجاتنا."
+              </p>
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-12 h-12 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-600 font-bold text-xl">
+                  خ
+                </div>
+                <div>
+                  <div class="font-bold text-gray-900">د. خالد إبراهيم</div>
+                  <div class="text-sm text-gray-500">مدير تقنية المعلومات</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center mb-16 reveal">
+            <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6">
+              تواصل <span class="gradient-text">معنا</span>
+            </h2>
+            <p class="text-lg text-gray-600">نحن هنا لمساعدتك في تحقيق أهدافك التقنية</p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- نموذج التواصل -->
+            <div class="bg-gradient-to-br from-blue-50 to-blue-50 rounded-3xl p-8 shadow-xl reveal">
+              <h3 class="text-2xl font-bold text-gray-900 mb-6">أرسل لنا رسالة</h3>
+              <form class="space-y-6" id="contactForm">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">الاسم الكامل</label>
+                    <input type="text"
+                      class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+                      placeholder="أدخل اسمك" required>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">رقم الهاتف</label>
+                    <input type="tel"
+                      class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+                      placeholder="أدخل رقم هاتفك" required>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-sm font-bold text-gray-700 mb-2">البريد الإلكتروني</label>
+                  <input type="email"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+                    placeholder="أدخل بريدك الإلكتروني">
+                </div>
+                <div>
+                  <label class="block text-sm font-bold text-gray-700 mb-2">نوع الخدمة</label>
+                  <select
+                    class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none">
+                    <option>تطوير مواقع</option>
+                    <option>تطوير تطبيقات</option>
+                    <option>مشاريع تخرج</option>
+                    <option>استشارات تقنية</option>
+                    <option>أنظمة مراقبة</option>
+                    <option>أخرى</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-bold text-gray-700 mb-2">تفاصيل المشروع</label>
+                  <textarea rows="4"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none resize-none"
+                    placeholder="اكتب تفاصيل مشروعك هنا..." required></textarea>
+                </div>
+                <button type="submit"
+                  class="w-full bg-gradient-to-r from-blue-600 to-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:shadow-xl transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2">
+                  إرسال الرسالة
+                  <i class="ri-send-plane-line"></i>
+                </button>
+              </form>
+            </div>
+
+            <!-- معلومات التواصل -->
+            <div class="space-y-8 reveal">
+              <div class="bg-white rounded-3xl p-8 shadow-xl">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">معلومات التواصل</h3>
+                <div class="space-y-6">
+                  <div
+                    class="flex items-center gap-4 p-4 rounded-2xl hover:bg-blue-50 transition-colors cursor-pointer group">
+                    <div
+                      class="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center text-blue-600 text-2xl group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                      <i class="ri-phone-line"></i>
+                    </div>
+                    <div>
+                      <div class="text-sm text-gray-500">الهاتف</div>
+                      <div class="font-bold text-gray-900 text-lg">+967 737 721 613</div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="flex items-center gap-4 p-4 rounded-2xl hover:bg-blue-50 transition-colors cursor-pointer group">
+                    <div
+                      class="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center text-blue-600 text-2xl group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                      <i class="ri-mail-line"></i>
+                    </div>
+                    <div>
+                      <div class="text-sm text-gray-500">البريد الإلكتروني</div>
+                      <div class="font-bold text-gray-900 text-lg">info@technova.sa</div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="flex items-center gap-4 p-4 rounded-2xl hover:bg-cyan-50 transition-colors cursor-pointer group">
+                    <div
+                      class="w-14 h-14 rounded-2xl bg-cyan-100 flex items-center justify-center text-cyan-600 text-2xl group-hover:bg-cyan-600 group-hover:text-white transition-colors">
+                      <i class="ri-map-pin-line"></i>
+                    </div>
+                    <div>
+                      <div class="text-sm text-gray-500">العنوان</div>
+                      <div class="font-bold text-gray-900 text-lg">الرياض، حي العليا، شارع الملك فهد</div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="flex items-center gap-4 p-4 rounded-2xl hover:bg-purple-50 transition-colors cursor-pointer group">
+                    <div
+                      class="w-14 h-14 rounded-2xl bg-purple-100 flex items-center justify-center text-purple-600 text-2xl group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                      <i class="ri-time-line"></i>
+                    </div>
+                    <div>
+                      <div class="text-sm text-gray-500">ساعات العمل</div>
+                      <div class="font-bold text-gray-900 text-lg">الأحد - الخميس: 9:00 ص - 6:00 م</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- الخريطة -->
+              <div class="rounded-3xl overflow-hidden shadow-xl h-64 relative">
+                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&h=400&fit=crop" alt="الموقع"
+                  class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-6">
+                  <button
+                    class="bg-white text-gray-900 px-6 py-3 rounded-full font-bold hover:shadow-lg transition-all flex items-center gap-2">
+                    <i class="ri-map-pin-line text-blue-600"></i>
+                    احصل على الاتجاهات
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-blue-900/20"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+
+          <!-- معلومات الشركة -->
+          <div class="col-span-1 md:col-span-2">
+
+            <div class="flex items-center gap-3 mb-6">
+              <div
+                class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-500 flex items-center justify-center text-white font-bold text-2xl">
+                T
+              </div>
+              <span class="text-3xl font-bold">TECHNOVA</span>
+            </div>
+
+            <p class="text-gray-400 leading-relaxed mb-6 max-w-md">
+              TECHNOVA شركة تقنية تقدم حلولاً رقمية متقدمة في تطوير المواقع والتطبيقات
+              والأنظمة الذكية. نساعد الأفراد والشركات على تحويل الأفكار إلى مشاريع
+              رقمية ناجحة.
+            </p>
+
+            <!-- أرقام التواصل -->
+            <div class="space-y-2 text-gray-300 mb-6">
+
+              <div class="flex items-center gap-2">
+                <i class="ri-phone-line text-blue-400"></i>
+                <span dir="ltr">+967 737 127 316</span>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <i class="ri-phone-line text-blue-400"></i>
+                <span dir="ltr">+967 715 673 894</span>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <i class="ri-global-line text-blue-400"></i>
+                <span>خدمات رقمية متاحة عبر الإنترنت</span>
+              </div>
+
+            </div>
+
+            <!-- السوشيال -->
+            <div class="flex gap-4">
+
+              <a href="#"
+                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-blue-600 transition-colors">
+                <i class="ri-twitter-x-line"></i>
+              </a>
+
+              <a href="#"
+                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-blue-600 transition-colors">
+                <i class="ri-instagram-line"></i>
+              </a>
+
+              <a href="#"
+                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-blue-600 transition-colors">
+                <i class="ri-linkedin-line"></i>
+              </a>
+
+              <a href="https://wa.me/967737127316" target="_blank"
+                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-green-600 transition-colors">
+
+                <i class="ri-whatsapp-line"></i>
+
+              </a>
+
+            </div>
+
+          </div>
+
+          <!-- روابط سريعة -->
+          <div>
+
+            <h4 class="text-lg font-bold mb-6">روابط سريعة</h4>
+
+            <ul class="space-y-3">
+              <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">الرئيسية</a></li>
+              <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">خدماتنا</a></li>
+              <li><a href="#projects" class="text-gray-400 hover:text-white transition-colors">المشاريع</a></li>
+              <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">من نحن</a></li>
+              <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">تواصل معنا</a></li>
+            </ul>
+
+          </div>
+
+          <!-- الخدمات -->
+          <div>
+
+            <h4 class="text-lg font-bold mb-6">خدماتنا</h4>
+
+            <ul class="space-y-3">
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors">تطوير المواقع</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors">تطوير التطبيقات</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors">مشاريع التخرج</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors">الاستشارات التقنية</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors">الأنظمة الذكية</a></li>
+            </ul>
+
+          </div>
+
+        </div>
+
+        <!-- حقوق النشر -->
+
+        <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+
+          <p class="text-gray-400 text-sm">
+            © <span id="year"></span> TECHNOVA — جميع الحقوق محفوظة.
+          </p>
+
+          <div class="flex gap-6 text-sm text-gray-400">
+            <a href="#" class="hover:text-white transition-colors">سياسة الخصوصية</a>
+            <a href="#" class="hover:text-white transition-colors">الشروط والأحكام</a>
+          </div>
+
+        </div>
+
+      </div>
+    </footer>
+  </div>
+
+  <!-- زر العودة للأعلى -->
+  <button id="back-to-top">
+    <i class="ri-arrow-up-line text-xl"></i>
+  </button>
+
+  <!-- JavaScript -->
+  <script>
+
+    // إخفاء شاشة التحميل
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 1000);
+    });
+
+    // Three.js خلفية ثلاثية الأبعاد
+    const initThreeJS = () => {
+      const container = document.getElementById('canvas-container');
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      container.appendChild(renderer.domElement);
+
+      // إنشاء أشكال ثلاثية الأبعاد
+      const geometries = [];
+      const material = new THREE.MeshBasicMaterial({
+        color: 0x6366f1,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.1
+      });
+
+      // إنشاء مكعبات عائمة
+      for (let i = 0; i < 15; i++) {
+        const geometry = new THREE.BoxGeometry(
+          Math.random() * 3 + 1,
+          Math.random() * 3 + 1,
+          Math.random() * 3 + 1
+        );
+        const mesh = new THREE.Mesh(geometry, material);
+
+        mesh.position.x = (Math.random() - 0.5) * 20;
+        mesh.position.y = (Math.random() - 0.5) * 20;
+        mesh.position.z = (Math.random() - 0.5) * 10 - 5;
+
+        mesh.rotation.x = Math.random() * Math.PI;
+        mesh.rotation.y = Math.random() * Math.PI;
+
+        scene.add(mesh);
+        geometries.push({
+          mesh,
+          speedX: (Math.random() - 0.5) * 0.01,
+          speedY: (Math.random() - 0.5) * 0.01,
+          speedZ: (Math.random() - 0.5) * 0.005
+        });
+      }
+
+      // إضافة إضاءة
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+      scene.add(ambientLight);
+
+      const pointLight = new THREE.PointLight(0x6366f1, 1);
+      pointLight.position.set(10, 10, 10);
+      scene.add(pointLight);
+
+      camera.position.z = 5;
+
+      // متغيرات التفاعل مع الماوس
+      let mouseX = 0;
+      let mouseY = 0;
+      let targetX = 0;
+      let targetY = 0;
+
+      document.addEventListener('mousemove', (event) => {
+        mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+        mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+      });
+
+      // حلقة الرسوم المتحركة
+      const animate = () => {
+        requestAnimationFrame(animate);
+
+        targetX += (mouseX - targetX) * 0.05;
+        targetY += (mouseY - targetY) * 0.05;
+
+        geometries.forEach((obj, index) => {
+          obj.mesh.rotation.x += obj.speedX;
+          obj.mesh.rotation.y += obj.speedY;
+          obj.mesh.rotation.z += obj.speedZ;
+
+          // حركة عائمة
+          obj.mesh.position.y += Math.sin(Date.now() * 0.001 + index) * 0.002;
+
+          // تفاعل مع الماوس
+          obj.mesh.position.x += (targetX * 0.5 - obj.mesh.position.x) * 0.01;
+          obj.mesh.position.y += (targetY * 0.5 - obj.mesh.position.y) * 0.01;
+        });
+
+        renderer.render(scene, camera);
+      };
+
+      animate();
+
+      // التعامل مع تغيير حجم النافذة
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    };
+
+    // إنشاء الجزيئات
+    const createParticles = () => {
+      const container = document.getElementById('particles');
+      for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 20 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        container.appendChild(particle);
+      }
+    };
+
+    // مؤشر التمرير
+    const updateScrollIndicator = () => {
+      const scrollIndicator = document.getElementById('scrollIndicator');
+      const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      scrollIndicator.style.width = scrollPercentage + '%';
+    };
+
+    // زر العودة للأعلى
+    const toggleBackToTop = () => {
+      const btn = document.getElementById('back-to-top');
+      if (window.scrollY > 500) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    };
+
+    document.getElementById('back-to-top').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // القائمة المتنقلة
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenuBtn = document.getElementById('close-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    mobileMenuBtn.addEventListener('click', () => {
+
+  mobileMenu.classList.toggle('hidden');
+
+  if (mobileMenu.classList.contains('hidden')) {
+    document.body.style.overflow = '';
+  } else {
+    document.body.style.overflow = 'hidden';
+  }
+
+});
+
+    const closeMenu = () => {
+      mobileMenu.classList.add('hidden');
+      document.body.style.overflow = '';
+    };
+
+    closeMenuBtn.addEventListener('click', closeMenu);
+    mobileMenu.addEventListener('click', (e) => {
+  if (e.target === mobileMenu) {
+    closeMenu();
+  }
+});
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+    // تأثيرات الظهور عند التمرير
+    const revealElements = () => {
+      const reveals = document.querySelectorAll('.reveal');
+      reveals.forEach(element => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+
+        if (elementTop < windowHeight - elementVisible) {
+          element.classList.add('active');
         }
       });
-      // Back to Top Button Functionality
+    };
 
-      window.addEventListener("scroll", function () {
-        const backToTopBtn = document.getElementById("back-to-top");
-        if (window.pageYOffset > 300) {
-          backToTopBtn.classList.remove("opacity-0", "invisible");
-          backToTopBtn.classList.add("opacity-100", "visible");
-        } else {
-          backToTopBtn.classList.add("opacity-0", "invisible");
-          backToTopBtn.classList.remove("opacity-100", "visible");
-        }
-      });
+    // عداد الإحصائيات
+    const animateCounters = () => {
+      const counters = document.querySelectorAll('.counter');
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
 
-      document
-        .getElementById("back-to-top")
-        .addEventListener("click", function () {
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
+        const updateCounter = () => {
+          current += step;
+          if (current < target) {
+            counter.textContent = Math.floor(current);
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target + (target === 98 ? '%' : '+');
+          }
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              updateCounter();
+              observer.unobserve(entry.target);
+            }
           });
         });
-    </script>
-    <!-- Scripts -->
-    <script src="assets/js/theme-toggle.js" defer></script>
-    <script src="assets/js/main.js" defer></script>
-    <script>
-      // Small boot helpers
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
-    <script>
-      // Small behaviour for the Target Audience section
-      // - handles CTA buttons: smooth scroll to contact page (or to #contact on same page)
-      // - optionally prefill the service field on the contact form (if present)
 
-      document.addEventListener("DOMContentLoaded", function () {
-        document
-          .querySelectorAll('[data-action="open-contact"]')
-          .forEach((btn) => {
-            btn.addEventListener("click", function (e) {
-              const serviceKey = btn.dataset.service || "";
-              // If contact page is same site, scroll to it or navigate then scroll
-              const contactSection = document.getElementById("contact");
-              if (contactSection) {
-                // Scroll to in-page contact
-                const offsetTop =
-                  contactSection.getBoundingClientRect().top +
-                  window.scrollY -
-                  80;
-                window.scrollTo({ top: offsetTop, behavior: "smooth" });
-
-                // Prefill service if contact form select exists
-                setTimeout(() => {
-                  const form = document.querySelector("#contactForm");
-                  if (form) {
-                    const select = form.querySelector(
-                      'select[name="service"], select#service'
-                    );
-                    if (select && serviceKey) {
-                      // Map serviceKey to option text values (adjust as needed)
-                      const mapping = {
-                        students: "مشاريع التخرج",
-                        owners: "تطوير منصات إلكترونية متكاملة",
-                        companies: "حلول الأعمال للشركات",
-                      };
-                      const val =
-                        mapping[serviceKey] || mapping[serviceKey] === ""
-                          ? mapping[serviceKey]
-                          : "";
-                      // Try to pick matching option by text
-                      for (const opt of select.options) {
-                        if (
-                          opt.textContent.trim() === val ||
-                          opt.value === serviceKey
-                        ) {
-                          select.value = opt.value;
-                          break;
-                        }
-                      }
-                    }
-                    // Focus first input
-                    const firstInput = form.querySelector(
-                      "input, textarea, select"
-                    );
-                    if (firstInput) firstInput.focus();
-                  }
-                }, 700);
-              } else {
-                // navigate to contact.html and pass a query param to indicate service
-                let url = "contact.html";
-                if (serviceKey)
-                  url += `?service=${encodeURIComponent(serviceKey)}`;
-                window.location.href = url;
-              }
-            });
-          });
-
-        // If arrived on contact.html with ?service=... prefill the form (works after navigation)
-        if (window.location.search) {
-          const params = new URLSearchParams(window.location.search);
-          const svc = params.get("service");
-          if (svc) {
-            // store in session for on-page form population
-            sessionStorage.setItem("prefill_service", svc);
-          }
-        }
+        observer.observe(counter);
       });
-    </script>
-  </body>
+    };
+
+    // تأثيرات البطاقات المائلة
+    const initTiltCards = () => {
+      const cards = document.querySelectorAll('.tilt-card');
+
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          const rotateX = (y - centerY) / 10;
+          const rotateY = (centerX - x) / 10;
+
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+        });
+      });
+    };
+
+    // تغيير شكل الهيدر عند التمرير
+    const handleHeaderScroll = () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 100) {
+        header.classList.add('shadow-lg');
+      } else {
+        header.classList.remove('shadow-lg');
+      }
+    };
+
+    // إرسال النموذج
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('شكراً لتواصلك معنا! سنتواصل معك قريباً.');
+    });
+
+    // تحديث السنة
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // تهيئة كل التأثيرات
+    document.addEventListener('DOMContentLoaded', () => {
+      initThreeJS();
+      createParticles();
+      animateCounters();
+      initTiltCards();
+
+      window.addEventListener('scroll', () => {
+        updateScrollIndicator();
+        toggleBackToTop();
+        revealElements();
+        handleHeaderScroll();
+      });
+
+      revealElements();
+    });
+
+    // تأثيرات GSAP
+    if (typeof gsap !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.from('.service-card', {
+        scrollTrigger: {
+          trigger: '#services',
+          start: 'top 80%',
+        },
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power3.out'
+      });
+    }
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+
+      e.preventDefault();
+
+      const name = this.querySelector('input[type="text"]').value;
+      const phone = this.querySelector('input[type="tel"]').value;
+      const email = this.querySelector('input[type="email"]').value;
+      const service = this.querySelector('select').value;
+      const message = this.querySelector('textarea').value;
+
+      const whatsappMessage =
+        `طلب جديد من موقع TECHNOVA
+
+الاسم:
+${name}
+
+رقم الهاتف:
+${phone}
+
+البريد:
+${email}
+
+نوع الخدمة:
+${service}
+
+تفاصيل المشروع:
+${message}`;
+
+      const encoded = encodeURIComponent(whatsappMessage);
+
+      const url = `https://wa.me/967737127316?text=${encoded}`;
+
+      window.open(url, "_blank");
+
+    });
+  </script>
+</body>
+
 </html>
